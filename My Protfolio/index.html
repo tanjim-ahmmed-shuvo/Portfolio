@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cyberpunk Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <!-- Background Music -->
+    <audio autoplay loop>
+        <source src="Perfect Deface Page Music.mp3" type="audio/mp3">
+        Your browser does not support the audio element.
+      </audio>
+      
+
+    <!-- Custom cursor -->
+    <div class="cursor"></div>
+    <div id="cursor-trail-container"></div>
+
+
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="#" class="logo">
+                <span>TANJIM AHMMED SHUVO</span>
+            </a>
+            <div class="nav-links">
+                <a href="#home">Home</a>
+                <a href="#about">About</a>
+                <a href="#skills">Skills</a>
+                <a href="#certificates">Certificates</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <button class="menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        <div class="map" id="map"></div>
+        <!-- Hero Section -->
+        <section id="home" class="hero-section">
+            <div class="container">
+                <div class="hero-content">
+                    <!-- centered layout -->
+                    <div class="profile-circle-container animated-profile">
+                        <img src="image.png" alt="Tanjim Ahmmed Shuvo" class="profile-circle-img" />
+                    </div>
+                    <h1 class="hero-name glitch-text typing-text cursor-blink">TANJIM AHMMED SHUVO</h1>
+                    <div class="cyber-title-box">CYBERSECURITY SPECIALIST & WEB DEVOLOPER</div>
+                    <p class="centered-description">
+                        Skilled cybersecurity professional specializing in web and network penetration testing, with a
+                        strong foundation in secure web development. Committed to identifying vulnerabilities,
+                        strengthening system defenses, and creating robust, secure web applications for the modern
+                        digital landscape.
+                    </p>
+                    <div class="hero-buttons">
+                        <a href="#contact" class="cyber-button cyber-button-primary">
+                            <span>HIRE ME</span>
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                        <a href="#skills" class="cyber-button cyber-button-secondary">
+                            <span>MY SKILLS</span>
+                            <i class="fa-solid fa-shield-halved"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="cityscape"></div>
+        </section>
+
+
+        <!-- About Section -->
+        <section id="about" class="about-section">
+            <div class="container">
+                <h2 class="section-title">
+                    <span class="border-bottom-green">About Me</span>
+                </h2>
+                <div class="section-divider"></div>
+
+                <div class="about-content">
+                    <div class="about-text">
+                        <div class="glassmorphic-card">
+                            <h3 class="about-subtitle">WHO I AM</h3>
+                            <p>
+                                I am a skilled Ethical Hacker and Web Developer with expertise in both cybersecurity and
+                                web development. I have hands-on experience with various operating systems including
+                                Kali Linux, Ubuntu, Parrot OS, Arch Linux, and Windows. My programming skills include
+                                Python and C, and I actively work on web development projects using HTML and CSS. I
+                                possess practical knowledge of cyber attack techniques such as DDoS, MITM, API
+                                Exploitation, Brute Force, and SQL Injection, along with an understanding of malware
+                                functionality. My goal is to become a highly competent and trusted professional in both
+                                ethical hacking and web application development. I am actively working on real-world
+                                projects through freelancing platforms to build a strong portfolio. Punctuality,
+                                responsibility, and a continuous drive to improve are the core values that guide my
+                                work.
+                            </p>
+
+                            <!--
+                            <div class="about-stats">
+                                <div class="stat">
+                                    <span class="stat-number">4+</span>
+                                    <span class="stat-label">Years Experience</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="stat-number">20+</span>
+                                    <span class="stat-label">Projects</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="stat-number">20+</span>
+                                    <span class="stat-label">Companies</span>
+                                </div>
+                            </div>
+                            -->
+
+                        </div>
+                    </div>
+                    <div class="about-services">
+                        <div class="service-card glassmorphic-card-cyan">
+                            <i class="fa-solid fa-shield-halved"></i>
+                            <h3>Network Security</h3>
+                            <p>Designing robust network defenses against advanced threats</p>
+                        </div>
+                        <div class="service-card glassmorphic-card-pink">
+                            <i class="fa-solid fa-bug"></i>
+                            <h3>Penetration Testing</h3>
+                            <p>Finding vulnerabilities before hackers do</p>
+                        </div>
+                        <div class="service-card glassmorphic-card-green">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                            <h3>Digital Forensics</h3>
+                            <p>Investigating security incidents and data breaches</p>
+                        </div>
+                        <div class="service-card glassmorphic-card-cyan">
+                            <i class="fa-solid fa-cloud"></i>
+                            <h3>Cloud Security</h3>
+                            <p>Securing cloud infrastructure and applications</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="skills-section">
+            <div class="container">
+                <h2 class="section-title">
+                    <span class="border-bottom-cyan">Skills</span>
+                </h2>
+                <div class="section-divider"></div>
+
+                <div class="skills-grid">
+                    <div class="skill-card glassmorphic-card-cyan">
+                        <div class="skill-icon">
+                            <i class="fa-solid fa-shield-halved"></i>
+                        </div>
+                        <div class="skill-content">
+                            <h3>Network Security</h3>
+                            <div class="progress-bar">
+                                <div class="progress" style="width: 95%"></div>
+                            </div>
+                            <ul class="skill-details">
+                                <li>Firewall Configuration</li>
+                                <li>IDS/IPS Implementation</li>
+                                <li>VPN Architecture</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="skill-card glassmorphic-card-pink">
+                        <div class="skill-icon">
+                            <i class="fa-solid fa-bug"></i>
+                        </div>
+                        <div class="skill-content">
+                            <h3>Penetration Testing</h3>
+                            <div class="progress-bar">
+                                <div class="progress" style="width: 90%"></div>
+                            </div>
+                            <ul class="skill-details">
+                                <li>OWASP Top 10</li>
+                                <li>Exploit Development</li>
+                                <li>Vulnerability Assessment</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="skill-card glassmorphic-card-green">
+                        <div class="skill-icon">
+                            <i class="fa-solid fa-code"></i>
+                        </div>
+                        <div class="skill-content">
+                            <h3>Secure Coding</h3>
+                            <div class="progress-bar">
+                                <div class="progress" style="width: 85%"></div>
+                            </div>
+                            <ul class="skill-details">
+                                <li>Code Review</li>
+                                <li>Avoiding common flaws (e.g., SQL injection, XSS, buffer overflows)</li>
+                                <li>Proper authentication/authorization</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="skill-card glassmorphic-card-cyan">
+                        <div class="skill-icon">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </div>
+                        <div class="skill-content">
+                            <h3>Digital Forensics</h3>
+                            <div class="progress-bar">
+                                <div class="progress" style="width: 88%"></div>
+                            </div>
+                            <ul class="skill-details">
+                                <li>Data recovery</li>
+                                <li>Memory Analysis</li>
+                                <li>Disk Imaging</li>
+                                <li>Log Analysis</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="skill-card glassmorphic-card-pink">
+                        <div class="skill-icon">
+                            <i class="fa-solid fa-cloud"></i>
+                        </div>
+                        <div class="skill-content">
+                            <h3>Cloud Security</h3>
+                            <div class="progress-bar">
+                                <div class="progress" style="width: 92%"></div>
+                            </div>
+                            <ul class="skill-details">
+                                <li>AWS/Azure/GCP</li>
+                                <li>Container Security</li>
+                                <li>IAM Implementation</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="skill-card glassmorphic-card-green">
+                        <div class="skill-icon">
+                            <i class="fa-solid fa-file-lines"></i>
+                        </div>
+                        <div class="skill-content">
+                            <h3>Compliance</h3>
+                            <div class="progress-bar">
+                                <div class="progress" style="width: 80%"></div>
+                            </div>
+                            <ul class="skill-details">
+                                <li>Mini Android APP Development</li>
+                                <li>Firewall Vulnerability</li>
+                                <li>WEB Penetration</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Certificates Section -->
+        <section id="certificates" class="certificates-section">
+            <div class="container">
+                <h2 class="section-title">
+                    <span class="border-bottom-pink">Certificates</span>
+                </h2>
+                <div class="section-divider"></div>
+
+                <div class="certificates-grid">
+                    <div class="certificate-card glassmorphic-card-green">
+                        <div class="certificate-header">
+                            <h3>CISSP</h3>
+                            <span class="certificate-badge">ISC²</span>
+                        </div>
+                        <p class="certificate-period">*******************</p>
+                        <p class="certificate-description">
+                            *****************************************************
+                        </p>
+                        <ul class="certificate-details">
+                            <li>Security and Risk Management</li>
+                            <li>Asset Security and Identity Management</li>
+                            <li>Security Assessment and Testing</li>
+                        </ul>
+                        <a href="#" class="certificate-link">Verify <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+
+                    <div class="certificate-card glassmorphic-card-cyan">
+                        <div class="certificate-header">
+                            <h3>CEH</h3>
+                            <span class="certificate-badge">*********************</span>
+                        </div>
+                        <p class="certificate-period">#################</p>
+                        <p class="certificate-description">
+                            ******************************************************
+                        </p>
+                        <ul class="certificate-details">
+                            <li>Ethical Hacking Methodology</li>
+                            <li>Footprinting and Reconnaissance</li>
+                            <li>System Hacking and Penetration Testing</li>
+                        </ul>
+                        <a href="#" class="certificate-link">Verify <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+
+                    <div class="certificate-card glassmorphic-card-pink">
+                        <div class="certificate-header">
+                            <h3>AWS Security</h3>
+                            <span class="certificate-badge">Amazon Web Services</span>
+                        </div>
+                        <p class="certificate-period">#################</p>
+                        <p class="certificate-description">
+                        **********************************************
+                        </p>
+                        <ul class="certificate-details">
+                            <li>Cloud Security Architecture</li>
+                            <li>AWS Security Services Implementation</li>
+                            <li>Incident Response in Cloud Environments</li>
+                        </ul>
+                        <a href="#" class="certificate-link">Verify <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="contact-section">
+            <div class="container">
+                <h2 class="section-title">
+                    <span class="border-bottom-green">Get in Touch</span>
+                </h2>
+                <div class="section-divider"></div>
+
+                <div class="contact-content">
+                    <div class="contact-info glassmorphic-card">
+                        <h3 class="contact-subtitle">CONTACT INFO</h3>
+
+                        <div class="contact-item">
+                            <div class="contact-icon pink-icon">
+                                <i class="fa-solid fa-envelope"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h4>Email</h4>
+                                <a href="mailto:contact@.com">contact@.com</a>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-icon cyan-icon">
+                                <i class="fa-solid fa-phone"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h4>Phone</h4>
+                                <a href="tel:+1234567890">+88017********</a>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-icon green-icon">
+                                <i class="fa-solid fa-location-dot"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h4>Location</h4>
+                                <p>*****************</p>
+                            </div>
+                        </div>
+
+                        <div class="social-links">
+                            <h3>CONNECT WITH ME</h3>
+                            <div class="social-icons">
+                                <a href="#" class="social-icon pink-border">
+                                    <i class="fab fa-linkedin-in"></i>
+                                </a>
+                                <a href="#" class="social-icon cyan-border">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                                <a href="#" class="social-icon green-border">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                                <a href="#" class="social-icon pink-border">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                                <a href="#" class="social-icon cyan-border">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="contact-form glassmorphic-card">
+                        <h3 class="form-title">SEND MESSAGE</h3>
+                        <form id="contactForm">
+                            <div class="form-group">
+                                <label for="name">Full Name</label>
+                                <div class="input-wrapper">
+                                    <i class="fa-solid fa-user"></i>
+                                    <input type="text" id="name" name="name" required>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email">Email Address</label>
+                                <div class="input-wrapper">
+                                    <i class="fa-solid fa-envelope"></i>
+                                    <input type="email" id="email" name="email" required>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="subject">Subject</label>
+                                <div class="input-wrapper">
+                                    <i class="fa-solid fa-note-sticky"></i>
+                                    <input type="text" id="subject" name="subject" required>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="message">Your Message</label>
+                                <div class="input-wrapper">
+                                    <i class="fa-solid fa-message"></i>
+                                    <textarea id="message" name="message" required></textarea>
+                                </div>
+                            </div>
+
+                            <button type="submit" class="cyber-button cyber-button-primary form-button">
+                                <span>SEND MESSAGE</span>
+                                <i class="fa-solid fa-paper-plane"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <span>TANJIM AHMMED SHUVO</span>
+                    <p>Cybersecurity Specialist & WEB Developer</p>
+                </div>
+                <div class="footer-links">
+                    <a href="#home">Home</a>
+                    <a href="#about">About</a>
+                    <a href="#skills">Skills</a>
+                    <a href="#certificates">Certificates</a>
+                    <a href="#contact">Contact</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Tanjim Ahmmed Shuvo. All rights reserved.</p>
+                <p>Designed by <i class="fa-solid fa-shield-heart"></i> Tanjim Ahmmed Shuvo</p>
+            </div>
+        </div>
+        <div class="cityscape"></div>
+    </footer>
+
+    <!-- Toast notification for form submission -->
+    <div id="toast" class="toast">
+        <div class="toast-content">
+            <i class="fa-solid fa-check-circle"></i>
+            <div class="toast-message">Message sent successfully!</div>
+        </div>
+        <div class="toast-progress"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
