@@ -14,4 +14,4 @@ Features:
 
 🌓 Fully responsive and mobile-friendly design
 
-Deployed at: https://tanjim.tech Built with ❤️ by Tanjim Ahmmed Shuvo
+Deployed at: https://www.tanjim.tech Built with ❤️ by Tanjim Ahmmed Shuvo
