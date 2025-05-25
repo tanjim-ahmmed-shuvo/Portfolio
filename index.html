@@ -4,35 +4,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tanjim Ahmmed Shuvo</title>
+    <title>Cyberpunk Portfolio</title>
     <link rel="stylesheet" href="styles.css">
-    <!-- Google Fonts -->
     <link
         href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
-    <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 
 <body>
-    <!-- Background Music -->
+    <canvas id="digital-rain-canvas" class="background-canvas hidden"></canvas>
+    <canvas id="neon-grid-canvas" class="background-canvas hidden"></canvas>
     <audio autoplay loop>
         <source src="Perfect Deface Page Music.mp3" type="audio/mp3">
         Your browser does not support the audio element.
       </audio>
       
 
-    <!-- Custom cursor -->
     <div class="cursor"></div>
     <div id="cursor-trail-container"></div>
 
 
-
-    <!-- Navigation -->
     <nav class="navbar">
         <div class="container">
             <a href="#" class="logo">
-                <span>TANJIM AHMMED SHUVO</span>
+                <span>TANJIM AHMMED SHUVO </span>
             </a>
             <div class="nav-links">
                 <a href="#home">Home</a>
@@ -49,18 +45,15 @@
         </div>
     </nav>
 
-    <!-- Main Content -->
     <main>
         <div class="map" id="map"></div>
-        <!-- Hero Section -->
         <section id="home" class="hero-section">
             <div class="container">
                 <div class="hero-content">
-                    <!-- centered layout -->
                     <div class="profile-circle-container animated-profile">
-                        <img src="image.png" alt="Tanjim Ahmmed Shuvo" class="profile-circle-img" />
+                        <img src="image.png" alt="Tanjim Ahmmed Shuvo - Profile Picture" class="profile-circle-img" />
                     </div>
-                    <h1 class="hero-name glitch-text typing-text cursor-blink">TANJIM AHMMED SHUVO</h1>
+                    <h1 class="hero-name typing-text cursor-blink">TANJIM AHMMED SHUVO <img class="verified-badge-img" src="blue.png" alt="Verified Badge"></h1>
                     <div class="cyber-title-box">CYBERSECURITY SPECIALIST & WEB DEVOLOPER</div>
                     <p class="centered-description">
                         Skilled cybersecurity professional specializing in web and network penetration testing, with a
@@ -84,7 +77,6 @@
         </section>
 
 
-        <!-- About Section -->
         <section id="about" class="about-section">
             <div class="container">
                 <h2 class="section-title">
@@ -109,24 +101,6 @@
                                 responsibility, and a continuous drive to improve are the core values that guide my
                                 work.
                             </p>
-
-                            <!--
-                            <div class="about-stats">
-                                <div class="stat">
-                                    <span class="stat-number">4+</span>
-                                    <span class="stat-label">Years Experience</span>
-                                </div>
-                                <div class="stat">
-                                    <span class="stat-number">20+</span>
-                                    <span class="stat-label">Projects</span>
-                                </div>
-                                <div class="stat">
-                                    <span class="stat-number">20+</span>
-                                    <span class="stat-label">Companies</span>
-                                </div>
-                            </div>
-                            -->
-
                         </div>
                     </div>
                     <div class="about-services">
@@ -155,7 +129,6 @@
             </div>
         </section>
 
-        <!-- Skills Section -->
         <section id="skills" class="skills-section">
             <div class="container">
                 <h2 class="section-title">
@@ -270,7 +243,6 @@
             </div>
         </section>
 
-        <!-- Certificates Section -->
         <section id="certificates" class="certificates-section">
             <div class="container">
                 <h2 class="section-title">
@@ -333,7 +305,6 @@
             </div>
         </section>
 
-        <!-- Contact Section -->
         <section id="contact" class="contact-section">
             <div class="container">
                 <h2 class="section-title">
@@ -384,13 +355,13 @@
                                 <a href="#" class="social-icon cyan-border">
                                     <i class="fab fa-github"></i>
                                 </a>
-                                <a href="https://x.com/tanj1m" class="social-icon green-border">
+                                <a href="#" class="social-icon green-border">
                                     <i class="fab fa-twitter"></i>
                                 </a>
-                                <a href="https://www.instagram.com/tanjim.ahmmed.shuvo" class="social-icon pink-border">
+                                <a href="#" class="social-icon pink-border">
                                     <i class="fab fa-instagram"></i>
                                 </a>
-                                <a href="https://www.facebook.com/tanjim.ahmmed.shuvo" class="social-icon cyan-border">
+                                <a href="#" class="social-icon cyan-border">
                                     <i class="fab fa-facebook-f"></i>
                                 </a>
                             </div>
@@ -443,7 +414,6 @@
         </section>
     </main>
 
-    <!-- Footer -->
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
@@ -467,7 +437,6 @@
         <div class="cityscape"></div>
     </footer>
 
-    <!-- Toast notification for form submission -->
     <div id="toast" class="toast">
         <div class="toast-content">
             <i class="fa-solid fa-check-circle"></i>
