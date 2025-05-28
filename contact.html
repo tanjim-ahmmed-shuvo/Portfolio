@@ -45,7 +45,7 @@ acebook, Social media,">
             -webkit-backdrop-filter: blur(12px);
             border: 1px solid rgba(var(--neon-pink-rgb), 0.35); 
             box-shadow: 0 0 20px rgba(var(--neon-pink-rgb), 0.35); 
-            /* position: relative; /* ভিজিটর কাউন্টার এখান থেকে সরানো হয়েছে */
+       
         }
         
         .profile-image-container {
@@ -155,7 +155,6 @@ acebook, Social media,">
             box-shadow: 0 0 5px rgba(var(--neon-cyan-rgb), 0.5); 
         }
         
-        /* ফ্লোটিং ভিজিটর কাউন্টারের জন্য স্টাইল */
         .visitor-counter-display-floating {
             position: fixed; 
             bottom: 1rem;    
@@ -211,7 +210,6 @@ acebook, Social media,">
                 width: 40px;
                 height: 40px;
             }
-            /* ছোট স্ক্রিনের জন্য ফ্লোটিং কাউন্টার স্টাইল */
             .visitor-counter-display-floating {
                 bottom: 0.75rem; 
                 left: 0.75rem;   
@@ -333,7 +331,6 @@ acebook, Social media,">
             return isNaN(r) || isNaN(g) || isNaN(b) ? null : [r, g, b];
         }
         
-        // ভিজিটর কাউন্টার ফাংশন
         function updateVisitorCount() {
             let count = localStorage.getItem('pageVisits_contact_html_new');
             if (count === null) {
