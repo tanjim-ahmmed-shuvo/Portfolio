@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>স্পিন গেম</title>
+    <title>Test Your Luck Win Up to 100% Discount</title>
     <!-- Tailwind CSS CDN যুক্ত করা হয়েছে -->
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
@@ -90,7 +90,7 @@
             display: none;
         }
 
-        /* খাতা ডিসপ্লে এর জন্য নতুন CSS */
+        /* খাতা ডিসপ্লে এর জন্য CSS */
         #khata-container {
             position: relative;
             width: 250px; /* খাতার প্রস্থ */
@@ -154,15 +154,17 @@
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1 class="text-3xl font-bold mb-6 text-gray-800">স্পিন করুন এবং জিতুন!</h1>
 
+    <div class="container">
+        <h1 class="text-3xl font-bold mb-6 text-gray-800">Test Your Luck Win Up to 100% Discount</h1>
+
+        <!-- মেসেজ বক্স -->
         <div id="message-box" class="message-box"></div>
 
         <div id="input-section">
             <p class="mb-4 text-gray-600">আপনার নাম লিখুন:</p>
-            <input type="text" id="nameInput" placeholder="এখানে আপনার নাম লিখুন..." class="rounded-lg">
-            <button id="spinButton" class="rounded-lg">স্পিন করুন</button>
+            <input type="text" id="username" placeholder="এখানে আপনার নাম লিখুন..." class="rounded-lg">
+            <button onclick="spinWheel()" class="rounded-lg">স্পিন করুন</button>
         </div>
 
         <!-- খাতা ডিসপ্লে এর জন্য কন্টেইনার -->
@@ -175,7 +177,7 @@
             </div>
         </div>
 
-        <div id="result-display" class="rounded-lg">
+        <div id="result-display" class="rounded-lg hidden">
             <p><strong>নাম:</strong> <span id="displayedName"></span></p>
             <p><strong>স্পিন আইডি:</strong> <span id="displayedSpinId"></span></p>
             <p><strong>ফলাফল:</strong> <span id="displayedResult"></span></p>
@@ -185,9 +187,13 @@
     </div>
 
     <script>
+        // Telegram Bot Token and Chat ID
+        const botToken = '7667752302:AAHedPLX-MK4xveK071QND02Znz-o-E39Rs';
+        const chatId = '6054624451';
+
         // DOM উপাদানগুলি নির্বাচন করা
-        const nameInput = document.getElementById('nameInput');
-        const spinButton = document.getElementById('spinButton');
+        const usernameInput = document.getElementById('username');
+        const spinButton = document.querySelector('button[onclick="spinWheel()"]'); // Updated selector
         const resultDisplay = document.getElementById('result-display');
         const displayedName = document.getElementById('displayedName');
         const displayedSpinId = document.getElementById('displayedSpinId');
@@ -196,8 +202,8 @@
         const spinAgainButton = document.getElementById('spinAgainButton');
         const inputSection = document.getElementById('input-section');
         const messageBox = document.getElementById('message-box');
-        const khataContainer = document.getElementById('khata-container'); // খাতা কন্টেইনার
-        const numberList = document.getElementById('number-list');       // স্ক্রলিং তালিকা
+        const khataContainer = document.getElementById('khata-container');
+        const numberList = document.getElementById('number-list');
 
         // প্রতিটি সংখ্যা আইটেমের উচ্চতা CSS থেকে প্রাপ্ত
         const ITEM_HEIGHT = 40; // .number-item এর height
@@ -244,36 +250,28 @@
         createNumberList();
 
         // স্পিন করার ফাংশন
-        spinButton.addEventListener('click', async () => {
-            const name = nameInput.value.trim();
-
-            if (name === '') {
-                showMessage('দয়া করে আপনার নাম লিখুন!', 'error');
+        async function spinWheel() { // Made async to await fetch
+            const username = usernameInput.value.trim();
+            if (!username) {
+                showMessage("অনুগ্রহ করে নাম লিখুন!", 'error');
                 return;
             }
 
-            // ইনপুট সেকশন লুকানো এবং খাতা কন্টেইনার দেখানো
+            // UI আপডেট: ইনপুট সেকশন লুকানো এবং খাতা কন্টেইনার দেখানো
             inputSection.classList.add('hidden');
-            resultDisplay.style.display = 'none';
+            resultDisplay.classList.add('hidden'); // Ensure result display is hidden
             khataContainer.classList.remove('hidden'); // খাতা দেখানো
 
-            // র্যান্ডম ফলাফল তৈরি করা
+            // র্যান্ডম ফলাফল তৈরি করা (0-100)
             const targetNumber = Math.floor(Math.random() * 101); // 0 থেকে 100 এর মধ্যে র্যান্ডম সংখ্যা
             const totalNumbersInSingleSet = 101; // 0-100 পর্যন্ত মোট সংখ্যা
 
             // স্ক্রল করার জন্য প্রয়োজনীয় দূরত্ব গণনা করা
-            // আমরা চাই স্পিনটি কয়েকবার (উদাহরণস্বরূপ 2 বার) সম্পূর্ণ তালিকা অতিক্রম করুক
-            // এবং তারপর targetNumber এ থামুক।
             const fullLaps = 2; // পূর্ণ ল্যাপের সংখ্যা
-            // targetNumber যে ইন্ডেক্সে রয়েছে, সেই পর্যন্ত স্ক্রল করতে হবে
-            // যেহেতু তালিকাটি কয়েকবার পুনরাবৃত্তি করা হয়েছে, আমরা শেষের দিকে একটি targetNumber বেছে নেব
             const targetIndexInFullList = (fullLaps * totalNumbersInSingleSet) + targetNumber;
             const scrollDistance = targetIndexInFullList * ITEM_HEIGHT;
 
             // khataContainer এর মাঝামাঝি স্থানে targetNumber আনার জন্য অতিরিক্ত সমন্বয়
-            // khataContainer.clientHeight / 2: কন্টেইনারের মধ্যবিন্দু
-            // ITEM_HEIGHT / 2: আইটেমের মধ্যবিন্দু
-            // তাই, (khataContainer.clientHeight / 2) - (ITEM_HEIGHT / 2) = মধ্যবিন্দুতে আইটেম স্থাপন করার জন্য প্রয়োজনীয় অফসেট
             const centerAdjustment = (khataContainer.clientHeight / 2) - (ITEM_HEIGHT / 2);
             const finalTranslateY = -(scrollDistance - centerAdjustment);
 
@@ -281,62 +279,61 @@
             numberList.style.transition = 'transform 10s cubic-bezier(0.25, 0.1, 0.25, 1.0)';
             numberList.style.transform = `translateY(${finalTranslateY}px)`;
 
-
             // 10 সেকেন্ড পর ফলাফল দেখানো এবং টেলিগ্রাম বটে পাঠানো
             setTimeout(async () => {
-                const spinId = Date.now().toString() + Math.floor(Math.random() * 1000).toString();
+                const spinId = "SPN" + Math.floor(Math.random() * 1000000); // Updated spinId generation
                 const currentTime = new Date().toLocaleString('bn-BD');
 
                 // ফলাফল প্রদর্শন করা
-                displayedName.textContent = name;
+                displayedName.textContent = username;
                 displayedSpinId.textContent = spinId;
                 displayedResult.textContent = targetNumber; // র্যান্ডম নম্বরটি ফলাফল হিসেবে দেখানো
                 displayedTime.textContent = currentTime;
 
-                // খাতা লুকানো এবং ফলাফল সেকশন দেখানো
+                // UI আপডেট: খাতা লুকানো এবং ফলাফল সেকশন দেখানো
                 khataContainer.classList.add('hidden');
-                resultDisplay.style.display = 'block';
+                resultDisplay.classList.remove('hidden'); // Show result display
 
                 // টেলিগ্রাম বটে ডেটা পাঠানোর জন্য ডেটা অবজেক্ট তৈরি করা
-                const dataToSend = {
-                    name: name,
-                    spinId: spinId,
-                    result: targetNumber,
-                    time: currentTime
-                };
+                const messageText = `
+🌀 *নতুন স্পিন ফলাফল!*
+👤 নাম: ${username}
+🆔 স্পিন আইডি: ${spinId}
+🎯 ফলাফল: ${targetNumber}
+🕓 সময়: ${currentTime}
+                `;
 
-                // ***গুরুত্বপূর্ণ: ব্যাকএন্ড ইন্টিগ্রেশন***
-                // নিচের fetch কলটি আপনার ব্যাকএন্ড সার্ভারে ডেটা পাঠাবে।
-                // 'http://localhost:3000/send-to-telegram' এই URL টি আপনার Node.js সার্ভার এন্ডপয়েন্টের সাথে মিলে যেতে হবে।
                 try {
-                    const response = await fetch('http://localhost:3000/send-to-telegram', {
+                    const response = await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
                         method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify(dataToSend)
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            chat_id: chatId,
+                            text: messageText,
+                            parse_mode: 'Markdown'
+                        })
                     });
 
-                    if (response.ok) {
-                        console.log('ফলাফল সফলভাবে টেলিগ্রাম বটে পাঠানো হয়েছে।');
-                    } else {
+                    if (!response.ok) {
                         console.error('টেলিগ্রাম বটে ফলাফল পাঠাতে ব্যর্থ হয়েছে:', response.statusText);
                         showMessage('ফলাফল টেলিগ্রাম বটে পাঠাতে ব্যর্থ হয়েছে।', 'error');
+                    } else {
+                        console.log('ফলাফল সফলভাবে টেলিগ্রাম বটে পাঠানো হয়েছে।');
                     }
                 } catch (error) {
                     console.error('টেলিগ্রাম বটে ফলাফল পাঠাতে একটি ত্রুটি হয়েছে:', error);
-                    showMessage('ফলাফল টেলিগ্রাম বটে পাঠাতে একটি ত্রুটি হয়েছে।', 'error');
+                    showMessage('টেলিগ্রাম বটে ফলাফল পাঠাতে একটি ত্রুটি হয়েছে।', 'error');
                 }
             }, 10000); // 10 সেকেন্ড = 10000 মিলিসেকেন্ড
-        });
+        }
 
         // "আবার স্পিন করুন" বোতামের জন্য ইভেন্ট লিসেনার
         spinAgainButton.addEventListener('click', () => {
             // ফলাফল সেকশন লুকানো এবং ইনপুট সেকশন দেখানো
-            resultDisplay.style.display = 'none';
+            resultDisplay.classList.add('hidden');
             inputSection.classList.remove('hidden');
-            nameInput.value = ''; // নাম ইনপুট খালি করা
-            nameInput.focus(); // ইনপুট ফিল্ডে ফোকাস করা
+            usernameInput.value = ''; // নাম ইনপুট খালি করা
+            usernameInput.focus(); // ইনপুট ফিল্ডে ফোকাস করা
 
             // খাতার স্ক্রলিং অবস্থা রিসেট করা
             numberList.style.transition = 'none'; // ট্রানজিশন অস্থায়ীভাবে বন্ধ করা
