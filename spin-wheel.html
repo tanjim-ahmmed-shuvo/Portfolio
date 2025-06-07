@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>স্পিন গেম</title>
+    <!-- Tailwind CSS CDN যুক্ত করা হয়েছে -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif; /* ইন্টার ফন্ট ব্যবহার করা হয়েছে */
+            background-color: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .container {
+            background-color: #ffffff;
+            padding: 32px;
+            border-radius: 12px; /* গোলাকার কোণা */
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 500px;
+            width: 100%;
+        }
+        input[type="text"] {
+            padding: 12px 16px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px; /* গোলাকার কোণা */
+            width: calc(100% - 32px); /* প্যাডিং এর জন্য অ্যাডজাস্ট করা হয়েছে */
+            margin-bottom: 20px;
+            font-size: 16px;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+        input[type="text"]:focus {
+            border-color: #3b82f6; /* ফোকাসে নীল বর্ডার */
+        }
+        button {
+            background-color: #3b82f6;
+            color: #ffffff;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px; /* গোলাকার কোণা */
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: bold;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 4px 10px rgba(59, 130, 246, 0.3);
+        }
+        button:hover {
+            background-color: #2563eb;
+            transform: translateY(-2px);
+        }
+        button:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 5px rgba(59, 130, 246, 0.3);
+        }
+        #result-display {
+            margin-top: 25px;
+            padding: 20px;
+            background-color: #e0f2fe;
+            border: 1px solid #90cdf4;
+            border-radius: 12px; /* গোলাকার কোণা */
+            display: none; /* শুরুতে লুকানো থাকবে */
+            text-align: left;
+        }
+        #result-display p {
+            margin: 8px 0;
+            font-size: 17px;
+            color: #2d3748;
+        }
+        #result-display p strong {
+            color: #1a202c;
+        }
+        .hidden {
+            display: none;
+        }
+        .message-box {
+            background-color: #fff3cd;
+            color: #664d03;
+            padding: 15px;
+            border: 1px solid #ffecb5;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: none;
+        }
+
+        /* খাতা ডিসপ্লে এর জন্য নতুন CSS */
+        #khata-container {
+            position: relative;
+            width: 250px; /* খাতার প্রস্থ */
+            height: 300px; /* খাতার দৃশ্যমান উচ্চতা */
+            margin: 40px auto;
+            border: 2px solid #a0a0a0; /* খাতার বর্ডার */
+            border-radius: 8px;
+            background-color: #fcfcfc; /* কাগজের রঙ */
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            overflow: hidden; /* দৃশ্যমান এলাকার বাইরের সংখ্যাগুলো লুকানোর জন্য */
+            display: flex; /* ফ্ল্যাক্সবক্স ব্যবহার করা হয়েছে */
+            justify-content: center; /* মাঝখানে রাখার জন্য */
+            align-items: center; /* মাঝখানে রাখার জন্য */
+            flex-direction: column; /* উল্লম্ব সজ্জার জন্য */
+        }
+
+        #current-number-indicator {
+            position: absolute;
+            top: 50%; /* উল্লম্বভাবে মাঝখানে */
+            left: 0;
+            right: 0;
+            height: 3px; /* ইন্ডিকেটর লাইনের পুরুত্ব */
+            background-color: #ef4444; /* লাল ইন্ডিকেটর */
+            transform: translateY(-50%);
+            z-index: 10;
+        }
+
+        #number-list-wrapper {
+            width: 100%;
+            height: 100%;
+            overflow: hidden; /* স্ক্রলিং সংখ্যাগুলি ক্লিপ করার জন্য গুরুত্বপূর্ণ */
+            position: relative;
+        }
+
+        #number-list {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            transition: transform 10s cubic-bezier(0.25, 0.1, 0.25, 1.0); /* মসৃণ থামার জন্য */
+            position: absolute; /* translateY দ্বারা পজিশন করার জন্য */
+            top: 0;
+            left: 0;
+        }
+
+        .number-item {
+            font-family: 'Courier New', monospace; /* লেজার লুকের জন্য মনোস্পেসড ফন্ট */
+            font-size: 24px; /* বড় সংখ্যা */
+            padding: 5px 10px;
+            height: 40px; /* প্রতিটি সংখ্যা আইটেমের নির্দিষ্ট উচ্চতা */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-bottom: 1px dashed #e0e0e0; /* পৃষ্ঠাগুলির জন্য ড্যাশড লাইন */
+            color: #444;
+            box-sizing: border-box; /* প্যাডিং এবং বর্ডার উচ্চতার অন্তর্ভুক্ত করার জন্য */
+        }
+
+        .number-item:last-child {
+            border-bottom: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-3xl font-bold mb-6 text-gray-800">স্পিন করুন এবং জিতুন!</h1>
+
+        <div id="message-box" class="message-box"></div>
+
+        <div id="input-section">
+            <p class="mb-4 text-gray-600">আপনার নাম লিখুন:</p>
+            <input type="text" id="nameInput" placeholder="এখানে আপনার নাম লিখুন..." class="rounded-lg">
+            <button id="spinButton" class="rounded-lg">স্পিন করুন</button>
+        </div>
+
+        <!-- খাতা ডিসপ্লে এর জন্য কন্টেইনার -->
+        <div id="khata-container" class="hidden">
+            <div id="current-number-indicator"></div>
+            <div id="number-list-wrapper">
+                <div id="number-list">
+                    <!-- সংখ্যাগুলো জাভাস্ক্রিপ্ট দ্বারা যুক্ত হবে -->
+                </div>
+            </div>
+        </div>
+
+        <div id="result-display" class="rounded-lg">
+            <p><strong>নাম:</strong> <span id="displayedName"></span></p>
+            <p><strong>স্পিন আইডি:</strong> <span id="displayedSpinId"></span></p>
+            <p><strong>ফলাফল:</strong> <span id="displayedResult"></span></p>
+            <p><strong>সময়:</strong> <span id="displayedTime"></span></p>
+            <button id="spinAgainButton" class="mt-6 rounded-lg">আবার স্পিন করুন</button>
+        </div>
+    </div>
+
+    <script>
+        // DOM উপাদানগুলি নির্বাচন করা
+        const nameInput = document.getElementById('nameInput');
+        const spinButton = document.getElementById('spinButton');
+        const resultDisplay = document.getElementById('result-display');
+        const displayedName = document.getElementById('displayedName');
+        const displayedSpinId = document.getElementById('displayedSpinId');
+        const displayedResult = document.getElementById('displayedResult');
+        const displayedTime = document.getElementById('displayedTime');
+        const spinAgainButton = document.getElementById('spinAgainButton');
+        const inputSection = document.getElementById('input-section');
+        const messageBox = document.getElementById('message-box');
+        const khataContainer = document.getElementById('khata-container'); // খাতা কন্টেইনার
+        const numberList = document.getElementById('number-list');       // স্ক্রলিং তালিকা
+
+        // প্রতিটি সংখ্যা আইটেমের উচ্চতা CSS থেকে প্রাপ্ত
+        const ITEM_HEIGHT = 40; // .number-item এর height
+
+        // মেসেজ দেখানোর ফাংশন
+        function showMessage(message, type = 'warning') {
+            messageBox.textContent = message;
+            messageBox.style.display = 'block';
+            if (type === 'error') {
+                messageBox.style.backgroundColor = '#f8d7da';
+                messageBox.style.color = '#721c24';
+                messageBox.style.borderColor = '#f5c6cb';
+            } else { // default is warning
+                messageBox.style.backgroundColor = '#fff3cd';
+                messageBox.style.color = '#664d03';
+                messageBox.style.borderColor = '#ffecb5';
+            }
+            setTimeout(() => {
+                messageBox.style.display = 'none';
+            }, 3000); // 3 সেকেন্ড পর মেসেজটি চলে যাবে
+        }
+
+        // খাতায় সংখ্যা তালিকা তৈরি করার ফাংশন
+        function createNumberList() {
+            numberList.innerHTML = ''; // পূর্বের সংখ্যাগুলো পরিষ্কার করা
+            const totalNumbers = 101; // 0 থেকে 100
+
+            // স্ক্রলিং এর প্রভাবের জন্য সংখ্যা তালিকা কয়েকবার পুনরাবৃত্তি করা
+            // এতে করে এটি দীর্ঘক্ষণ ধরে ঘুরতে পারবে এবং শেষে নির্দিষ্ট নম্বরে থামবে
+            const numberOfRepetitions = 3; // 3 বার পুনরাবৃত্তি করা হবে
+
+            for (let rep = 0; rep < numberOfRepetitions; rep++) {
+                for (let i = 0; i < totalNumbers; i++) {
+                    const numberItem = document.createElement('div');
+                    numberItem.className = 'number-item';
+                    numberItem.textContent = i;
+                    numberItem.dataset.number = i; // ফলাফল নির্ধারণের জন্য ডেটা অ্যাট্রিবিউটে সংখ্যা সংরক্ষণ করা
+                    numberList.appendChild(numberItem);
+                }
+            }
+        }
+
+        // পেজ লোড হওয়ার সময় একবার সংখ্যা তালিকা তৈরি করা
+        createNumberList();
+
+        // স্পিন করার ফাংশন
+        spinButton.addEventListener('click', async () => {
+            const name = nameInput.value.trim();
+
+            if (name === '') {
+                showMessage('দয়া করে আপনার নাম লিখুন!', 'error');
+                return;
+            }
+
+            // ইনপুট সেকশন লুকানো এবং খাতা কন্টেইনার দেখানো
+            inputSection.classList.add('hidden');
+            resultDisplay.style.display = 'none';
+            khataContainer.classList.remove('hidden'); // খাতা দেখানো
+
+            // র্যান্ডম ফলাফল তৈরি করা
+            const targetNumber = Math.floor(Math.random() * 101); // 0 থেকে 100 এর মধ্যে র্যান্ডম সংখ্যা
+            const totalNumbersInSingleSet = 101; // 0-100 পর্যন্ত মোট সংখ্যা
+
+            // স্ক্রল করার জন্য প্রয়োজনীয় দূরত্ব গণনা করা
+            // আমরা চাই স্পিনটি কয়েকবার (উদাহরণস্বরূপ 2 বার) সম্পূর্ণ তালিকা অতিক্রম করুক
+            // এবং তারপর targetNumber এ থামুক।
+            const fullLaps = 2; // পূর্ণ ল্যাপের সংখ্যা
+            // targetNumber যে ইন্ডেক্সে রয়েছে, সেই পর্যন্ত স্ক্রল করতে হবে
+            // যেহেতু তালিকাটি কয়েকবার পুনরাবৃত্তি করা হয়েছে, আমরা শেষের দিকে একটি targetNumber বেছে নেব
+            const targetIndexInFullList = (fullLaps * totalNumbersInSingleSet) + targetNumber;
+            const scrollDistance = targetIndexInFullList * ITEM_HEIGHT;
+
+            // khataContainer এর মাঝামাঝি স্থানে targetNumber আনার জন্য অতিরিক্ত সমন্বয়
+            // khataContainer.clientHeight / 2: কন্টেইনারের মধ্যবিন্দু
+            // ITEM_HEIGHT / 2: আইটেমের মধ্যবিন্দু
+            // তাই, (khataContainer.clientHeight / 2) - (ITEM_HEIGHT / 2) = মধ্যবিন্দুতে আইটেম স্থাপন করার জন্য প্রয়োজনীয় অফসেট
+            const centerAdjustment = (khataContainer.clientHeight / 2) - (ITEM_HEIGHT / 2);
+            const finalTranslateY = -(scrollDistance - centerAdjustment);
+
+            // স্ক্রলিং শুরু করা
+            numberList.style.transition = 'transform 10s cubic-bezier(0.25, 0.1, 0.25, 1.0)';
+            numberList.style.transform = `translateY(${finalTranslateY}px)`;
+
+
+            // 10 সেকেন্ড পর ফলাফল দেখানো এবং টেলিগ্রাম বটে পাঠানো
+            setTimeout(async () => {
+                const spinId = Date.now().toString() + Math.floor(Math.random() * 1000).toString();
+                const currentTime = new Date().toLocaleString('bn-BD');
+
+                // ফলাফল প্রদর্শন করা
+                displayedName.textContent = name;
+                displayedSpinId.textContent = spinId;
+                displayedResult.textContent = targetNumber; // র্যান্ডম নম্বরটি ফলাফল হিসেবে দেখানো
+                displayedTime.textContent = currentTime;
+
+                // খাতা লুকানো এবং ফলাফল সেকশন দেখানো
+                khataContainer.classList.add('hidden');
+                resultDisplay.style.display = 'block';
+
+                // টেলিগ্রাম বটে ডেটা পাঠানোর জন্য ডেটা অবজেক্ট তৈরি করা
+                const dataToSend = {
+                    name: name,
+                    spinId: spinId,
+                    result: targetNumber,
+                    time: currentTime
+                };
+
+                // ***গুরুত্বপূর্ণ: ব্যাকএন্ড ইন্টিগ্রেশন***
+                // নিচের fetch কলটি আপনার ব্যাকএন্ড সার্ভারে ডেটা পাঠাবে।
+                // 'http://localhost:3000/send-to-telegram' এই URL টি আপনার Node.js সার্ভার এন্ডপয়েন্টের সাথে মিলে যেতে হবে।
+                try {
+                    const response = await fetch('http://localhost:3000/send-to-telegram', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(dataToSend)
+                    });
+
+                    if (response.ok) {
+                        console.log('ফলাফল সফলভাবে টেলিগ্রাম বটে পাঠানো হয়েছে।');
+                    } else {
+                        console.error('টেলিগ্রাম বটে ফলাফল পাঠাতে ব্যর্থ হয়েছে:', response.statusText);
+                        showMessage('ফলাফল টেলিগ্রাম বটে পাঠাতে ব্যর্থ হয়েছে।', 'error');
+                    }
+                } catch (error) {
+                    console.error('টেলিগ্রাম বটে ফলাফল পাঠাতে একটি ত্রুটি হয়েছে:', error);
+                    showMessage('ফলাফল টেলিগ্রাম বটে পাঠাতে একটি ত্রুটি হয়েছে।', 'error');
+                }
+            }, 10000); // 10 সেকেন্ড = 10000 মিলিসেকেন্ড
+        });
+
+        // "আবার স্পিন করুন" বোতামের জন্য ইভেন্ট লিসেনার
+        spinAgainButton.addEventListener('click', () => {
+            // ফলাফল সেকশন লুকানো এবং ইনপুট সেকশন দেখানো
+            resultDisplay.style.display = 'none';
+            inputSection.classList.remove('hidden');
+            nameInput.value = ''; // নাম ইনপুট খালি করা
+            nameInput.focus(); // ইনপুট ফিল্ডে ফোকাস করা
+
+            // খাতার স্ক্রলিং অবস্থা রিসেট করা
+            numberList.style.transition = 'none'; // ট্রানজিশন অস্থায়ীভাবে বন্ধ করা
+            numberList.style.transform = 'translateY(0px)'; // প্রাথমিক অবস্থায় রিসেট করা
+            // ছোট একটি বিলম্বের পর ট্রানজিশন পুনরায় সক্রিয় করা
+            setTimeout(() => {
+                numberList.style.transition = 'transform 10s cubic-bezier(0.25, 0.1, 0.25, 1.0)';
+            }, 50);
+        });
+    </script>
+</body>
+</html>
