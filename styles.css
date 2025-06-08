@@ -1,4 +1,3 @@
-/*================BG-MAP-CSS===========*/
 .map {
     position: absolute;
     top: 0;
@@ -37,9 +36,8 @@
     50% { opacity: 0.5; }
 }
 
-/* ============= BASE STYLES ============= */
 :root {
-    /* Main colors */
+    
     --neon-pink: #FF1493;
     --neon-cyan: #00FFFF;
     --neon-green: #39FF14;
@@ -49,7 +47,7 @@
     --text-light: #f0f0f0;
     --text-dark: #0A0A0A;
 
-    /* Glows */
+    
     --pink-glow: 0 0 15px rgba(255, 20, 147, 0.7);
     --cyan-glow: 0 0 15px rgba(0, 255, 255, 0.7);
     --green-glow: 0 0 15px rgba(57, 255, 20, 0.7);
@@ -106,7 +104,6 @@ section {
     display: none !important;
 }
 
-/* Background Canvases Styling */
 .background-canvas {
     position: fixed;
     top: 0;
@@ -120,7 +117,6 @@ section {
     display: none;
 }
 
-/* ============= CUSTOM CURSOR ============= */
 .cursor {
     position: fixed;
     width: 20px;
@@ -154,7 +150,6 @@ section {
     }
 }
 
-/* ============= NAVBAR ============= */
 .navbar {
     position: fixed;
     top: 0;
@@ -232,7 +227,6 @@ section {
     transition: all 0.3s ease;
 }
 
-/* ============= SECTION TITLES ============= */
 .section-title {
     text-align: center;
     font-size: 2.5rem;
@@ -265,7 +259,6 @@ section {
     background: linear-gradient(to right, var(--neon-pink), var(--neon-cyan), var(--neon-green));
 }
 
-/* ============= GLASSMORPHIC CARDS ============= */
 .glassmorphic-card {
     background: rgba(10, 10, 10, 0.6);
     backdrop-filter: blur(10px);
@@ -330,7 +323,6 @@ section {
     transform: translateY(-5px);
 }
 
-/* ============= CYBER BUTTONS ============= */
 .cyber-button {
     display: inline-flex;
     align-items: center;
@@ -389,7 +381,6 @@ section {
     background-color: rgba(0, 255, 255, 0.1);
 }
 
-/* ============= HERO SECTION ============= */
 .hero-section {
     margin-top: 0;
     padding-top: calc(2rem + 60px);
@@ -447,34 +438,13 @@ section {
     animation: typing 3s steps(120, end);
     display: inline-block;
     position: relative;
-    /* padding-right: 0.3em; /* টাইপিং কার্সার না থাকলে এই প্যাডিং এর প্রয়োজন নেই */
+    
 }
-
-/* .typing-text::after এবং @keyframes blink-custom-bar সরানো হয়েছে কারণ কার্সার রিমুভ করা হচ্ছে */
-/*
-.typing-text::after {
-    content: '';
-    display: inline-block;
-    width: 2px;
-    height: 0.9em;
-    background-color: var(--neon-pink);
-    margin-left: 0.1em;
-    vertical-align: middle;
-    animation: blink-custom-bar 0.75s step-end infinite;
-}
-
-@keyframes blink-custom-bar {
-    from, to { opacity: 1; }
-    50% { opacity: 0; }
-}
-*/
 
 @keyframes typing {
     from { width: 0 }
     to { width: 80% }
 }
-
-
 
 .verified-badge-img {
     vertical-align: middle;
@@ -501,7 +471,6 @@ section {
         filter: drop-shadow(0 0 10px var(--neon-cyan)) drop-shadow(0 0 2px #ffffff);
     }
 }
-
 
 .cyber-title-box {
     font-family: 'Rajdhani', sans-serif;
@@ -557,9 +526,6 @@ section {
     opacity: 0.5;
 }
 
-/* ... (বাকি CSS কোড অপরিবর্তিত থাকবে) ... */
-
-/* ============= ABOUT SECTION ============= */
 .about-content {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -628,7 +594,6 @@ section {
     margin-bottom: 0.8rem;
 }
 
-/* ============= SKILLS SECTION ============= */
 .skills-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -720,7 +685,6 @@ section {
     border-bottom: none;
 }
 
-/* ============= CERTIFICATES SECTION ============= */
 .certificates-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -820,7 +784,6 @@ section {
     transform: translateX(5px);
 }
 
-/* ============= CONTACT SECTION ============= */
 .contact-content {
     display: grid;
     grid-template-columns: 1fr 1.5fr;
@@ -937,7 +900,6 @@ section {
     box-shadow: 0 5px 15px rgba(57, 255, 20, 0.3);
 }
 
-/* Contact Form */
 .form-group {
     margin-bottom: 1.5rem;
 }
@@ -990,7 +952,6 @@ section {
     margin-top: 1rem;
 }
 
-/* ============= FOOTER ============= */
 .footer {
     position: relative;
     padding: 5rem 0 0;
@@ -1037,7 +998,6 @@ section {
     transform: rotate(180deg);
 }
 
-/* Toast Notification */
 .toast {
     position: fixed;
     bottom: -100px;
@@ -1090,7 +1050,6 @@ section {
     to { width: 100%; }
 }
 
-/* ============= RESPONSIVE STYLES ============= */
 @media (max-width: 992px) {
     .hero-content {
         text-align: center;
