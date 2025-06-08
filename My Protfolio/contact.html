@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="facebook-domain-verification" content="kz00a9a22m4h736jz0zkkpy9zrlzkv" />
+    <meta name="keywords" content="SEO Bangladesh, digital marketing, Google ranking, SEO expert, Tanjim, Ahmmed, Shuvo, Ahmed, Tanjim Tech, F
+acebook, Social media,">
+    <meta name="description" content="Click here to contact me.">
+
+    <title>আমার সাথে যোগাযোগ করুন - Tanjim Ahmmed Shuvo</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;700&display=swap');
+        
+        :root {
+            --neon-pink: #FF1493;
+            --neon-cyan: #00FFFF;
+            --neon-green: #39FF14;
+            
+            --neon-pink-rgb: 255, 20, 147;
+            --neon-cyan-rgb: 0, 255, 255;
+            --neon-green-rgb: 57, 255, 20;
+            --facebook-blue-rgb: 24, 119, 242;
+        }
+
+        body {
+            font-family: 'Noto Sans Bengali', sans-serif;
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column; 
+            align-items: center;
+            padding: 1rem;
+            margin: 0;
+            color: #e0e0e0;
+        }
+        
+        .profile-container {
+            animation: fadeIn 1s ease-in-out;
+            width: 100%;
+            background-color: rgba(10, 10, 20, 0.75); 
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(var(--neon-pink-rgb), 0.35); 
+            box-shadow: 0 0 20px rgba(var(--neon-pink-rgb), 0.35); 
+       
+        }
+        
+        .profile-image-container {
+            animation: scaleIn 1.2s ease-out;
+            border-color: var(--neon-pink);
+        }
+        
+        .contact-button {
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -2px rgba(0,0,0,0.1); 
+        }
+        
+        .contact-button:hover {
+            transform: translateY(-5px) scale(1.03); 
+            box-shadow: 0 10px 15px -3px rgba(var(--neon-pink-rgb),0.3), 0 4px 6px -4px rgba(var(--neon-pink-rgb),0.3); 
+        }
+        
+        .verified-badge-img {
+            animation: pulseBlue 2s infinite;
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+        }
+
+        .social-icon-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 48px; 
+            height: 48px; 
+            border-radius: 50%;
+            border-width: 2px;
+            border-style: solid;
+            transition: all 0.3s ease-in-out;
+        }
+        .social-icon-link:hover {
+            transform: translateY(-4px) scale(1.1);
+        }
+
+        .neon-border-pink {
+            border-color: var(--neon-pink);
+            color: var(--neon-pink);
+        }
+        .neon-border-pink:hover {
+            background-color: rgba(var(--neon-pink-rgb), 0.1);
+            box-shadow: 0 0 15px var(--neon-pink);
+        }
+
+        .neon-border-cyan {
+            border-color: var(--neon-cyan);
+            color: var(--neon-cyan);
+        }
+        .neon-border-cyan:hover {
+            background-color: rgba(var(--neon-cyan-rgb), 0.1);
+            box-shadow: 0 0 15px var(--neon-cyan);
+        }
+        
+        .neon-border-blue { 
+            border-color: #1877F2; 
+            color: #1877F2;
+        }
+        .neon-border-blue:hover {
+            background-color: rgba(var(--facebook-blue-rgb), 0.1);
+            box-shadow: 0 0 15px #1877F2;
+        }
+        
+        .neon-border-instagram {
+            border-color: var(--neon-pink); 
+            color: var(--neon-pink);
+        }
+        .neon-border-instagram:hover {
+            background-color: rgba(var(--neon-pink-rgb), 0.1);
+            box-shadow: 0 0 15px var(--neon-pink);
+            color: white; 
+        }
+
+        .link-embed-container {
+            width: 100%;
+            max-width: 504px; 
+            margin: 1.5rem auto; 
+            box-shadow: 0 0 20px rgba(0,0,0,0.5); 
+            border-radius: 10px; 
+            overflow: hidden;
+            border: 1px solid rgba(var(--neon-cyan-rgb), 0.2);
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out, border-color 0.3s ease-in-out; 
+        }
+        .link-embed-container:hover {
+            transform: translateY(-5px) scale(1.01); 
+            box-shadow: 0 0 30px rgba(var(--neon-cyan-rgb), 0.4); 
+            border-color: rgba(var(--neon-cyan-rgb), 0.5); 
+        }
+        .link-embed-container iframe {
+            width: 100%;
+            aspect-ratio: 504 / 700;
+            border: none; 
+        }
+        
+        .neon-separator { 
+            width: 60%;
+            max-width: 200px; 
+            height: 1px;
+            background-color: var(--neon-cyan);
+            opacity: 0.3;
+            margin-left: auto;
+            margin-right: auto;
+            box-shadow: 0 0 5px rgba(var(--neon-cyan-rgb), 0.5); 
+        }
+        
+        .visitor-counter-display-floating {
+            position: fixed; 
+            bottom: 1rem;    
+            left: 1rem;      
+            font-size: 0.75rem; 
+            line-height: 1rem; 
+            color: var(--neon-cyan); 
+            background-color: rgba(10, 10, 20, 0.85); 
+            padding: 0.375rem 0.75rem; 
+            border-radius: 0.5rem; 
+            border: 1px solid rgba(var(--neon-cyan-rgb), 0.4);
+            box-shadow: 0 0 10px rgba(var(--neon-cyan-rgb), 0.5), 0 0 20px rgba(var(--neon-cyan-rgb), 0.3); 
+            z-index: 1000; 
+            transition: transform 0.3s ease;
+        }
+
+        .visitor-counter-display-floating:hover {
+            transform: scale(1.05); 
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes scaleIn {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+        
+        @keyframes pulseBlue {
+            0% { box-shadow: 0 0 0 0 rgba(0, 191, 255, 0.4); } 
+            70% { box-shadow: 0 0 0 6px rgba(0, 191, 255, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(0, 191, 255, 0); }
+        }
+        
+        @media (max-width: 640px) {
+            .profile-container {
+                 margin-top: 1rem; 
+            }
+            .profile-image-container {
+                width: 120px !important; 
+                height: 120px !important;
+            }
+            .button-text {
+                font-size: 0.85rem;
+            }
+            .social-icon-link svg { 
+                width: 18px; 
+                height: 18px; 
+            }
+             .social-icon-link { 
+                width: 40px;
+                height: 40px;
+            }
+            .visitor-counter-display-floating {
+                bottom: 0.75rem; 
+                left: 0.75rem;   
+                font-size: 0.7rem; 
+                padding: 0.25rem 0.5rem; 
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="profile-container bg-opacity-50 rounded-2xl shadow-2xl p-4 sm:p-6 md:p-8 max-w-md mx-auto mt-6 mb-6 sm:mt-8 sm:mb-8">
+        <div class="flex flex-col items-center">
+            
+            <div class="profile-image-container profile-image w-32 h-32 sm:w-36 sm:h-36 md:w-40 md:h-40 rounded-full overflow-hidden border-4 shadow-lg mb-4 sm:mb-6">
+                <img src="image.png" alt="প্রোফাইল ছবি" class="w-full h-full object-cover">
+            </div>
+            
+            <div class="flex items-center justify-center mb-2">
+                <h1 class="text-xl sm:text-2xl font-bold text-white mr-2">Tanjim Ahmmed Shuvo</h1>
+                <div class="verified-badge-img rounded-full">
+                    <img src="blue.png" alt="ভেরিফাইড ব্যাজ" class="w-full h-full">
+                </div>
+            </div>
+            
+            <p class="text-gray-300 text-center text-sm sm:text-base mb-6 sm:mb-8">আমার সঙ্গে যোগাযোগ করতে চাইলে নিচের যেকোনো উপায় বেছে নিতে পারেন!</p>
+            
+            <div class="grid grid-cols-1 gap-4 w-full max-w-xs">
+                <a href="https://www.messenger.com/t/100078113498532" target="_blank" class="contact-button bg-blue-600 hover:bg-blue-700 text-white font-medium py-2.5 sm:py-3 px-4 sm:px-6 rounded-lg flex items-center justify-center shadow-md hover:shadow-blue-500/50">
+                    <svg class="w-5 h-5 sm:w-6 sm:h-6 mr-2 sm:mr-3 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" fill="currentColor">
+                        <path d="M400 0C174.7 0 0 165.1 0 388c0 116.6 47.8 217.4 125.6 287 6.5 5.8 10.5 14 10.7 22.8l2.2 71.2c0.7 22.7 24.1 37.5 44.9 28.3l79.4-35c6.7-3 14.3-3.5 21.4-1.6 36.5 10 75.3 15.4 115.8 15.4 225.3 0 400-165.1 400-388S625.3 0 400 0zm-192 452c-12 0-24-10.7-24-24 0-13.3 12-24 24-24s24 10.7 24 24c0 13.3-12 24-24 24zm192 0c-12 0-24-10.7-24-24 0-13.3 12-24 24-24s24 10.7 24 24c0 13.3-12 24-24 24zm192 0c-12 0-24-10.7-24-24 0-13.3 12-24 24-24s24 10.7 24 24c0 13.3-12 24-24 24z"/>
+                    </svg>
+                    <span class="button-text">মেসেঞ্জারে যোগাযোগ করুন</span>
+                </a>
+                
+                <a href="https://api.whatsapp.com/send?phone=16506687797&text=Assalamu%20Alaikum%2C%0AI%20hope%20you%27re%20doing%20well.%20I%20found%20your%20contact%20number%20on%20your%20website%20and%20wanted%20to%20kindly%20reach%20out.😊" target="_blank" class="contact-button bg-green-500 hover:bg-green-600 text-white font-medium py-2.5 sm:py-3 px-4 sm:px-6 rounded-lg flex items-center justify-center shadow-md hover:shadow-green-500/50">
+                    <svg class="w-5 h-5 sm:w-6 sm:h-6 mr-2 sm:mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                    </svg>
+                    <span class="button-text">হোয়াটসঅ্যাপে যোগাযোগ করুন</span>
+                </a>
+            </div>
+
+            <div class="neon-separator my-6 sm:my-8"></div>
+
+            <div class="w-full max-w-xs">
+                <p class="text-center text-sm font-medium text-gray-300 mb-4 tracking-wider">অন্যান্য মাধ্যমেও যুক্ত হতে পারেন:</p>
+                <div class="flex justify-center space-x-3 sm:space-x-4">
+                    <a href="#" target="_blank" title="GitHub" class="social-icon-link neon-border-cyan">
+                        <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.5.49.09.66-.213.66-.473 0-.23-.01-1.023-.015-1.86-2.782.602-3.369-1.203-3.369-1.203-.445-1.13-1.087-1.433-1.087-1.433-.89-.607.067-.594.067-.594.985.07 1.505.998 1.505.998.875 1.5 2.294 1.067 2.854.815.09-.633.343-1.067.617-1.312-2.174-.247-4.459-1.08-4.459-4.832 0-1.068.38-1.942 1.006-2.626-.1-.248-.436-1.24.096-2.59 0 0 .823-.263 2.695.995A9.437 9.437 0 0112 6.656c.85.004 1.705.115 2.504.336 1.872-1.258 2.695-.995 2.695-.995.532 1.35.196 2.342.096 2.59.626.684 1.005 1.558 1.005 2.626 0 3.763-2.289 4.58-4.469 4.824.354.305.665.91.665 1.832 0 1.313-.012 2.373-.012 2.695 0 .26.17.563.665.473A10.006 10.006 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"/></svg>
+                    </a>
+                    <a href="https://www.linkedin.com/in/tanjim-ahmmed-shuvo" target="_blank" title="LinkedIn" class="social-icon-link neon-border-pink">
+                        <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                    </a>
+                    <a href="https://www.facebook.com/tanjim.ahmmed.shuvo" target="_blank" title="Facebook" class="social-icon-link neon-border-blue">
+                        <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"/></svg>
+                    </a>
+                    <a href="https://www.instagram.com/tanjim.ahmmed.shuvo" target="_blank" title="Instagram" class="social-icon-link neon-border-instagram">
+                        <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12 2.163c3.204 0 3.584.012 4.85.07 1.172.052 1.783.218 2.227.42.444.203.728.464.98.747.26.29.48.596.746.986.202.443.37.99.42 2.226.058 1.267.07 1.647.07 4.85s-.012 3.584-.07 4.85c-.052 1.236-.218 1.782-.42 2.227-.203.444-.464.728-.747.98-.29.26-.596.48-.986.746-.443.202-.99.37-2.226.42-1.267.058-1.647.07-4.85.07s-3.584-.012-4.85-.07c-1.236-.052-1.782-.218-2.227-.42-.444-.203-.728.464-.98-.747-.26-.29-.48-.596-.746.986-.202-.443-.37-.99-.42-2.226-.058-1.267-.07-1.647-.07-4.85s.012-3.584.07-4.85c.052-1.236.218-1.783.42-2.227.203-.444.464-.728.747.98.29-.26.596-.48.986.746.443.202.99.37 2.226.42C8.416 2.175 8.796 2.163 12 2.163zm0 1.625c-3.193 0-3.556.012-4.788.07-1.109.05-1.587.21-1.88.327-.348.134-.587.318-.82.577-.232.26-.402.518-.577.82-.117.293-.277.771-.327 1.88C4.55 8.43 4.538 8.793 4.538 12s.012 3.57.07 4.788c.05 1.109.21 1.587.327 1.88.134.348.318.587.577.82.26.232.518.402.82.577.293.117.771.277 1.88.327C8.43 19.45 8.793 19.462 12 19.462s3.57-.012 4.788-.07c1.109-.05 1.587-.21 1.88-.327.348-.134.587.318.82-.577.232-.26.402.518-.577.82.117-.293-.277-.771-.327-1.88C19.45 15.57 19.462 15.207 19.462 12s-.012-3.57-.07-4.788c-.05-1.109-.21-1.587-.327-1.88-.134-.348-.318-.587-.577-.82-.26-.232-.518-.402-.82-.577-.293-.117-.771-.277-1.88-.327C15.57 4.55 15.207 4.538 12 4.538zm0 3.29c-2.956 0-5.344 2.388-5.344 5.344s2.388 5.344 5.344 5.344 5.344-2.388 5.344-5.344S14.956 7.078 12 7.078zm0 8.875c-1.95 0-3.531-1.58-3.531-3.531S10.05 8.89 12 8.89s3.531 1.58 3.531 3.531-1.58 3.532-3.531 3.532zm5.207-8.427a1.273 1.273 0 100-2.546 1.273 1.273 0 000 2.546z" clip-rule="evenodd"/></svg>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="neon-separator my-6 sm:my-8"></div>
+
+    <div class="link-embed-container">
+        <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7332302117744898048?collapsed=1" height="722" width="504" frameborder="0" allowfullscreen="" title="Embedded post"></iframe>
+    </div>
+    
+    <div class="link-embed-containerr">
+        <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7332296892950745091?collapsed=1" height="722" width="504" frameborder="0" allowfullscreen="" title="Embedded post"></iframe>
+    </div>
+    <div class="link-embed-container">
+        <iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Ftanjim.ahmmed.shuvo%2Fposts%2Fpfbid06MwmvWaMRed7kqw8av5zMet9yfhVpY71wnSF5Z7ptGHgdG2R41KJj6aC8TjiggBul&show_text=true&width=500" width="500" height="547" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+    </div>
+
+    <div id="floatingVisitorCounter"class="visitor-counter-display-floating">
+       
+        <p><a href="Discount\try-your-luck.html">GET UP TO 100% DISCOUNT</a></p>
+    </div>
+
+    <script>
+        function setViewportHeight() {
+            let vh = window.innerHeight * 0.01;
+            document.documentElement.style.setProperty('--vh', `${vh}px`);
+        }
+        window.addEventListener('resize', setViewportHeight);
+        setViewportHeight();
+
+        function setRGBVariables() {
+            const styles = getComputedStyle(document.documentElement);
+            function getRgbValues(colorName) {
+                const colorValue = styles.getPropertyValue(colorName).trim();
+                if (colorValue) {
+                    const rgb = hexToRgb(colorValue);
+                    if (rgb) {
+                        document.documentElement.style.setProperty(`${colorName}-rgb`, rgb.join(', '));
+                    }
+                }
+            }
+            getRgbValues('--neon-pink');
+            getRgbValues('--neon-cyan');
+            getRgbValues('--neon-green');
+        }
+
+        function hexToRgb(hex) {
+            let r = 0, g = 0, b = 0;
+            hex = hex.replace(/^#/, ''); 
+            if (hex.length === 3) { 
+                r = parseInt(hex[0] + hex[0], 16);
+                g = parseInt(hex[1] + hex[1], 16);
+                b = parseInt(hex[2] + hex[2], 16);
+            } else if (hex.length === 6) {
+                r = parseInt(hex.substring(0, 2), 16);
+                g = parseInt(hex.substring(2, 4), 16);
+                b = parseInt(hex.substring(4, 6), 16);
+            } else {
+                return null; 
+            }
+            return isNaN(r) || isNaN(g) || isNaN(b) ? null : [r, g, b];
+        }
+        
+        function updateVisitorCount() {
+            let count = localStorage.getItem('pageVisits_contact_html_new');
+            if (count === null) {
+                count = 1;
+            } else {
+                count = parseInt(count) + 1;
+            }
+            localStorage.setItem('pageVisits_contact_html_new', count);
+            
+            const countElement = document.getElementById('visitorCount');
+            if (countElement) {
+                countElement.textContent = count.toLocaleString('bn-BD'); 
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            setRGBVariables();
+            updateVisitorCount(); 
+        });
+    </script>
+</body>
+</html>
