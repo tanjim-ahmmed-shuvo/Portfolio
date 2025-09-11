@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Community Standards Risk Checker (Unofficial)</title>
+  <style>
+    :root {
+      --bg: #0b1020;
+      --card: #121833;
+      --muted: #aab0c0;
+      --text: #f5f7ff;
+      --brand: #6ea8ff;
+      --accent: #9b8cff;
+      --danger: #ff6b6b;
+      --success: #2ecc71;
+      --warn: #f5a524;
+      --chip: #1a2142;
+      --border: #202a52;
+    }
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial;
+      color: var(--text);
+      background: radial-gradient(1200px 1200px at 100% -20%, #203266 0, rgba(32,50,102,0) 60%),
+                  radial-gradient(1000px 1000px at -10% 110%, #3d2a7a 0, rgba(61,42,122,0) 55%),
+                  var(--bg);
+    }
+    header {
+      padding: 28px 20px 8px;
+      text-align: center;
+    }
+    header h1 {
+      font-size: 1.6rem;
+      margin: 0 0 8px;
+      letter-spacing: 0.2px;
+    }
+    header p { color: var(--muted); margin: 0; }
+
+    .container {
+      max-width: 980px;
+      margin: 18px auto 40px;
+      padding: 0 16px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 18px;
+    }
+    @media (max-width: 900px) {
+      .grid { grid-template-columns: 1fr; }
+    }
+
+    .card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.0));
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+    }
+    .card .hd { padding: 14px 16px; border-bottom: 1px dashed var(--border); color: var(--muted); font-size: 0.92rem; }
+    .card .bd { padding: 16px; }
+
+    textarea {
+      width: 100%;
+      min-height: 200px;
+      background: #0f1530;
+      border: 1px solid var(--border);
+      color: var(--text);
+      border-radius: 14px;
+      padding: 14px 12px;
+      line-height: 1.5;
+      resize: vertical;
+      outline: none;
+    }
+    textarea::placeholder { color: #8290b8; }
+
+    .row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+
+    .btn {
+      appearance: none; border: 0; cursor: pointer;
+      padding: 12px 16px; border-radius: 12px; font-weight: 600; font-size: 0.95rem;
+      color: #0b1020; background: var(--brand);
+      transition: transform 0.06s ease, filter 0.2s;
+    }
+    .btn:hover { filter: brightness(1.08); }
+    .btn:active { transform: translateY(1px); }
+    .btn.secondary { background: #1a2142; color: var(--text); border: 1px solid var(--border); }
+    .btn.ghost { background: transparent; color: var(--muted); border: 1px dashed var(--border); }
+
+    .meter {
+      display: grid; place-items: center; aspect-ratio: 1 / 1; width: 100%; max-width: 260px; margin: 6px auto 10px;
+      position: relative;
+    }
+    .ring {
+      width: 100%; height: 100%; border-radius: 50%;
+      background: conic-gradient(var(--success) 0deg, var(--success) 0deg, #263057 0deg 360deg);
+      display: grid; place-items: center;
+      border: 8px solid #0f1530;
+    }
+    .ring .inner {
+      width: 78%; height: 78%; border-radius: 50%;
+      background: #0f1530; display: grid; place-items: center; text-align: center;
+      padding: 10px; border: 1px solid var(--border);
+    }
+    .score { font-size: 2.2rem; font-weight: 800; letter-spacing: 0.5px; }
+    .level { font-size: 0.95rem; color: var(--muted); }
+
+    .breakdown { display: grid; gap: 10px; }
+    .rowItem {
+      background: #0f1530; border: 1px solid var(--border); border-radius: 12px; padding: 10px 12px;
+      display: grid; gap: 8px;
+    }
+    .rowItem .title { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+    .badge { padding: 4px 8px; border-radius: 999px; font-size: 12px; color: #0b1020; background: var(--brand); }
+    .badge.warn { background: var(--warn); color: #1b1100; }
+    .badge.danger { background: var(--danger); color: #200; }
+    .chips { display: flex; flex-wrap: wrap; gap: 6px; }
+    .chip { background: var(--chip); color: var(--muted); border: 1px solid var(--border); border-radius: 999px; padding: 4px 8px; font-size: 12px; }
+
+    .footnote { color: var(--muted); font-size: 0.88rem; line-height: 1.5; }
+    .muted { color: var(--muted); }
+    .tip { font-size: 0.95rem; }
+    .kbd { background: #0f1530; border: 1px solid var(--border); border-radius: 6px; padding: 2px 6px; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+
+    .pillbar {
+      height: 8px; background: #0f1530; border: 1px solid var(--border); border-radius: 999px; overflow: hidden;
+    }
+    .pillbar > div { height: 100%; width: 0; background: linear-gradient(90deg, var(--brand), var(--accent)); transition: width 400ms ease; }
+
+    .rightCard .bd { display: grid; gap: 14px; }
+    .suggest { background: #0f1530; border: 1px solid var(--border); padding: 12px; border-radius: 12px; }
+    ul { margin: 0 0 0 18px; }
+
+    footer { text-align: center; padding: 18px; color: var(--muted); font-size: 0.9rem; }
+    a { color: #9ac6ff; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Community Standards Risk Checker <span class="muted">(Unofficial)</span></h1>
+    <p>আপনার টেক্সটে ফেসবুকের কমিউনিটি স্ট্যান্ডার্ডস ভায়োলেশনের ঝুঁকি <strong>আনুমানিক</strong> কত—এক নজরে দেখুন। এটি কোনোভাবেই Meta/Facebook-এর অফিসিয়াল টুল নয়।</p>
+  </header>
+
+  <div class="container">
+    <div class="grid">
+      <!-- Left: Input & Results -->
+      <section class="card">
+        <div class="hd">ইনপুট টেক্সট</div>
+        <div class="bd">
+          <textarea id="text" placeholder="এখানে আপনার টেক্সট পেস্ট/টাইপ করুন…"></textarea>
+          <div class="row" style="margin-top: 10px; justify-content: space-between;">
+            <div class="row" style="gap: 8px;">
+              <button class="btn" id="analyzeBtn">Analyze</button>
+              <button class="btn secondary" id="clearBtn" title="Clear (Ctrl+K)">Clear</button>
+              <button class="btn ghost" id="exampleBtn">Use example</button>
+            </div>
+            <div class="row" style="gap: 8px;">
+              <button class="btn secondary" id="copyBtn" title="Copy Report">Copy Report</button>
+              <button class="btn ghost" id="downloadBtn" title="Download JSON">Download JSON</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <aside class="card rightCard">
+        <div class="hd">ঝুঁকি স্কোর</div>
+        <div class="bd">
+          <div class="meter">
+            <div class="ring" id="ring"><div class="inner">
+              <div class="score" id="score">0%</div>
+              <div class="level" id="level">Low risk</div>
+            </div></div>
+          </div>
+          <div class="pillbar"><div id="bar"></div></div>
+          <div class="suggest">
+            <div class="tip" id="tip">Analyze ক্লিক করলে এখানে সাজেশন দেখা যাবে।</div>
+          </div>
+        </div>
+      </aside>
+    </div>
+
+    <section class="card" style="margin-top: 18px;">
+      <div class="hd">ব্রেকডাউন</div>
+      <div class="bd breakdown" id="breakdown">
+        <!-- dynamic rows -->
+      </div>
+    </section>
+
+    <section class="card" style="margin-top: 18px;">
+      <div class="hd">দ্রষ্টব্য</div>
+      <div class="bd footnote">
+        <p>এটি একটি <strong>মেশিন লার্নিং</strong> ভিত্তিক টুল। ফলাফল কেবল শিক্ষামূলক ও প্রি-চেকিং উদ্দেশ্যে। <br>এই টুলের লক্ষ্য <em>কখনওই কন্টেন্ট মডারেশন এড়ানো বা সিস্টেম সার্কামভেন্ট</em> করা নয়। বরং ঝুঁকি কমাতে কী কী পরিবর্তন দরকার—তা দ্রুত বোঝাতে সাহায্য করা।</p>
+      </div>
+    </section>
+  </div>
+
+  <footer>
+    <span>Developed by Tanjim Ahmmed Shuvo<br>© 2025 — Unofficial Community Standards Risk Checker • Powered by Google Gemini API</span>
+  </footer>
+
+  <script>
+    // --- Utility helpers ---
+    const $ = (sel) => document.querySelector(sel);
+    const textEl = $('#text');
+    const scoreEl = $('#score');
+    const levelEl = $('#level');
+    const ringEl = $('#ring');
+    const barEl = $('#bar');
+    const tipEl = $('#tip');
+    const breakdownEl = $('#breakdown');
+
+    // Simple emoji regex (not exhaustive)
+    const emojiRe = /[\p{Emoji}\u{1F1E6}-\u{1F9FF}\u{2600}-\u{27BF}]/u;
+
+    // Category configuration with lightweight patterns (EN + BN)
+    // NOTE: This list is not exhaustive and avoids explicit slurs.
+    const CATEGORIES = [
+      {
+        id: 'violence',
+        label: 'Violence / Threats',
+        weight: 28,
+        patterns: [
+          /\b(kill|murder|shoot|stab|bomb|behead|hang|rape|acid)\b/i,
+          /\b(terror|attack|gun|sniper|explosive|grenade)\b/i,
+          /(মার(া|ে)|মেরে ফেল(া|বো)|খুন|ধর্?ষণ|গুলি|গুলিবর্ষণ|বোমা|অ্যাসিড|কুপিয়ে|গলা কাটা)/i
+        ],
+        tips: ['সহিংসতা/হুমকিমূলক শব্দ বাদ দিন', 'ব্যক্তি/গ্রুপের প্রতি ক্ষতির আহ্বান সরিয়ে দিন']
+      },
+      {
+        id: 'adult',
+        label: 'Adult / Sexual explicit',
+        weight: 22,
+        patterns: [
+          /\b(porn|pornography|sex|nude|nudity|xxx|onlyfans)\b/i,
+          /(সেক্স|নগ্ন|নুড|পর্ন|অশ্লীল)/i
+        ],
+        tips: ['অশ্লীল/যৌন ইঙ্গিতপূর্ণ শব্দ বাদ দিন', 'প্রয়োজনে জেনারাল ও তথ্যভিত্তিক ভাষা ব্যবহার করুন']
+      },
+      {
+        id: 'harassment',
+        label: 'Bullying / Harassment',
+        weight: 14,
+        patterns: [
+          /\b(harass|bully|humiliate|shame)\b/i,
+          /(অসম্মান|হেয়|লাঞ্ছনা|বদনাম|অপমান)/i
+        ],
+        tips: ['ব্যক্তিবিশেষকে টার্গেট করা/অপমানসূচক ভাষা এড়িয়ে চলুন', 'সমালোচনা করলে আচরণ/আইডিয়ার দিকে রাখুন, ব্যক্তির দিকে নয়']
+      },
+      {
+        id: 'selfharm',
+        label: 'Self-harm / Suicide',
+        weight: 20,
+        patterns: [
+          /\b(suicide|self\s*-?harm|kill myself|end my life)\b/i,
+          /(আত্মহত্যা|আত্মহানি|নিজেকে (মার|ক্ষতি))/i
+        ],
+        tips: ['সংকটময় বার্তা থাকলে হেল্পলাইনের তথ্য দিন', 'গ্রাফিক/উস্কানিমূলক ভাষা এড়ান']
+      },
+      {
+        id: 'illegal',
+        label: 'Illegal / Regulated goods & services',
+        weight: 20,
+        patterns: [
+          /\b(sell|buy|cheap)\b\s*(guns?|firearms?|drugs?|weed|cocaine|heroin|steroids|counterfeit|forged)/i,
+          /(অস্ত্র|বন্দুক|গান|হেরোইন|গাঁজা|কোকেন|আইস|নেশা|জাল|নকল)\s*(বিক্রি|কিনা|সরবরাহ)/i
+        ],
+        tips: ['আইনবিরুদ্ধ পণ্য/সেবা প্রচার করবেন না', 'শিক্ষামূলক/সচেতনতা প্রসঙ্গে সীমিত রাখুন']
+      },
+      {
+        id: 'danger_org',
+        label: 'Dangerous org./Individuals (mention or praise)',
+        weight: 22,
+        patterns: [
+          /\b(ISIS|ISIL|Al[-\s]?Qaeda|Taliban|Hamas|Hezbollah|Boko\s?Haram)\b/i,
+          /(জঙ্গি|সন্ত্রাসী সংগঠন|উগ্রবাদী)/i
+        ],
+        tips: ['সহিংস সংগঠনকে সমর্থন/প্রচার থেকে বিরত থাকুন', 'খবর/সমালোচনামূলক প্রেক্ষিতে থাকলে নিরপেক্ষ ভাষা নিন']
+      },
+      {
+        id: 'scam',
+        label: 'Scam / Deceptive claims',
+        weight: 16,
+        patterns: [
+          /100%\s*(guarantee|guaranteed|real|safe)/i,
+          /(মাত্র\s*\d+\s*মিনিট|ইনস্টা\s*ফাস্ট|গ্যারান্টি|নিশ্চয়তা)/i,
+          /\b(win|lottery|sweepstake|giveaway)\b.*\b(click|link|now)\b/i,
+          /(অগ্রিম\s*পেমেন্ট|ডিপোজিট\s*দিতে\s*হবে)/i
+        ],
+        tips: ['গ্যারান্টি/টাইম-প্রমিজ বাদ দিন', 'প্রক্রিয়া/শর্ত স্পষ্ট করুন, অফিসিয়াল চ্যানেল উল্লেখ করুন']
+      },
+      {
+        id: 'medical',
+        label: 'Medical misinformation cues',
+        weight: 12,
+        patterns: [
+          /\b(cure|heals?)\b.*\b(cancer|covid|aids|HIV)\b/i,
+          /(১০০%\s*আরোগ্য|মহৌষধ)/i
+        ],
+        tips: ['চিকিৎসা দাবির ক্ষেত্রে বিশ্বাসযোগ্য সূত্র/ডিসক্লেইমার দিন', 'ডাক্তারের পরামর্শ নিতে উৎসাহিত করুন']
+      },
+      {
+        id: 'spam',
+        label: 'Spam / Low-quality signals',
+        weight: 10,
+        patterns: [], // handled by heuristics below
+        tips: ['অতিরিক্ত ইমোজি/ALL CAPS/লিঙ্ক স্প্যাম কমান', 'একটি পরিষ্কার CTA রাখুন']
+      }
+    ];
+
+    function normalize(s) {
+      return (s || '').replace(/[\n\r]+/g, ' ').trim();
+    }
+
+    // Function to mimic an API call to Google AI Studio
+    async function callGeminiAPI(text) {
+      const systemPrompt = `
+        You are a helpful AI content moderator. Your task is to analyze the following text for potential violations of common online community standards.
+        Return a single JSON object. Do not include any other text or markdown outside the JSON object.
+
+        Analyze for these categories: Violence, Hate Speech, Adult/Sexual Explicit, Harassment/Bullying, Self-harm/Suicide, Illegal/Regulated Goods, Dangerous Organizations, and Spam/Deceptive Claims.
+
+        For each category, provide a numerical score from 0 to 100, where 100 is the highest risk. Also, list any specific keywords or phrases that contributed to the score.
+
+        The final output must be a JSON object with the following structure:
+        {
+          "overall_risk_score": <int, 0-100>,
+          "breakdown": [
+            {
+              "category": "<string>",
+              "score": <int, 0-100>,
+              "signals": ["<string, detected phrase>", ...]
+            },
+            ...
+          ],
+          "mitigation_tips": ["<string, suggestion>", "..."]
+        }
+
+        Analyze the following text:
+        ${text}
+      `;
+
+      try {
+        const payload = {
+            contents: [{ parts: [{ text: systemPrompt }] }],
+            generationConfig: {
+                responseMimeType: "application/json"
+            }
+        };
+
+        const apiKey = "AIzaSyBPkQ_en57ffDtjhTG41zdI3nV6zeKiwZ4";
+        const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
+
+        const response = await fetch(apiUrl, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+        });
+
+        if (!response.ok) {
+            throw new Error(`API error: ${response.statusText}`);
+        }
+
+        const result = await response.json();
+        const jsonText = result?.candidates?.[0]?.content?.parts?.[0]?.text;
+        if (jsonText) {
+          const parsed = JSON.parse(jsonText);
+          return {
+            percent: parsed.overall_risk_score,
+            level: getLevelFromScore(parsed.overall_risk_score),
+            results: parsed.breakdown.map(item => ({
+              id: item.category.toLowerCase().replace(/[\s\/]/g, '_'),
+              label: item.category,
+              score: item.score,
+              matches: item.signals
+            })),
+            tips: parsed.mitigation_tips
+          };
+        } else {
+          throw new Error('Invalid API response structure');
+        }
+      } catch (e) {
+        console.error("Error calling Gemini API:", e);
+        return {
+          percent: 0,
+          level: 'Error',
+          results: [],
+          tips: ['বিশ্লেষণ ব্যর্থ হয়েছে। অনুগ্রহ করে আবার চেষ্টা করুন।']
+        };
+      }
+    }
+
+    function getLevelFromScore(score) {
+      if (score >= 70) return "High risk";
+      if (score >= 40) return "Moderate risk";
+      return "Low risk";
+    }
+
+    function renderReport(rep){
+      // Gauge
+      const color = getColor(rep.percent);
+      ringEl.style.background = `conic-gradient(${color} ${rep.percent * 3.6}deg, #263057 0deg 360deg)`;
+      scoreEl.textContent = rep.percent + '%';
+      levelEl.textContent = rep.level;
+      barEl.style.width = rep.percent + '%';
+
+      // Tips
+      tipEl.innerHTML = rep.tips.map(t => `• ${escapeHtml(t)}`).join('<br>');
+
+      // Breakdown
+      breakdownEl.innerHTML = '';
+      if (rep.results.length === 0 || rep.level === 'Error') {
+          breakdownEl.innerHTML = `<div class="rowItem"><div class="title"><div>${rep.level === 'Error' ? 'বিশ্লেষণে সমস্যা হয়েছে।' : 'কোনো ঝুঁকি নেই।'}</div></div></div>`;
+      } else {
+        rep.results.forEach(r => {
+          const row = document.createElement('div');
+          row.className = 'rowItem';
+          const badgeClass = r.score >= 70 ? 'danger' : r.score >= 40 ? 'warn' : '';
+          row.innerHTML = `
+            <div class="title">
+              <div>${r.label}</div>
+              <div class="badge ${badgeClass}">${r.score}/100</div>
+            </div>
+            <div class="pillbar" aria-hidden="true"><div style="width:${r.score}%;"></div></div>
+            <div class="chips">${(r.matches && r.matches.length) ? r.matches.map(m => `<span class="chip">${escapeHtml(m)}</span>`).join(' ') : '<span class="chip">কোনো সরাসরি মিল নেই</span>'}</div>
+          `;
+          breakdownEl.appendChild(row);
+        });
+      }
+    }
+
+    function getColor(percent) {
+      if (percent >= 70) return 'var(--danger)';
+      if (percent >= 40) return 'var(--warn)';
+      return 'var(--success)';
+    }
+
+    function escapeHtml(str){
+      return (str+'').replace(/[&<>"']/g, s=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[s]));
+    }
+
+    function makeJson(rep, input){
+      return JSON.stringify({
+        input: input,
+        risk_percent: rep.percent,
+        risk_level: rep.level,
+        categories: rep.results.map(r=>({ id:r.id, label:r.label, score:r.score, matches:r.matches })),
+        disclaimer: 'Generated by Google Gemini API. This is an unofficial tool and should not be used to bypass moderation.'
+      }, null, 2);
+    }
+
+    // --- UI ইভেন্ট ---
+
+    $('#analyzeBtn').addEventListener('click', async () => {
+      const text = textEl.value || '';
+      if (!text.trim()) {
+        const rep = { percent: 0, level: 'Low risk', results: [], tips: ['এখানে আপনার টেক্সট দিন।'] };
+        renderReport(rep);
+        return;
+      }
+      
+      // লোডিং অবস্থা দেখান
+      analyzeBtn.disabled = true;
+      scoreEl.textContent = '...';
+      levelEl.textContent = 'বিশ্লেষণ চলছে...';
+      tipEl.textContent = 'বিশ্লেষণ চলছে...';
+      breakdownEl.innerHTML = '';
+
+      const rep = await callGeminiAPI(text);
+      renderReport(rep);
+      analyzeBtn.disabled = false;
+    });
+
+    $('#clearBtn').addEventListener('click', () => {
+      textEl.value = '';
+      const rep = { percent: 0, level: 'Low risk', results: [], tips: ['এখানে আপনার টেক্সট দিন।'] };
+      renderReport(rep);
+    });
+
+    $('#exampleBtn').addEventListener('click', () => {
+      textEl.value = 'আমি বন্দুক বিক্রি করতে চাই।';
+      $('#analyzeBtn').click();
+    });
+
+    $('#copyBtn').addEventListener('click', async ()=>{
+      const text = textEl.value || '';
+      const rep = await callGeminiAPI(text);
+      const blob = makeJson(rep, text);
+      try {
+        await navigator.clipboard.writeText(blob);
+        alert('রিপোর্ট ক্লিপবোর্ডে কপি করা হয়েছে');
+      } catch(e) {
+        alert('কপি ব্যর্থ হয়েছে');
+      }
+    });
+
+    $('#downloadBtn').addEventListener('click', async ()=>{
+      const text = textEl.value || '';
+      const rep = await callGeminiAPI(text);
+      const blob = new Blob([ makeJson(rep, text) ], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url; a.download = 'risk-report.json';
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(url);
+    });
+  </script>
+</body>
+</html>
