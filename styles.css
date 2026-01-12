@@ -1,31 +1,34 @@
+/* Existing CSS (omitted for brevity) */
+
+/* Dragon Cursor Styles */
 #dragon-cursor-svg {
-    position: fixed; 
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    
-    cursor: none; 
-    filter: sepia(20%) blur(5px); 
-    pointer-events: none; 
-    z-index: 0; 
-    opacity: 0.3; 
-    transition: opacity 0.3s ease, filter 0.3s ease; 
+    cursor: none;
+    filter: sepia(20%) blur(5px);
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.3;
+    transition: opacity 0.3s ease, filter 0.3s ease;
 }
 
 #dragon-cursor-svg:hover {
-    opacity: 1; 
-    filter: sepia(20%) blur(0); 
+    opacity: 1;
+    filter: sepia(20%) blur(0);
 }
 
 .cursor {
-    display: none !important; 
+    display: none !important;
 }
 
 #cursor-trail-container {
-    display: none !important; 
+    display: none !important;
 }
 
+/* Rest of your existing CSS */
 .map {
     position: absolute;
     top: 0;
@@ -66,7 +69,6 @@
 }
 
 :root {
-    
     --neon-pink: #FF1493;
     --neon-cyan: #00FFFF;
     --neon-green: #39FF14;
@@ -75,7 +77,6 @@
     --cyber-gray: #333333;
     --text-light: #f0f0f0;
     --text-dark: #0A0A0A;
-
     
     --pink-glow: 0 0 15px rgba(255, 20, 147, 0.7);
     --cyan-glow: 0 0 15px rgba(0, 255, 255, 0.7);
@@ -128,6 +129,41 @@ section {
     padding: 5rem 0;
     position: relative;
 }
+
+/* Scroll Reveal Animation */
+.reveal {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.8s ease-out;
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* 3D Tilt Effect */
+.tilt-card {
+    transition: transform 0.1s ease-out;
+    transform-style: preserve-3d;
+    perspective: 1000px;
+}
+
+/* Typewriter Effect - UPDATED */
+.typewriter-text {
+    border-right: 2px solid transparent; /* Hidden by default */
+    white-space: pre-wrap;
+    overflow: hidden;
+    display: inline-block;
+    width: 100%;
+    min-height: 1.6em;
+}
+
+@keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: var(--neon-green) }
+}
+
 
 .hidden {
     display: none !important;
@@ -309,7 +345,6 @@ section {
 
 .glassmorphic-card:hover {
     box-shadow: 0 0 25px rgba(255, 20, 147, 0.5);
-    transform: translateY(-5px);
 }
 
 .glassmorphic-card-cyan {
@@ -325,7 +360,6 @@ section {
 
 .glassmorphic-card-cyan:hover {
     box-shadow: 0 0 25px rgba(0, 255, 255, 0.5);
-    transform: translateY(-5px);
 }
 
 .glassmorphic-card-green {
@@ -341,7 +375,6 @@ section {
 
 .glassmorphic-card-green:hover {
     box-shadow: 0 0 25px rgba(57, 255, 20, 0.5);
-    transform: translateY(-5px);
 }
 
 .glassmorphic-card-pink {
@@ -357,7 +390,6 @@ section {
 
 .glassmorphic-card-pink:hover {
     box-shadow: 0 0 25px rgba(255, 20, 147, 0.5);
-    transform: translateY(-5px);
 }
 
 .cyber-button {
@@ -474,7 +506,7 @@ section {
     color: white;
     letter-spacing: 1px;
     transition: font-size 0.3s ease;
-    white-space: nowrap;
+    white-space: nowrap; /* Default for desktop */
     margin: 0 auto;
     display: inline-block;
     position: relative;
@@ -1164,10 +1196,29 @@ section {
     }
 }
 
+/* Updated Mobile Media Queries to FIX Overflow */
 @media (max-width: 576px) {
     .hero-name {
-        font-size: 2rem;
+        font-size: 5vw; /* Responsive sizing: 5% of viewport width */
+        white-space: nowrap !important; /* Forces text to stay on one line */
+        overflow: visible; 
+        text-overflow: clip; 
+        display: inline-flex; /* Ensures proper alignment with the badge */
+        align-items: center;
+        justify-content: center;
+        width: 100%; /* Center in container */
+        margin: 0;
+        padding: 0;
     }
+    
+    .hero-name .verified-badge-img {
+        height: 1.2em; /* Badge scales relative to font size */
+        width: auto;
+        margin-left: 5px;
+        top: 0; 
+        transform: none; 
+    }
+
     .hero-buttons {
         flex-direction: column;
         width: 100%;
@@ -1192,9 +1243,7 @@ section {
         width: 150px;
         height: 150px;
     }
-    .hero-name {
-        font-size: 1.8rem;
-    }
+    /* .hero-name font-size handled by vw units above, so no specific px needed here */
     .cyber-title-box {
         font-size: 0.9rem;
         padding: 0.5rem 1rem;
@@ -1202,4 +1251,86 @@ section {
     .logo {
         font-size: 1.5rem;
     }
+}
+
+/* Cyber Preloader Styles */
+#cyber-preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #050505;
+    z-index: 99999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    transition: opacity 0.8s ease-in-out, visibility 0.8s ease-in-out;
+}
+
+#cyber-preloader.loaded {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.preloader-content {
+    width: 300px;
+    text-align: center;
+    position: relative;
+}
+
+.terminal-text {
+    font-family: 'Orbitron', sans-serif;
+    color: var(--neon-cyan);
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    letter-spacing: 2px;
+    text-shadow: 0 0 10px var(--neon-cyan);
+    min-height: 1.5em;
+}
+
+.loading-bar-container {
+    width: 100%;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.1);
+    position: relative;
+    overflow: hidden;
+    border-radius: 2px;
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.2);
+}
+
+.loading-bar {
+    width: 0%;
+    height: 100%;
+    background: linear-gradient(90deg, var(--neon-pink), var(--neon-cyan));
+    box-shadow: 0 0 15px var(--neon-cyan);
+    animation: loadProgress 2.5s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+}
+
+.scanner-line {
+    position: absolute;
+    top: -50px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--neon-green);
+    box-shadow: 0 0 10px var(--neon-green);
+    opacity: 0.5;
+    animation: scanDown 2s infinite linear;
+    z-index: -1;
+}
+
+@keyframes loadProgress {
+    0% { width: 0%; }
+    40% { width: 40%; }
+    70% { width: 80%; }
+    100% { width: 100%; }
+}
+
+@keyframes scanDown {
+    0% { top: -20%; opacity: 0; }
+    50% { opacity: 1; }
+    100% { top: 120%; opacity: 0; }
 }
