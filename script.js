@@ -344,9 +344,12 @@ function initializeWebsite() {
     }
 
     // New function for Dragon Cursor Effect
+    // New function for Dragon Cursor Effect
     function initDragonCursorEffect() {
+        if (window.innerWidth < 1024) return; 
         const screen = document.getElementById("screen"); 
         const dragonCursorSvg = document.getElementById("dragon-cursor-svg");
+    // ... বাকি কোড যেমন আছে তেমনই থাকবে ...
         const xmlns = "http://www.w3.org/2000/svg"; 
         const xlinkns = "http://www.w3.org/1999/xlink"; 
 
