@@ -1,43 +1,27 @@
-/* ==================================================
-   LOGIC CONTROL CENTER (Redirects & Core Logic)
-   Runs immediately to handle redirects efficiently
-   ================================================== */
-
 (function() {
-    // 1. SMART AUTO REDIRECT (Desktop Only)
+
     const urlParams = new URLSearchParams(window.location.search);
     const forceNormal = urlParams.get('view') === 'normal';
-    
-    // ডিভাইস চেক (ডেস্কটপ কিনা)
+
     const isDesktop = window.innerWidth > 1024;
 
-    // লজিক: যদি ডেস্কটপ হয় AND ইউজার মেইন উইন্ডোতে থাকে (আইফ্রেম নয়) AND বাটন চেপে না আসে
     if (isDesktop && window.self === window.top && !forceNormal) {
         window.location.href = "monitor.html";
     }
 })();
 
-
-/* ==================================================
-   MAIN WEBSITE INITIALIZATION (Visuals & Effects)
-   Runs when the window is fully loaded
-   ================================================== */
-
 function initializeWebsite() {
 
-    // 1. TERMINAL BUTTON LOGIC (Mobile Warning & Auto Hide)
     function initTerminalButton() {
         const termBtn = document.getElementById('terminalBtn');
         const modal = document.getElementById('mobile-warning-modal');
         const closeModalBtn = document.getElementById('close-modal-btn');
 
-        // Logic A: Modal Close Events
         if (closeModalBtn && modal) {
             closeModalBtn.addEventListener('click', () => {
                 modal.classList.remove('active');
             });
-            
-            // Close if clicked outside the box
+
             modal.addEventListener('click', (e) => {
                 if (e.target === modal) {
                     modal.classList.remove('active');
@@ -46,29 +30,28 @@ function initializeWebsite() {
         }
 
         if(termBtn) {
-            // Logic B: Hide button if inside Monitor Mode (Iframe)
+
             if (window.self !== window.top) {
                 termBtn.style.display = 'none'; 
             }
 
-            // Logic C: Mobile Click Handler
             termBtn.addEventListener('click', function(e) {
-                // যদি মোবাইল বা ছোট স্ক্রিন হয়
+
                 if (window.innerWidth < 1024) {
-                    e.preventDefault(); // লিংকে যাওয়া আটকাবে
-                    
-                    // Show Custom Modal
+                    e.preventDefault(); 
+
                     if (modal) {
                         modal.classList.add('active');
-                        
-                        // Optional: Play Error Sound (Sci-fi Buzz)
+
                         try {
                             const AudioContext = window.AudioContext || window.webkitAudioContext;
                             const audioCtx = new AudioContext();
                             const osc = audioCtx.createOscillator();
                             const gain = audioCtx.createGain();
-                            osc.type = 'sawtooth'; // Harsh sound
-                            osc.frequency.value = 150; // Low pitch
+                            osc.type = 'sawtooth'; 
+
+                            osc.frequency.value = 150; 
+
                             gain.gain.setValueAtTime(0.1, audioCtx.currentTime);
                             gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.5);
                             osc.connect(gain);
@@ -76,10 +59,10 @@ function initializeWebsite() {
                             osc.start();
                             osc.stop(audioCtx.currentTime + 0.5);
                         } catch(err) {
-                            // Audio context might be blocked, ignore
+
                         }
                     } else {
-                        // Fallback if modal missing
+
                         alert("⚠️ ACCESS DENIED: Desktop Required.");
                     }
                 }
@@ -87,7 +70,6 @@ function initializeWebsite() {
         }
     }
 
-    // 2. SCROLL REVEAL ANIMATION
     function initScrollReveal() {
         const reveals = document.querySelectorAll('.reveal');
 
@@ -107,7 +89,6 @@ function initializeWebsite() {
         revealOnScroll();
     }
 
-    // 3. 3D TILT EFFECT
     function initTiltEffect() {
         const tiltCards = document.querySelectorAll('.tilt-card');
 
@@ -130,7 +111,6 @@ function initializeWebsite() {
         });
     }
 
-    // 4. UI SOUND EFFECTS
     function initSoundEffects() {
         const AudioContext = window.AudioContext || window.webkitAudioContext;
         const audioCtx = new AudioContext();
@@ -158,7 +138,6 @@ function initializeWebsite() {
         });
     }
 
-    // 5. HACKING TYPING EFFECT
     function initHackingTyping() {
         const textElements = document.querySelectorAll('.typewriter-text');
         const observer = new IntersectionObserver((entries) => {
@@ -193,7 +172,6 @@ function initializeWebsite() {
         }
     }
 
-    // 6. MAP GLOW EFFECT
     function initMapEffect() { 
         const mapElement = document.getElementById('map'); 
         if (!mapElement) return; 
@@ -212,7 +190,6 @@ function initializeWebsite() {
         });
     }
 
-    // 7. DECRYPTION EFFECT
     function applyDecryptionEffect() { 
         const target = document.querySelector('h1.hero-name'); 
         if (!target) return; 
@@ -224,7 +201,7 @@ function initializeWebsite() {
         const scrambleChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"; 
         let interval = null; 
         let iteration = 0; 
-        
+
         interval = setInterval(() => { 
             target.innerText = originalText.split("").map((letter, index) => { 
                 if (index < iteration) return originalText[index]; 
@@ -243,7 +220,6 @@ function initializeWebsite() {
         }, 60); 
     }
 
-    // 8. PIXEL EFFECT
     function initializePixelEffect() { 
         class Pixel { 
             constructor(canvas, context, x, y, color, speed, delay) { 
@@ -316,7 +292,6 @@ function initializeWebsite() {
         initPixels(); 
     }
 
-    // 9. NAVBAR
     function initInteractiveElements() { 
         const menuToggle = document.querySelector('.menu-toggle'); 
         const navLinks = document.querySelector('.nav-links'); 
@@ -333,7 +308,6 @@ function initializeWebsite() {
         }
     }
 
-    // 10. CONTACT FORM
     function initContactForm(){ 
         const contactForm = document.getElementById('contactForm'); 
         const toast = document.getElementById('toast'); 
@@ -350,7 +324,6 @@ function initializeWebsite() {
         }
     }
 
-    // 11. DRAGON CURSOR
     function initDragonCursorEffect() {
         if (window.innerWidth < 1024) return; 
         const screen = document.getElementById("screen"); 
@@ -412,7 +385,6 @@ function initializeWebsite() {
         run(); 
     }
 
-    // 12. PRELOADER
     function initPreloader() {
         const preloader = document.getElementById('cyber-preloader');
         const textElement = document.getElementById('terminal-text');
@@ -434,10 +406,10 @@ function initializeWebsite() {
         }, 2200); 
     }
 
-    // === EXECUTE ===
     initMapEffect(); initializePixelEffect(); initInteractiveElements(); initContactForm(); initDragonCursorEffect(); initPreloader(); 
     initScrollReveal(); initTiltEffect(); initSoundEffects(); initHackingTyping(); 
-    initTerminalButton(); // This new function handles both button hiding and custom modal
+    initTerminalButton(); 
+
 }
 
 window.addEventListener('load', initializeWebsite);
