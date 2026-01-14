@@ -1334,3 +1334,12 @@ section {
     50% { opacity: 1; }
     100% { top: 120%; opacity: 0; }
 }
+/* MOBILE OPTIMIZATION: Hide Dragon on Mobile/Tablet to prevent Lag */
+@media (max-width: 1024px) {
+    #dragon-cursor-svg {
+        display: none !important;
+        visibility: hidden !important;
+        opacity: 0 !important;
+        pointer-events: none !important;
+    }
+}
