@@ -515,3 +515,35 @@ function initializeWebsite() {
 }
 
 window.addEventListener('load', initializeWebsite);
+
+// ==================================================
+    // 1. SMART AUTO REDIRECT SYSTEM
+    // ==================================================
+    
+    // URL চেক করা (ইউজার কি Normal Mode বাটন চেপে এসেছে?)
+    const urlParams = new URLSearchParams(window.location.search);
+    const forceNormal = urlParams.get('view') === 'normal';
+    
+    // ডিভাইস চেক (ডেস্কটপ কিনা)
+    const isDesktop = window.innerWidth > 1024;
+
+    // লজিক: যদি ডেস্কটপ হয় AND ইউজার যদি Normal Mode বাটন না চেপে থাকে -> হ্যাকার ভিউতে পাঠাও
+    if (isDesktop && !forceNormal) {
+        window.location.href = "monitor.html";
+    }
+
+
+    // ==================================================
+    // 2. TERMINAL BUTTON LOGIC (Mobile Restriction)
+    // ==================================================
+    
+    document.getElementById('terminalBtn').addEventListener('click', function(e) {
+        // যদি মোবাইল বা ছোট স্ক্রিন হয়
+        if (window.innerWidth < 1024) {
+            e.preventDefault(); // লিংকে যাওয়া আটকাবে
+            
+            // ওয়ার্নিং মেসেজ (System Alert Style)
+            alert("⚠️ SYSTEM WARNING: \n\nTerminal Mode requires high processing power and a larger display.\n\nPlease switch to a Desktop PC or turn on 'Desktop Site' mode to access the Neural Network.");
+        }
+        // আর যদি ডেস্কটপ হয়, তাহলে সোজা monitor.html এ চলে যাবে (ডিফল্ট href কাজ করবে)
+    });
