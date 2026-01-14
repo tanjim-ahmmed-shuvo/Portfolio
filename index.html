@@ -6,14 +6,13 @@
     <meta name="facebook-domain-verification" content="kz00a9a22m4h736jz0zkkpy9zrlzkv" />
     <meta name="keywords" content="Digifix BD, Tanjim Ahmmed Shuvo, Automation Expert, n8n, Security Researcher, Social Media Security, Web Developer Bangladesh">
     <meta name="description" content="Founder @Digifix BD | Social Media Security Expert | AI Automation Lead">
-    <title>Tanjim Ahmmed Shuvo | Building Systems</title>
+    <title>TANJIM AHMMED SHUVO - Portfolio</title>
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <!-- Cyber Preloader Start -->
     <div id="cyber-preloader">
         <div class="preloader-content">
             <div class="scanner-line"></div>
@@ -23,9 +22,6 @@
             </div>
         </div>
     </div>
-    <!-- Cyber Preloader End -->
-
-    <!-- Dragon Cursor SVG -->
     <svg id="dragon-cursor-svg">
       <defs>
         <g id="Cabeza" transform="matrix(1, 0, 0, 1, 0, 0)">
@@ -118,7 +114,6 @@
                     <div class="about-text" style="width: 100%; grid-column: span 2;">
                         <div class="glassmorphic-card reveal tilt-card">
                             <h3 class="about-subtitle">WHO I AM</h3>
-                            <!-- Typewriter Text Containers -->
                             <p class="typewriter-text" data-text="I am a Tech Entrepreneur who believes in results over degrees. My journey didn't start in a university lecture hall; it started with curiosity—modding Android kernels, building custom security tools, and exploring the depths of Linux in my school days."></p>
                             <p class="typewriter-text" data-text="Today, I lead Digifix BD, a digital agency that has served over 1000+ individuals and businesses. I don't follow the crowd. While others compete in the rat race, I focus on 'Smart Work'—leveraging AI and Automation to build ecosystems where businesses run on auto-pilot. My mission is simple: Prove that skills and resilience beat everything else."></p>
                         </div>
@@ -223,8 +218,7 @@
                     <span class="border-bottom-pink">The Journey</span>
                 </h2>
                 <div class="section-divider reveal"></div>
-                <div class="certificates-grid"> <!-- Reusing grid class for layout -->
-                    <div class="certificate-card glassmorphic-card-green reveal tilt-card sound-hover">
+                <div class="certificates-grid"> <div class="certificate-card glassmorphic-card-green reveal tilt-card sound-hover">
                         <div class="certificate-header">
                             <h3>The Beginning</h3>
                             <span class="certificate-badge">School Days</span>
@@ -306,7 +300,6 @@
                                 <a href="https://www.facebook.com/tanjim.ahmmed.shuvo" class="social-icon green-border sound-click">
                                     <i class="fab fa-facebook-f"></i>
                                 </a>
-                                <!-- WhatsApp -->
                                 <a href="https://wa.me/16506687797" class="social-icon green-border sound-click" target="_blank">
                                     <i class="fab fa-whatsapp"></i>
                                 </a>
@@ -385,30 +378,29 @@
         </div>
         <div class="toast-progress"></div>
     </div>
-    <a href="https://www.tanjim.tech/monitor.html" class="terminal-mode-btn">
+
+    <div id="mobile-warning-modal" class="custom-modal">
+        <div class="modal-content tilt-card">
+            <div class="modal-icon">
+                <i class="fa-solid fa-triangle-exclamation"></i>
+            </div>
+            <h2 class="modal-title">ACCESS DENIED</h2>
+            <div class="modal-body">
+                <p>Terminal Mode requires high processing power and a larger display matrix.</p>
+                <p style="color: #aaa; font-size: 0.9rem; margin-top: 10px;">
+                    Please switch to a <strong style="color: #0ff;">Desktop PC</strong> to access the Neural Network.
+                </p>
+            </div>
+            <button id="close-modal-btn" class="modal-btn">
+                [ ACKNOWLEDGE ]
+            </button>
+        </div>
+    </div>
+
+    <a href="monitor.html" class="terminal-mode-btn" id="terminalBtn">
         <i class="fa-solid fa-terminal"></i>
         <span>ENTER TERMINAL MODE</span>
     </a>
-
-
-
-<script>
-    /* DEVICE & VIEW REDIRECTION LOGIC 
-       1. PC Users -> Redirect to monitor.html (HUD Mode)
-       2. Mobile Users -> Stay on index.html (Normal Mode)
-       3. "Exit HUD" Click -> Stay on index.html
-    */
-
-    // URL চেক করা (ইউজার কি Exit বাটন চেপে এসেছে?)
-    const urlParams = new URLSearchParams(window.location.search);
-    const forceNormal = urlParams.get('view') === 'normal';
-
-    // লজিক চেক
-    if (window.innerWidth > 1024 && window.self === window.top && !forceNormal) {
-        window.location.href = "https://www.tanjim.tech/monitor.html";
-    }
-</script>
-
 
     <script src="script.js"></script>
 </body>
