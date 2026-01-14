@@ -1,6 +1,93 @@
+/* ==================================================
+   LOGIC CONTROL CENTER (Redirects & Core Logic)
+   Runs immediately to handle redirects efficiently
+   ================================================== */
+
+(function() {
+    // 1. SMART AUTO REDIRECT (Desktop Only)
+    const urlParams = new URLSearchParams(window.location.search);
+    const forceNormal = urlParams.get('view') === 'normal';
+    
+    // ডিভাইস চেক (ডেস্কটপ কিনা)
+    const isDesktop = window.innerWidth > 1024;
+
+    // লজিক: যদি ডেস্কটপ হয় AND ইউজার মেইন উইন্ডোতে থাকে (আইফ্রেম নয়) AND বাটন চেপে না আসে
+    if (isDesktop && window.self === window.top && !forceNormal) {
+        window.location.href = "monitor.html";
+    }
+})();
+
+
+/* ==================================================
+   MAIN WEBSITE INITIALIZATION (Visuals & Effects)
+   Runs when the window is fully loaded
+   ================================================== */
+
 function initializeWebsite() {
 
-    // 1. SCROLL REVEAL ANIMATION
+    // 1. TERMINAL BUTTON LOGIC (Mobile Warning & Auto Hide)
+    function initTerminalButton() {
+        const termBtn = document.getElementById('terminalBtn');
+        const modal = document.getElementById('mobile-warning-modal');
+        const closeModalBtn = document.getElementById('close-modal-btn');
+
+        // Logic A: Modal Close Events
+        if (closeModalBtn && modal) {
+            closeModalBtn.addEventListener('click', () => {
+                modal.classList.remove('active');
+            });
+            
+            // Close if clicked outside the box
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    modal.classList.remove('active');
+                }
+            });
+        }
+
+        if(termBtn) {
+            // Logic B: Hide button if inside Monitor Mode (Iframe)
+            if (window.self !== window.top) {
+                termBtn.style.display = 'none'; 
+            }
+
+            // Logic C: Mobile Click Handler
+            termBtn.addEventListener('click', function(e) {
+                // যদি মোবাইল বা ছোট স্ক্রিন হয়
+                if (window.innerWidth < 1024) {
+                    e.preventDefault(); // লিংকে যাওয়া আটকাবে
+                    
+                    // Show Custom Modal
+                    if (modal) {
+                        modal.classList.add('active');
+                        
+                        // Optional: Play Error Sound (Sci-fi Buzz)
+                        try {
+                            const AudioContext = window.AudioContext || window.webkitAudioContext;
+                            const audioCtx = new AudioContext();
+                            const osc = audioCtx.createOscillator();
+                            const gain = audioCtx.createGain();
+                            osc.type = 'sawtooth'; // Harsh sound
+                            osc.frequency.value = 150; // Low pitch
+                            gain.gain.setValueAtTime(0.1, audioCtx.currentTime);
+                            gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.5);
+                            osc.connect(gain);
+                            gain.connect(audioCtx.destination);
+                            osc.start();
+                            osc.stop(audioCtx.currentTime + 0.5);
+                        } catch(err) {
+                            // Audio context might be blocked, ignore
+                        }
+                    } else {
+                        // Fallback if modal missing
+                        alert("⚠️ ACCESS DENIED: Desktop Required.");
+                    }
+                }
+            });
+        }
+    }
+
+    // 2. SCROLL REVEAL ANIMATION
     function initScrollReveal() {
         const reveals = document.querySelectorAll('.reveal');
 
@@ -17,11 +104,10 @@ function initializeWebsite() {
         };
 
         window.addEventListener('scroll', revealOnScroll);
-        // Trigger once on load
         revealOnScroll();
     }
 
-    // 2. 3D TILT EFFECT
+    // 3. 3D TILT EFFECT
     function initTiltEffect() {
         const tiltCards = document.querySelectorAll('.tilt-card');
 
@@ -30,135 +116,90 @@ function initializeWebsite() {
                 const rect = card.getBoundingClientRect();
                 const x = e.clientX - rect.left;
                 const y = e.clientY - rect.top;
-
-                // Calculate rotation based on cursor position
-                // Max tilt: 15 degrees
                 const xCenter = rect.width / 2;
                 const yCenter = rect.height / 2;
-                
-                // Rotate Y based on X axis (left/right tilt)
                 const rotateY = ((x - xCenter) / xCenter) * 15;
-                
-                // Rotate X based on Y axis (up/down tilt - inverted)
                 const rotateX = -((y - yCenter) / yCenter) * 15;
 
                 card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.05)`;
             });
 
             card.addEventListener('mouseleave', () => {
-                // Reset transform
                 card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale(1)';
             });
         });
     }
 
-    // 3. UI SOUND EFFECTS (Web Audio API)
+    // 4. UI SOUND EFFECTS
     function initSoundEffects() {
-        // Create audio context but wait for interaction to resume it
         const AudioContext = window.AudioContext || window.webkitAudioContext;
         const audioCtx = new AudioContext();
 
-        // Simple beep generator
         const playTone = (freq = 600, type = 'sine', duration = 0.1) => {
-            if (audioCtx.state === 'suspended') {
-                audioCtx.resume();
-            }
-            
+            if (audioCtx.state === 'suspended') audioCtx.resume();
             const oscillator = audioCtx.createOscillator();
             const gainNode = audioCtx.createGain();
-
             oscillator.type = type;
-            oscillator.frequency.setValueAtTime(freq, audioCtx.currentTime); // Frequency in Hz
-            
-            gainNode.gain.setValueAtTime(0.1, audioCtx.currentTime); // Volume (0.1 is subtle)
+            oscillator.frequency.setValueAtTime(freq, audioCtx.currentTime);
+            gainNode.gain.setValueAtTime(0.1, audioCtx.currentTime);
             gainNode.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
-
             oscillator.connect(gainNode);
             gainNode.connect(audioCtx.destination);
-
             oscillator.start();
             oscillator.stop(audioCtx.currentTime + duration);
         };
 
-        // Hover Sounds (High pitch, short beep)
-        const hoverElements = document.querySelectorAll('.sound-hover, a, button, .glassmorphic-card');
-        hoverElements.forEach(el => {
-            el.addEventListener('mouseenter', () => {
-                playTone(800, 'sine', 0.1); // Sci-fi high beep
-            });
+        document.querySelectorAll('.sound-hover, a, button, .glassmorphic-card').forEach(el => {
+            el.addEventListener('mouseenter', () => playTone(800, 'sine', 0.1));
         });
 
-        // Click Sounds (Low pitch, mechanical click)
-        const clickElements = document.querySelectorAll('.sound-click, a, button');
-        clickElements.forEach(el => {
-            el.addEventListener('click', () => {
-                playTone(400, 'square', 0.15); // Mechanical click
-            });
+        document.querySelectorAll('.sound-click, a, button').forEach(el => {
+            el.addEventListener('click', () => playTone(400, 'square', 0.15));
         });
     }
 
-    // 4. HACKING TYPING EFFECT
+    // 5. HACKING TYPING EFFECT
     function initHackingTyping() {
         const textElements = document.querySelectorAll('.typewriter-text');
-
-        // Observer to start typing when element is in view
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     const element = entry.target;
-                    // Only type if not already typed
                     if (!element.classList.contains('typed')) {
                         const textToType = element.getAttribute('data-text');
-                        element.textContent = ''; // Clear initial text
+                        element.textContent = '';
                         element.classList.add('typed');
                         typeText(element, textToType);
                     }
                 }
             });
-        }, { threshold: 0.5 }); // Trigger when 50% visible
+        }, { threshold: 0.5 });
 
         textElements.forEach(el => {
-            // Initially clear text to be safe
             el.textContent = ''; 
             observer.observe(el);
         });
 
         function typeText(element, text) {
             let index = 0;
-            // Typing speed: randomized for realism
             function typeChar() {
                 if (index < text.length) {
                     element.textContent += text.charAt(index);
                     index++;
-                    setTimeout(typeChar, Math.random() * 30 + 10); // Random delay between 10ms and 40ms
+                    setTimeout(typeChar, Math.random() * 30 + 10);
                 }
             }
             typeChar();
         }
     }
 
-
-    /* ==========================================
-       EXISTING FUNCTIONS (Kept for compatibility)
-       ========================================== */
-
+    // 6. MAP GLOW EFFECT
     function initMapEffect() { 
         const mapElement = document.getElementById('map'); 
         if (!mapElement) return; 
-
-        const codeSnippets = [ 
-            `function init() {\n  let x = 0;\n  x += 1;\n  return x;\n}`, 
-            `console.log("Hello World");`, 
-            `if (data === true) {\n  render(data);\n}`, 
-            `for (let i = 0; i < 10; i++) {\n  console.log(i);\n}`, 
-            `const map = new Map();\nmap.set('key', 'value');`, 
-            `(() => {\n  const app = () => true;\n})();` 
-        ];
-
+        const codeSnippets = [`function init() {}`, `console.log("System Ready");`, `if (secure) {}`, `for (i=0; i<99; i++)`, `const data = new Map();`];
         mapElement.innerHTML = ''; 
-        const numberOfSnippets = 60; 
-
-        for (let i = 0; i < numberOfSnippets; i++) { 
+        for (let i = 0; i < 60; i++) { 
             const codeGlow = document.createElement('div'); 
             codeGlow.className = 'code-glow'; 
             codeGlow.style.left = `${Math.floor(Math.random() * 100)}%`; 
@@ -166,56 +207,43 @@ function initializeWebsite() {
             codeGlow.innerText = codeSnippets[Math.floor(Math.random() * codeSnippets.length)]; 
             mapElement.appendChild(codeGlow); 
         }
-
         window.addEventListener('scroll', () => { 
-            if (mapElement) { 
-                mapElement.style.opacity = (window.scrollY > 100) ? '0' : '0.6'; 
-            }
+            if (mapElement) mapElement.style.opacity = (window.scrollY > 100) ? '0' : '0.6'; 
         });
     }
 
+    // 7. DECRYPTION EFFECT
     function applyDecryptionEffect() { 
         const target = document.querySelector('h1.hero-name'); 
         if (!target) return; 
-
         const verifiedBadgeImg = target.querySelector('.verified-badge-img'); 
         const imgHTML = verifiedBadgeImg ? verifiedBadgeImg.outerHTML : ''; 
         if (verifiedBadgeImg) verifiedBadgeImg.remove(); 
-
         const originalText = target.innerText.trim(); 
         target.innerText = ''; 
-
         const scrambleChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"; 
         let interval = null; 
         let iteration = 0; 
-
-        clearInterval(interval); 
-
+        
         interval = setInterval(() => { 
             target.innerText = originalText.split("").map((letter, index) => { 
                 if (index < iteration) return originalText[index]; 
                 if (letter === ' ') return ' '; 
                 return scrambleChars[Math.floor(Math.random() * scrambleChars.length)]; 
             }).join(""); 
-
             if (iteration >= originalText.length) { 
                 clearInterval(interval); 
                 target.innerText = originalText; 
-
                 if (imgHTML) { 
                     target.innerHTML = originalText + ' ' + imgHTML; 
-                    const newBadge = target.querySelector('.verified-badge-img'); 
-                    if (newBadge) { 
-                        setTimeout(() => { 
-                            newBadge.classList.add('is-visible'); 
-                        }, 200); 
-                    }
+                    setTimeout(() => target.querySelector('.verified-badge-img')?.classList.add('is-visible'), 200); 
                 }
             }
             iteration += 1 / 2; 
         }, 60); 
     }
 
+    // 8. PIXEL EFFECT
     function initializePixelEffect() { 
         class Pixel { 
             constructor(canvas, context, x, y, color, speed, delay) { 
@@ -251,7 +279,6 @@ function initializeWebsite() {
         const container = document.querySelector('.profile-circle-container'); 
         const canvas = document.getElementById('pixel-effect-canvas'); 
         if (!container || !canvas) return; 
-
         const ctx = canvas.getContext('2d'); 
         const config = { gap: 6, speed: 0.08, colors: "#fecdd3,#fda4af,#e11d48" }; 
         let pixels = []; 
@@ -289,115 +316,60 @@ function initializeWebsite() {
         initPixels(); 
     }
 
+    // 9. NAVBAR
     function initInteractiveElements() { 
         const menuToggle = document.querySelector('.menu-toggle'); 
         const navLinks = document.querySelector('.nav-links'); 
-
         if (menuToggle && navLinks) { 
-            menuToggle.addEventListener('click', () => { 
-                menuToggle.classList.toggle('active'); 
-                navLinks.classList.toggle('active'); 
-            });
-            navLinks.querySelectorAll('a').forEach(link => { 
-                link.addEventListener('click', () => { 
-                    menuToggle.classList.remove('active'); 
-                    navLinks.classList.remove('active'); 
-                });
-            });
+            menuToggle.addEventListener('click', () => { menuToggle.classList.toggle('active'); navLinks.classList.toggle('active'); });
+            navLinks.querySelectorAll('a').forEach(link => { link.addEventListener('click', () => { menuToggle.classList.remove('active'); navLinks.classList.remove('active'); }); });
         }
-
         const navbar = document.querySelector('.navbar'); 
         if(navbar){ 
             window.addEventListener('scroll', () => { 
-                if (window.scrollY > 50) { 
-                    navbar.style.padding = '0.5rem 0'; 
-                    navbar.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.5)'; 
-                } else { 
-                    navbar.style.padding = '1rem 0'; 
-                    navbar.style.boxShadow = 'none'; 
-                }
+                if (window.scrollY > 50) { navbar.style.padding = '0.5rem 0'; navbar.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.5)'; } 
+                else { navbar.style.padding = '1rem 0'; navbar.style.boxShadow = 'none'; }
             });
         }
     }
 
+    // 10. CONTACT FORM
     function initContactForm(){ 
         const contactForm = document.getElementById('contactForm'); 
         const toast = document.getElementById('toast'); 
-
         if(contactForm && toast){ 
             contactForm.addEventListener('submit', (e) => { 
                 e.preventDefault(); 
-                const toastMessage = toast.querySelector('.toast-message'); 
-                if(toastMessage) toastMessage.textContent = 'Message sent successfully!'; 
+                toast.querySelector('.toast-message').textContent = 'Message sent successfully!'; 
                 toast.classList.add('show'); 
-
                 const progress = toast.querySelector('.toast-progress'); 
-                if(progress) { 
-                    progress.style.animation = 'none'; 
-                    void progress.offsetWidth; 
-                    progress.style.animation = 'toast-progress-anim 5s linear forwards'; 
-                }
+                if(progress) { progress.style.animation = 'none'; void progress.offsetWidth; progress.style.animation = 'toast-progress-anim 5s linear forwards'; }
                 setTimeout(() => { toast.classList.remove('show'); }, 5000); 
                 contactForm.reset(); 
             });
         }
     }
 
-    // New function for Dragon Cursor Effect
-    // New function for Dragon Cursor Effect
+    // 11. DRAGON CURSOR
     function initDragonCursorEffect() {
         if (window.innerWidth < 1024) return; 
         const screen = document.getElementById("screen"); 
         const dragonCursorSvg = document.getElementById("dragon-cursor-svg");
-    // ... বাকি কোড যেমন আছে তেমনই থাকবে ...
         const xmlns = "http://www.w3.org/2000/svg"; 
         const xlinkns = "http://www.w3.org/1999/xlink"; 
+        let mouseMoveTimer; 
+        const activateDragon = () => { if (dragonCursorSvg) dragonCursorSvg.classList.add('dragon-active'); };
+        const deactivateDragon = () => { if (dragonCursorSvg) dragonCursorSvg.classList.remove('dragon-active'); };
 
-        let mouseMoveTimer; // To track mouse movement
-        const INACTIVITY_THRESHOLD = 500; // milliseconds before reverting to background
+        window.addEventListener("pointermove", (e) => {
+            activateDragon();
+            clearTimeout(mouseMoveTimer);
+            mouseMoveTimer = setTimeout(deactivateDragon, 500);
+            pointer.x = e.clientX; pointer.y = e.clientY; rad = 0; 
+        }, false);
 
-        // Function to activate the dragon cursor
-        const activateDragon = () => {
-            if (dragonCursorSvg) {
-                dragonCursorSvg.classList.add('dragon-active');
-            }
-        };
-
-        // Function to deactivate the dragon cursor
-        const deactivateDragon = () => {
-            if (dragonCursorSvg) {
-                dragonCursorSvg.classList.remove('dragon-active');
-            }
-        };
-
-        // Event listener for mouse movement
-        window.addEventListener(
-            "pointermove",
-            (e) => {
-                // Activate dragon on mouse move
-                activateDragon();
-
-                // Clear any existing timer
-                clearTimeout(mouseMoveTimer);
-
-                // Set a new timer to deactivate the dragon after inactivity
-                mouseMoveTimer = setTimeout(deactivateDragon, INACTIVITY_THRESHOLD);
-
-                pointer.x = e.clientX; 
-                pointer.y = e.clientY; 
-                rad = 0; 
-            },
-            false
-        );
-
-        const resize = () => {
-            width = window.innerWidth; 
-            height = window.innerHeight; 
-        };
-
-        let width, height; 
-        window.addEventListener("resize", () => resize(), false); 
-        resize(); 
+        let width = window.innerWidth, height = window.innerHeight; 
+        window.addEventListener("resize", () => { width = window.innerWidth; height = window.innerHeight; }, false); 
 
         const prepend = (use, i) => {
             const elem = document.createElementNS(xmlns, "use"); 
@@ -407,13 +379,10 @@ function initializeWebsite() {
         };
 
         const N = 40; 
-
         const elems = []; 
         for (let i = 0; i < N; i++) elems[i] = { use: null, x: width / 2, y: 0 }; 
         const pointer = { x: width / 2, y: height / 2 }; 
-        const radm = Math.min(pointer.x, pointer.y) - 20; 
-        let frm = Math.random(); 
-        let rad = 0; 
+        let frm = Math.random(); let rad = 0; 
 
         for (let i = 1; i < N; i++) {
             if (i === 1) prepend("Cabeza", i); 
@@ -429,121 +398,46 @@ function initializeWebsite() {
             e.x += (ax + pointer.x - e.x) / 10; 
             e.y += (ay + pointer.y - e.y) / 10; 
             for (let i = 1; i < N; i++) { 
-                let e = elems[i]; 
-                let ep = elems[i - 1]; 
+                let e = elems[i]; let ep = elems[i - 1]; 
                 const a = Math.atan2(e.y - ep.y, e.x - ep.x); 
                 e.x += (ep.x - e.x + (Math.cos(a) * (100 - i)) / 5) / 4; 
                 e.y += (ep.y - e.y + (Math.sin(a) * (100 - i)) / 5) / 4; 
                 const s = (162 + 4 * (1 - i)) / 50; 
-                e.use.setAttributeNS(
-                    null,
-                    "transform",
-                    `translate(${(ep.x + e.x) / 2},${(ep.y + e.y) / 2}) rotate(${
-                        (180 / Math.PI) * a
-                    }) translate(${0},${0}) scale(${s},${s})`
-                );
+                e.use.setAttributeNS(null, "transform", `translate(${(ep.x + e.x) / 2},${(ep.y + e.y) / 2}) rotate(${(180 / Math.PI) * a}) translate(0,0) scale(${s},${s})`);
             }
-            if (rad < radm) rad++; 
+            if (rad < (Math.min(pointer.x, pointer.y) - 20)) rad++; 
             frm += 0.003; 
-            if (rad > 60) { 
-                pointer.x += (width / 2 - pointer.x) * 0.05; 
-                pointer.y += (height / 2 - pointer.y) * 0.05; 
-            }
+            if (rad > 60) { pointer.x += (width / 2 - pointer.x) * 0.05; pointer.y += (height / 2 - pointer.y) * 0.05; }
         };
-
         run(); 
     }
 
-    // Function to handle the preloader and then trigger decryption
+    // 12. PRELOADER
     function initPreloader() {
         const preloader = document.getElementById('cyber-preloader');
         const textElement = document.getElementById('terminal-text');
-        
-        if (!preloader || !textElement) {
-             // Fallback: If elements not found, just run the effect immediately
-             applyDecryptionEffect();
-             return;
-        }
-
-        const messages = [
-            "ESTABLISHING CONNECTION...",
-            "BYPASSING SECURITY...",
-            "ACCESS GRANTED.",
-            "WELCOME, USER."
-        ];
-
+        if (!preloader || !textElement) { applyDecryptionEffect(); return; }
+        const messages = ["ESTABLISHING CONNECTION...", "BYPASSING SECURITY...", "ACCESS GRANTED.", "WELCOME, USER."];
         let step = 0;
-        // Reduced interval time to 500ms (was 600ms) for faster text
-        const intervalTime = 500;
-
         const updateText = setInterval(() => {
             if (step < messages.length) {
                 textElement.style.opacity = '0.5';
                 textElement.innerText = messages[step];
                 setTimeout(() => textElement.style.opacity = '1', 50);
                 step++;
-            } else {
-                clearInterval(updateText);
-            }
-        }, intervalTime);
+            } else { clearInterval(updateText); }
+        }, 500);
 
-        // Remove preloader after 2.2 seconds (was 2.5s) to make it snappier
         setTimeout(() => {
-            preloader.classList.add('loaded'); // This hides the overlay
-            
-            // Reduced delay to 100ms (was 500ms) so animation starts AS screen fades
-            setTimeout(() => {
-                applyDecryptionEffect(); 
-            }, 100);
-
+            preloader.classList.add('loaded'); 
+            setTimeout(() => { applyDecryptionEffect(); }, 100);
         }, 2200); 
     }
 
-    // Call the functions in order
-    initMapEffect(); 
-    initializePixelEffect(); 
-    initInteractiveElements(); 
-    initContactForm(); 
-    initDragonCursorEffect(); 
-    initPreloader(); 
-    
-    // NEW FUNCTIONS INITIALIZATION
-    initScrollReveal();
-    initTiltEffect();
-    initSoundEffects();
-    initHackingTyping();
+    // === EXECUTE ===
+    initMapEffect(); initializePixelEffect(); initInteractiveElements(); initContactForm(); initDragonCursorEffect(); initPreloader(); 
+    initScrollReveal(); initTiltEffect(); initSoundEffects(); initHackingTyping(); 
+    initTerminalButton(); // This new function handles both button hiding and custom modal
 }
 
 window.addEventListener('load', initializeWebsite);
-
-// ==================================================
-    // 1. SMART AUTO REDIRECT SYSTEM
-    // ==================================================
-    
-    // URL চেক করা (ইউজার কি Normal Mode বাটন চেপে এসেছে?)
-    const urlParams = new URLSearchParams(window.location.search);
-    const forceNormal = urlParams.get('view') === 'normal';
-    
-    // ডিভাইস চেক (ডেস্কটপ কিনা)
-    const isDesktop = window.innerWidth > 1024;
-
-    // লজিক: যদি ডেস্কটপ হয় AND ইউজার যদি Normal Mode বাটন না চেপে থাকে -> হ্যাকার ভিউতে পাঠাও
-    if (isDesktop && !forceNormal) {
-        window.location.href = "monitor.html";
-    }
-
-
-    // ==================================================
-    // 2. TERMINAL BUTTON LOGIC (Mobile Restriction)
-    // ==================================================
-    
-    document.getElementById('terminalBtn').addEventListener('click', function(e) {
-        // যদি মোবাইল বা ছোট স্ক্রিন হয়
-        if (window.innerWidth < 1024) {
-            e.preventDefault(); // লিংকে যাওয়া আটকাবে
-            
-            // ওয়ার্নিং মেসেজ (System Alert Style)
-            alert("⚠️ SYSTEM WARNING: \n\nTerminal Mode requires high processing power and a larger display.\n\nPlease switch to a Desktop PC or turn on 'Desktop Site' mode to access the Neural Network.");
-        }
-        // আর যদি ডেস্কটপ হয়, তাহলে সোজা monitor.html এ চলে যাবে (ডিফল্ট href কাজ করবে)
-    });
