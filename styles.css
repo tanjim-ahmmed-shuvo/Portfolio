@@ -1,6 +1,3 @@
-/* Existing CSS (omitted for brevity) */
-
-/* Dragon Cursor Styles */
 #dragon-cursor-svg {
     position: fixed;
     top: 0;
@@ -28,7 +25,6 @@
     display: none !important;
 }
 
-/* Rest of your existing CSS */
 .map {
     position: absolute;
     top: 0;
@@ -77,7 +73,7 @@
     --cyber-gray: #333333;
     --text-light: #f0f0f0;
     --text-dark: #0A0A0A;
-    
+
     --pink-glow: 0 0 15px rgba(255, 20, 147, 0.7);
     --cyan-glow: 0 0 15px rgba(0, 255, 255, 0.7);
     --green-glow: 0 0 15px rgba(57, 255, 20, 0.7);
@@ -130,7 +126,6 @@ section {
     position: relative;
 }
 
-/* Scroll Reveal Animation */
 .reveal {
     opacity: 0;
     transform: translateY(50px);
@@ -142,16 +137,14 @@ section {
     transform: translateY(0);
 }
 
-/* 3D Tilt Effect */
 .tilt-card {
     transition: transform 0.1s ease-out;
     transform-style: preserve-3d;
     perspective: 1000px;
 }
 
-/* Typewriter Effect - UPDATED */
 .typewriter-text {
-    border-right: 2px solid transparent; /* Hidden by default */
+    border-right: 2px solid transparent; 
     white-space: pre-wrap;
     overflow: hidden;
     display: inline-block;
@@ -163,7 +156,6 @@ section {
     from, to { border-color: transparent }
     50% { border-color: var(--neon-green) }
 }
-
 
 .hidden {
     display: none !important;
@@ -506,7 +498,7 @@ section {
     color: white;
     letter-spacing: 1px;
     transition: font-size 0.3s ease;
-    white-space: nowrap; /* Default for desktop */
+    white-space: nowrap; 
     margin: 0 auto;
     display: inline-block;
     position: relative;
@@ -1196,23 +1188,22 @@ section {
     }
 }
 
-/* Updated Mobile Media Queries to FIX Overflow */
 @media (max-width: 576px) {
     .hero-name {
-        font-size: 5vw; /* Responsive sizing: 5% of viewport width */
-        white-space: nowrap !important; /* Forces text to stay on one line */
+        font-size: 5vw; 
+        white-space: nowrap !important; 
         overflow: visible; 
         text-overflow: clip; 
-        display: inline-flex; /* Ensures proper alignment with the badge */
+        display: inline-flex; 
         align-items: center;
         justify-content: center;
-        width: 100%; /* Center in container */
+        width: 100%; 
         margin: 0;
         padding: 0;
     }
-    
+
     .hero-name .verified-badge-img {
-        height: 1.2em; /* Badge scales relative to font size */
+        height: 1.2em; 
         width: auto;
         margin-left: 5px;
         top: 0; 
@@ -1243,7 +1234,7 @@ section {
         width: 150px;
         height: 150px;
     }
-    /* .hero-name font-size handled by vw units above, so no specific px needed here */
+
     .cyber-title-box {
         font-size: 0.9rem;
         padding: 0.5rem 1rem;
@@ -1253,7 +1244,6 @@ section {
     }
 }
 
-/* Cyber Preloader Styles */
 #cyber-preloader {
     position: fixed;
     top: 0;
@@ -1334,7 +1324,7 @@ section {
     50% { opacity: 1; }
     100% { top: 120%; opacity: 0; }
 }
-/* MOBILE OPTIMIZATION: Hide Dragon on Mobile/Tablet to prevent Lag */
+
 @media (max-width: 1024px) {
     #dragon-cursor-svg {
         display: none !important;
@@ -1342,4 +1332,53 @@ section {
         opacity: 0 !important;
         pointer-events: none !important;
     }
+}
+
+.terminal-mode-btn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: rgba(0, 0, 0, 0.8); 
+    border: 1px solid #0ff; 
+    color: #0ff;
+    padding: 12px 25px;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    z-index: 10000; 
+    backdrop-filter: blur(5px);
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.2);
+    transition: all 0.3s ease;
+    animation: pulse-border 2s infinite;
+}
+
+.terminal-mode-btn i {
+    font-size: 16px;
+}
+
+.terminal-mode-btn:hover {
+    background: #0ff;
+    color: #000;
+    box-shadow: 0 0 25px #0ff;
+    transform: translateY(-3px);
+}
+
+@media (max-width: 768px) {
+    .terminal-mode-btn {
+        padding: 10px 15px;
+        font-size: 12px;
+        bottom: 20px;
+        right: 20px;
+    }
+}
+
+@keyframes pulse-border {
+    0% { box-shadow: 0 0 5px rgba(0, 255, 255, 0.3); }
+    50% { box-shadow: 0 0 20px rgba(0, 255, 255, 0.6); }
+    100% { box-shadow: 0 0 5px rgba(0, 255, 255, 0.3); }
 }
