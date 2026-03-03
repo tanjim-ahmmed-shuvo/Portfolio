@@ -1,255 +1,544 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="keywords" content="Tanjim Ahmmed Shuvo, workflow automation, n8n, SaaS automation, landing pages, Facebook ads, Digifix BD" />
-  <meta name="description" content="Workflow Automation for Early-Stage SaaS. I help founders automate onboarding, user communication, and internal workflows." />
-  <title>Tanjim Ahmmed Shuvo — Portfolio</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tanjim Ahmmed Shuvo | Workflow Automation for SaaS</title>
+    <meta name="description" content="I help SaaS founders automate onboarding, user communication, and internal workflows using practical systems.">
+    
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        background: '#0f1115',
+                        surface: '#1a1d24',
+                        border: '#2a2e37',
+                        accent: '#2563eb', // Mature, subtle blue
+                        accentHover: '#1d4ed8'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #0f1115;
+            color: #d1d5db; /* gray-300 */
+        }
+        
+        /* Subtle fade-in animation for elements as they enter viewport */
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(10px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+            will-change: opacity, visibility;
+        }
+        .fade-in-section.is-visible {
+            opacity: 1;
+            transform: none;
+        }
 
-  <!-- Keep your styles.css, but use a clean theme -->
-  <link rel="stylesheet" href="styles.css" />
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f1115;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #2a2e37;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #3f4552;
+        }
+    </style>
 </head>
+<body class="antialiased selection:bg-accent selection:text-white flex flex-col min-h-screen">
 
-<body>
-  <!-- NAV -->
-  <nav class="navbar">
-    <div class="container">
-      <a href="#home" class="logo">Tanjim</a>
-      <div class="nav-links">
-        <a href="#home">Home</a>
-        <a href="#services">Services</a>
-        <a href="#projects">Projects</a>
-        <a href="#process">Process</a>
-        <a href="#about">About</a>
-        <a href="#contact">Contact</a>
-      </div>
-      <button class="menu-toggle" aria-label="Open menu">
-        <span></span><span></span><span></span>
-      </button>
-    </div>
-  </nav>
+    <!-- Navigation -->
+    <header class="fixed top-0 left-0 right-0 z-50 bg-background/90 backdrop-blur-md border-b border-border">
+        <div class="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between">
+            <a href="#home" class="text-white font-semibold text-lg tracking-tight hover:text-gray-300 transition-colors">
+                Tanjim.
+            </a>
+            
+            <!-- Desktop Nav -->
+            <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-gray-400">
+                <a href="#services" class="hover:text-white transition-colors">Services</a>
+                <a href="#projects" class="hover:text-white transition-colors">Projects</a>
+                <a href="#process" class="hover:text-white transition-colors">Process</a>
+                <a href="#about" class="hover:text-white transition-colors">About</a>
+                <a href="#contact" class="text-white bg-surface border border-border px-4 py-2 rounded-lg hover:border-gray-500 transition-colors">Contact</a>
+            </nav>
 
-  <main>
-
-    <!-- HERO -->
-    <section id="home" class="hero-section">
-      <div class="container">
-        <div class="hero-content">
-          <p class="eyebrow">Tanjim Ahmmed Shuvo</p>
-          <h1 class="hero-title">Workflow Automation for Early-Stage SaaS</h1>
-          <p class="hero-subtitle">
-            I help SaaS founders automate onboarding, user communication, and internal workflows using practical systems — not over-engineered stacks.
-          </p>
-
-          <div class="hero-proof">
-            <span>1000+ client requests handled (2024–2026)</span>
-            <span class="dot">•</span>
-            <span>Automation • Ads • Digital Systems</span>
-          </div>
-
-          <div class="hero-buttons">
-            <a class="btn primary" href="#contact">Get a Free Workflow Review</a>
-            <a class="btn secondary" href="#projects">See Selected Projects</a>
-          </div>
-
-          <div class="hero-note">
-            <span>Primary focus:</span> SaaS automation & scalable systems. <span>Secondary:</span> social media security (authorized cases only).
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- SERVICES -->
-    <section id="services" class="section">
-      <div class="container">
-        <h2 class="section-title">What I Do</h2>
-        <p class="section-subtitle">
-          Clear, practical work. Built for founders who want fewer manual operations and better workflow clarity.
-        </p>
-
-        <div class="grid-3">
-          <div class="card">
-            <h3>SaaS Workflow Automation</h3>
-            <p>Remove manual operations and build reliable flows for growth.</p>
-            <ul>
-              <li>Signup → activation workflows</li>
-              <li>Trial expiry & follow-up sequences</li>
-              <li>Payment → access automation</li>
-              <li>Internal notifications & routing</li>
-              <li>Lead capture → CRM tracking</li>
-            </ul>
-            <p class="small">Tools: n8n, webhooks, APIs, lightweight integrations</p>
-          </div>
-
-          <div class="card">
-            <h3>Conversion & Landing Systems</h3>
-            <p>Simple, focused pages and tracking setups that support conversion.</p>
-            <ul>
-              <li>Landing page build (WordPress/custom)</li>
-              <li>Offer positioning & page structure</li>
-              <li>Basic tracking setup</li>
-              <li>Funnel clarity improvements</li>
-            </ul>
-          </div>
-
-          <div class="card">
-            <h3>Social Media Security (Limited)</h3>
-            <p>Provided only for legitimate, authorized cases.</p>
-            <ul>
-              <li>Account hardening & safety setup</li>
-              <li>Recovery guidance (authorized only)</li>
-              <li>Security best-practice checklist</li>
-            </ul>
-            <p class="small">This is a secondary service — automation is the main focus.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- PROJECTS -->
-    <section id="projects" class="section">
-      <div class="container">
-        <h2 class="section-title">Selected Workflow Projects</h2>
-        <p class="section-subtitle">Short, real examples. Clear problem → solution → outcome.</p>
-
-        <div class="grid-3">
-          <div class="card">
-            <h3>Automated Customer Response System</h3>
-            <p class="small"><strong>Problem:</strong> Manual inbox handling slowed response time.</p>
-            <p class="small"><strong>Solution:</strong> Built an automated reply system using n8n + webhook integrations.</p>
-            <p class="small"><strong>Outcome:</strong> Reduced manual replies and improved consistency.</p>
-          </div>
-
-          <div class="card">
-            <h3>Lead Routing Workflow</h3>
-            <p class="small"><strong>Problem:</strong> Leads were untracked and scattered.</p>
-            <p class="small"><strong>Solution:</strong> Automated routing + logging using n8n + Google Sheets + email triggers.</p>
-            <p class="small"><strong>Outcome:</strong> Clear tracking and faster follow-ups.</p>
-          </div>
-
-          <div class="card">
-            <h3>Operational Alerts & Notifications</h3>
-            <p class="small"><strong>Problem:</strong> Repetitive tasks consumed daily time.</p>
-            <p class="small"><strong>Solution:</strong> Designed workflows for alerts, tagging, and notifications.</p>
-            <p class="small"><strong>Outcome:</strong> Improved efficiency and reduced repetitive workload.</p>
-          </div>
+            <!-- Mobile Menu Toggle -->
+            <button id="mobile-menu-btn" class="md:hidden text-gray-400 hover:text-white" aria-label="Toggle menu">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                </svg>
+            </button>
         </div>
 
-        <!-- Optional: your 3D school project as character proof -->
-        <div class="card wide">
-          <h3>Personal Project: 3D School Model (2022)</h3>
-          <p class="small">
-            Built a full 3D model + video of my school using a 4GB RAM mobile device. Consistent daily work for weeks — a proof of discipline and long-form execution.
-          </p>
-        </div>
-      </div>
-    </section>
+        <!-- Mobile Nav Menu (Hidden by default) -->
+        <nav id="mobile-menu" class="hidden md:hidden bg-background border-b border-border px-6 py-4 flex-col gap-4 text-sm font-medium text-gray-400 shadow-xl">
+            <a href="#services" class="block hover:text-white transition-colors py-2 mobile-link">Services</a>
+            <a href="#projects" class="block hover:text-white transition-colors py-2 mobile-link">Projects</a>
+            <a href="#process" class="block hover:text-white transition-colors py-2 mobile-link">Process</a>
+            <a href="#about" class="block hover:text-white transition-colors py-2 mobile-link">About</a>
+            <a href="#contact" class="block text-white bg-surface border border-border px-4 py-3 rounded-lg hover:border-gray-500 transition-colors text-center mt-2 mobile-link">Contact</a>
+        </nav>
+    </header>
 
-    <!-- PROCESS -->
-    <section id="process" class="section">
-      <div class="container">
-        <h2 class="section-title">How I Work</h2>
-        <div class="grid-4">
-          <div class="card">
-            <h3>1) Workflow Audit</h3>
-            <p class="small">Understand your flow and where time leaks happen.</p>
-          </div>
-          <div class="card">
-            <h3>2) Bottleneck Mapping</h3>
-            <p class="small">Find manual steps that should be automated.</p>
-          </div>
-          <div class="card">
-            <h3>3) Build & Test</h3>
-            <p class="small">Implement automation, test edge cases, stabilize.</p>
-          </div>
-          <div class="card">
-            <h3>4) Optimize</h3>
-            <p class="small">Improve performance, clarity, and reliability.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ABOUT -->
-    <section id="about" class="section">
-      <div class="container">
-        <h2 class="section-title">About</h2>
-        <div class="card">
-          <p>
-            I’m Tanjim Ahmmed Shuvo, founder of Digifix BD.
-            Since 2024, I’ve worked with clients across social media systems, Facebook ads, and workflow automation.
-            Over time, I’ve shifted my focus toward building structured automation systems that reduce manual work and improve operational clarity.
-          </p>
-          <p class="small">
-            I value independence, structured thinking, and leverage. My goal is to build systems that scale — not just trade hours for income.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- CONTACT -->
-    <section id="contact" class="section">
-      <div class="container">
-        <h2 class="section-title">Contact</h2>
-        <p class="section-subtitle">
-          If you’re running a SaaS and still handling onboarding, follow-ups, or internal coordination manually — I can help.
-        </p>
-
-        <div class="grid-2">
-          <div class="card">
-            <h3>Email</h3>
-            <p><a href="mailto:contact@tanjim.tech">contact@tanjim.tech</a></p>
-            <p class="small">Response time: within 24 hours.</p>
-
-            <div class="mini-cta">
-              <p class="small"><strong>Free workflow review:</strong> Send 5 lines:</p>
-              <ul>
-                <li>What your product does</li>
-                <li>Your onboarding steps</li>
-                <li>Where users drop off</li>
-                <li>Tools you use (Stripe, HubSpot, etc.)</li>
-                <li>What you want automated</li>
-              </ul>
+    <main class="flex-grow pt-20">
+        
+        <!-- Hero Section -->
+        <section id="home" class="min-h-[90vh] flex flex-col items-center justify-center px-6 py-20 fade-in-section">
+            <div class="max-w-4xl mx-auto text-center">
+                <p class="text-accent font-medium tracking-widest uppercase text-xs mb-6">
+                    Tanjim Ahmmed Shuvo <span class="text-gray-500 mx-2">|</span> <a href="#" target="_blank" class="hover:text-white transition-colors underline decoration-border underline-offset-4">Founder, Digifix BD</a>
+                </p>
+                
+                <h1 class="text-4xl md:text-6xl font-bold text-white mb-6 leading-[1.15] tracking-tight">
+                    Workflow Automation <br class="hidden md:block"> for Early-Stage SaaS
+                </h1>
+                
+                <p class="text-lg md:text-xl text-gray-400 mb-6 max-w-2xl mx-auto leading-relaxed">
+                    I design and implement practical automations that reduce support load, speed up ops, and keep systems reliable as you scale.
+                </p>
+                
+                <p class="text-sm text-gray-500 mb-10 border border-border inline-block px-4 py-2 rounded-full bg-surface/50">
+                    1000+ client workflows & requests delivered (2024–2026)
+                </p>
+                
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
+                    <a href="#contact" class="w-full sm:w-auto px-6 py-3 bg-accent hover:bg-accentHover text-white font-medium rounded-lg transition-colors text-center">
+                        Request a Workflow Audit
+                    </a>
+                    <a href="#projects" class="w-full sm:w-auto px-6 py-3 bg-surface border border-border hover:border-gray-500 text-white font-medium rounded-lg transition-colors text-center">
+                        View Case Studies
+                    </a>
+                </div>
+                
+                <p class="text-xs text-gray-500 max-w-lg mx-auto leading-relaxed">
+                    Primary focus: automation systems. Secondary: social media security (authorized cases only).
+                </p>
             </div>
-          </div>
+        </section>
 
-          <div class="card">
-            <h3>Send a Message</h3>
-            <p class="small">Use a working form provider (Formspree/Netlify) or n8n webhook.</p>
+        <!-- Services Section -->
+        <section id="services" class="py-24 px-6 border-t border-border bg-background fade-in-section">
+            <div class="max-w-6xl mx-auto">
+                <div class="mb-16 md:text-center">
+                    <h2 class="text-3xl font-bold text-white mb-4">Services</h2>
+                    <p class="text-gray-400 max-w-2xl mx-auto">Systems designed to remove friction and support growth.</p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- Service 1 -->
+                    <div class="bg-surface border border-border p-8 rounded-2xl hover:border-gray-600 transition-colors flex flex-col">
+                        <h3 class="text-xl font-semibold text-white mb-6">SaaS Workflow Automation</h3>
+                        <ul class="space-y-3 text-gray-400 flex-grow text-sm mb-8">
+                            <li class="flex items-start gap-2">
+                                <span class="text-accent mt-0.5">&rarr;</span> Signup &rarr; activation workflows
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="text-accent mt-0.5">&rarr;</span> Trial expiry & follow-up sequences
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="text-accent mt-0.5">&rarr;</span> Payment &rarr; access automation
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="text-accent mt-0.5">&rarr;</span> Internal notifications & routing
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="text-accent mt-0.5">&rarr;</span> Lead capture &rarr; CRM tracking
+                            </li>
+                        </ul>
+                        <div class="mt-auto pt-6 border-t border-border/50 text-xs text-gray-500">
+                            <strong>Tools:</strong> n8n, webhooks, APIs, lightweight integrations
+                        </div>
+                    </div>
 
-            <!-- Replace ACTION with your real endpoint -->
-            <form id="contactForm" method="POST" action="https://formspree.io/f/XXXXXXXX">
-              <label>Full Name</label>
-              <input type="text" name="name" required />
+                    <!-- Service 2 -->
+                    <div class="bg-surface border border-border p-8 rounded-2xl hover:border-gray-600 transition-colors flex flex-col">
+                        <h3 class="text-xl font-semibold text-white mb-6">Conversion & Landing Systems</h3>
+                        <ul class="space-y-3 text-gray-400 flex-grow text-sm mb-8">
+                            <li class="flex items-start gap-2">
+                                <span class="text-accent mt-0.5">&rarr;</span> Landing pages (WordPress/custom)
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="text-accent mt-0.5">&rarr;</span> Funnel structure & clarity
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="text-accent mt-0.5">&rarr;</span> Basic tracking setup
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="text-accent mt-0.5">&rarr;</span> Offer positioning support
+                            </li>
+                        </ul>
+                    </div>
 
-              <label>Email</label>
-              <input type="email" name="email" required />
+                    <!-- Service 3 -->
+                    <div class="bg-surface border border-border p-8 rounded-2xl hover:border-gray-600 transition-colors flex flex-col">
+                        <h3 class="text-xl font-semibold text-white mb-6">Social Media Security <span class="text-xs font-normal text-gray-500 ml-2 px-2 py-1 bg-background rounded-md border border-border align-middle">Limited</span></h3>
+                        <ul class="space-y-3 text-gray-400 flex-grow text-sm mb-8">
+                            <li class="flex items-start gap-2">
+                                <span class="text-accent mt-0.5">&rarr;</span> Account hardening & safety setup
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="text-accent mt-0.5">&rarr;</span> Authorized recovery guidance
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="text-accent mt-0.5">&rarr;</span> Security best-practice checklist
+                            </li>
+                        </ul>
+                        <div class="mt-auto pt-6 border-t border-border/50 text-xs text-gray-500">
+                            <strong>Note:</strong> Secondary service, automation is main focus
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-              <label>Subject</label>
-              <input type="text" name="subject" required />
+        <!-- Projects Section -->
+        <section id="projects" class="py-24 px-6 border-t border-border bg-surface/30 fade-in-section">
+            <div class="max-w-6xl mx-auto">
+                <div class="mb-16 md:text-center">
+                    <h2 class="text-3xl font-bold text-white mb-4">Selected Projects</h2>
+                    <p class="text-gray-400 max-w-2xl mx-auto">Real-world examples of replacing manual labor with reliable systems.</p>
+                </div>
 
-              <label>Message</label>
-              <textarea name="message" rows="5" required></textarea>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                    <!-- Project 1 -->
+                    <div class="bg-background border border-border p-6 rounded-xl hover:border-gray-600 transition-colors">
+                        <h3 class="text-lg font-semibold text-white mb-4">Automated Customer Response System</h3>
+                        <div class="space-y-4 text-sm">
+                            <div>
+                                <span class="block text-xs text-gray-500 uppercase tracking-wider mb-1">Problem</span>
+                                <p class="text-gray-300">Manual inbox handling slowed response time.</p>
+                            </div>
+                            <div>
+                                <span class="block text-xs text-gray-500 uppercase tracking-wider mb-1">Solution</span>
+                                <p class="text-gray-300">n8n + webhook integrations.</p>
+                            </div>
+                            <div>
+                                <span class="block text-xs text-accent uppercase tracking-wider mb-1">Outcome</span>
+                                <p class="text-white font-medium">Reduced manual replies and improved consistency (response time down ~40%).</p>
+                            </div>
+                        </div>
+                    </div>
 
-              <!-- Honeypot (spam protection) -->
-              <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" />
+                    <!-- Project 2 -->
+                    <div class="bg-background border border-border p-6 rounded-xl hover:border-gray-600 transition-colors">
+                        <h3 class="text-lg font-semibold text-white mb-4">Lead Routing Workflow</h3>
+                        <div class="space-y-4 text-sm">
+                            <div>
+                                <span class="block text-xs text-gray-500 uppercase tracking-wider mb-1">Problem</span>
+                                <p class="text-gray-300">Leads were untracked and scattered.</p>
+                            </div>
+                            <div>
+                                <span class="block text-xs text-gray-500 uppercase tracking-wider mb-1">Solution</span>
+                                <p class="text-gray-300">n8n + Google Sheets + email triggers.</p>
+                            </div>
+                            <div>
+                                <span class="block text-xs text-accent uppercase tracking-wider mb-1">Outcome</span>
+                                <p class="text-white font-medium">Clear tracking, automating ~85% of manual follow-ups.</p>
+                            </div>
+                        </div>
+                    </div>
 
-              <button class="btn primary" type="submit">Send</button>
-            </form>
-          </div>
+                    <!-- Project 3 -->
+                    <div class="bg-background border border-border p-6 rounded-xl hover:border-gray-600 transition-colors">
+                        <h3 class="text-lg font-semibold text-white mb-4">Operational Alerts & Notifications</h3>
+                        <div class="space-y-4 text-sm">
+                            <div>
+                                <span class="block text-xs text-gray-500 uppercase tracking-wider mb-1">Problem</span>
+                                <p class="text-gray-300">Repetitive tasks consumed daily time.</p>
+                            </div>
+                            <div>
+                                <span class="block text-xs text-gray-500 uppercase tracking-wider mb-1">Solution</span>
+                                <p class="text-gray-300">Alerting/tagging/notification workflows.</p>
+                            </div>
+                            <div>
+                                <span class="block text-xs text-accent uppercase tracking-wider mb-1">Outcome</span>
+                                <p class="text-white font-medium">Improved efficiency, cutting repetitive workload by 6+ hours/week.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Personal Project Banner -->
+                <div class="bg-surface border border-border p-6 rounded-xl flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+                    <div>
+                        <h4 class="text-white font-medium text-sm mb-1">Personal Project: 3D School Model (2022)</h4>
+                        <p class="text-sm text-gray-400">Built a full 3D model + video of my school using a 4GB RAM mobile device. Proof of discipline and long-form execution.</p>
+                    </div>
+                    <div class="shrink-0">
+                        <span class="text-xs text-gray-500 bg-background border border-border px-3 py-1.5 rounded-md">Self-Taught Execution</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Process Section -->
+        <section id="process" class="py-24 px-6 border-t border-border bg-background fade-in-section">
+            <div class="max-w-6xl mx-auto">
+                <div class="mb-16 md:text-center">
+                    <h2 class="text-3xl font-bold text-white mb-4">Implementation Process</h2>
+                    <p class="text-gray-400 max-w-2xl mx-auto">A structured approach to ensure reliable automation without unnecessary complexity.</p>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+                    <!-- Step 1 -->
+                    <div class="relative pl-6 md:pl-0 border-l-2 md:border-l-0 md:border-t-2 border-border md:pt-6 pt-0 pb-8 md:pb-0">
+                        <div class="absolute left-[-9px] md:left-auto md:top-[-9px] w-4 h-4 bg-background border-2 border-accent rounded-full"></div>
+                        <span class="text-xs text-accent font-bold tracking-widest uppercase mb-2 block">Step 1</span>
+                        <h3 class="text-lg font-semibold text-white mb-2">Workflow Audit</h3>
+                        <p class="text-sm text-gray-400">Auditing your tool stack to pinpoint manual, repetitive bottlenecks.</p>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="relative pl-6 md:pl-0 border-l-2 md:border-l-0 md:border-t-2 border-border md:pt-6 pt-0 pb-8 md:pb-0">
+                        <div class="absolute left-[-9px] md:left-auto md:top-[-9px] w-4 h-4 bg-background border-2 border-border rounded-full"></div>
+                        <span class="text-xs text-gray-500 font-bold tracking-widest uppercase mb-2 block">Step 2</span>
+                        <h3 class="text-lg font-semibold text-white mb-2">Bottleneck Mapping</h3>
+                        <p class="text-sm text-gray-400">Mapping exact data paths and expected outcomes before touching code.</p>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="relative pl-6 md:pl-0 border-l-2 md:border-l-0 md:border-t-2 border-border md:pt-6 pt-0 pb-8 md:pb-0">
+                        <div class="absolute left-[-9px] md:left-auto md:top-[-9px] w-4 h-4 bg-background border-2 border-border rounded-full"></div>
+                        <span class="text-xs text-gray-500 font-bold tracking-widest uppercase mb-2 block">Step 3</span>
+                        <h3 class="text-lg font-semibold text-white mb-2">Build & Test</h3>
+                        <p class="text-sm text-gray-400">Building and rigorously testing the workflow via webhooks and APIs.</p>
+                    </div>
+
+                    <!-- Step 4 -->
+                    <div class="relative pl-6 md:pl-0 border-l-2 border-transparent md:border-l-0 md:border-t-2 md:border-border md:pt-6 pt-0">
+                        <div class="absolute left-[-9px] md:left-auto md:top-[-9px] w-4 h-4 bg-background border-2 border-border rounded-full"></div>
+                        <span class="text-xs text-gray-500 font-bold tracking-widest uppercase mb-2 block">Step 4</span>
+                        <h3 class="text-lg font-semibold text-white mb-2">Optimize</h3>
+                        <p class="text-sm text-gray-400">Monitoring live performance and scaling logic as your user base grows.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="py-24 px-6 border-t border-border bg-surface/30 fade-in-section">
+            <div class="max-w-3xl mx-auto text-center">
+                <h2 class="text-3xl font-bold text-white mb-8">About Me</h2>
+                <div class="text-gray-300 text-base md:text-lg leading-relaxed space-y-6">
+                    <p>
+                        I’m Tanjim Ahmmed Shuvo &mdash; founder of <a href="#" target="_blank" class="text-white hover:text-accent transition-colors border-b border-border hover:border-accent">Digifix BD</a>. Since 2024, I’ve worked with clients across social media systems, Facebook ads, and web delivery.
+                    </p>
+                    <p>
+                        Now I’m shifting my focus toward building automation products and repeatable systems&mdash;work that scales beyond hours.
+                    </p>
+                    <p class="text-white font-medium">
+                        I build systems that reduce manual work and keep operations predictable.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-24 px-6 border-t border-border bg-background fade-in-section">
+            <div class="max-w-6xl mx-auto">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
+                    
+                    <!-- Contact Info -->
+                    <div>
+                        <h2 class="text-3xl font-bold text-white mb-6">Let's streamline your operations.</h2>
+                        <p class="text-gray-400 mb-8 max-w-md">
+                            Whether you're struggling with manual onboarding or disjointed systems, let's discuss how we can build a process that works for you.
+                        </p>
+                        
+                        <div class="space-y-6 mb-10">
+                            <!-- Email -->
+                            <div class="flex items-center gap-4 text-gray-300">
+                                <div class="w-10 h-10 rounded-full bg-surface border border-border flex items-center justify-center shrink-0">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 text-gray-400">
+                                      <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
+                                    </svg>
+                                </div>
+                                <div>
+                                    <p class="text-sm text-gray-500 mb-0.5">Email</p>
+                                    <a href="mailto:contact@tanjim.tech" class="text-white hover:text-accent transition-colors font-medium">contact@tanjim.tech</a>
+                                </div>
+                            </div>
+                            
+                            <!-- LinkedIn -->
+                            <div class="flex items-center gap-4 text-gray-300">
+                                <div class="w-10 h-10 rounded-full bg-surface border border-border flex items-center justify-center shrink-0">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="text-gray-400">
+                                        <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                                        <rect x="2" y="9" width="4" height="12"></rect>
+                                        <circle cx="4" cy="4" r="2"></circle>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <p class="text-sm text-gray-500 mb-0.5">LinkedIn</p>
+                                    <a href="#" target="_blank" class="text-white hover:text-accent transition-colors font-medium">LinkedIn Profile</a>
+                                </div>
+                            </div>
+
+                            <!-- GitHub -->
+                            <div class="flex items-center gap-4 text-gray-300">
+                                <div class="w-10 h-10 rounded-full bg-surface border border-border flex items-center justify-center shrink-0">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="text-gray-400">
+                                        <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <p class="text-sm text-gray-500 mb-0.5">GitHub</p>
+                                    <a href="#" target="_blank" class="text-white hover:text-accent transition-colors font-medium">GitHub</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-surface border border-border p-6 rounded-xl">
+                            <h4 class="text-white font-medium mb-3 flex items-center gap-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5 text-accent">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
+                                </svg>
+                                Free Workflow Review
+                            </h4>
+                            <p class="text-sm text-gray-400 mb-2">Send 5 short lines describing:</p>
+                            <ul class="text-sm text-gray-400 space-y-1 list-disc list-inside">
+                                <li>Your product</li>
+                                <li>Onboarding steps</li>
+                                <li>Main drop-off point</li>
+                                <li>Tools currently used</li>
+                                <li>What you want automated</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Contact Form -->
+                    <div class="bg-surface border border-border p-8 rounded-2xl">
+                        <form action="https://formspree.io/f/placeholder" method="POST" class="space-y-5">
+                            <!-- Honeypot for spam protection -->
+                            <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" />
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                                <div class="space-y-2">
+                                    <label for="name" class="block text-sm font-medium text-gray-300">Name</label>
+                                    <input type="text" id="name" name="name" required
+                                        class="w-full bg-background border border-border text-white rounded-lg px-4 py-3 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors placeholder-gray-600"
+                                        placeholder="John Doe">
+                                </div>
+                                <div class="space-y-2">
+                                    <label for="email" class="block text-sm font-medium text-gray-300">Email</label>
+                                    <input type="email" id="email" name="email" required
+                                        class="w-full bg-background border border-border text-white rounded-lg px-4 py-3 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors placeholder-gray-600"
+                                        placeholder="john@saas.com">
+                                </div>
+                            </div>
+
+                            <div class="space-y-2">
+                                <label for="subject" class="block text-sm font-medium text-gray-300">Subject</label>
+                                <input type="text" id="subject" name="subject" required
+                                    class="w-full bg-background border border-border text-white rounded-lg px-4 py-3 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors placeholder-gray-600"
+                                    placeholder="Workflow Review Inquiry">
+                            </div>
+
+                            <div class="space-y-2">
+                                <label for="message" class="block text-sm font-medium text-gray-300">Message</label>
+                                <textarea id="message" name="message" rows="5" required
+                                    class="w-full bg-background border border-border text-white rounded-lg px-4 py-3 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors placeholder-gray-600 resize-none"
+                                    placeholder="Here are my 5 lines..."></textarea>
+                            </div>
+
+                            <button type="submit" 
+                                class="w-full bg-white text-background hover:bg-gray-200 font-semibold rounded-lg px-6 py-3.5 transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-background focus:ring-white">
+                                Request a Workflow Audit
+                            </button>
+                            <p class="text-xs text-center text-gray-500 mt-4 flex items-center justify-center gap-1.5">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-4 h-4 text-accent">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clip-rule="evenodd" />
+                                </svg>
+                                I personally review every request.
+                            </p>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-border py-12 bg-background">
+        <div class="max-w-6xl mx-auto px-6 flex flex-col items-center justify-center gap-4">
+            <p class="text-sm text-gray-500 tracking-wide">
+                &copy; 2026 &mdash; Tanjim Ahmmed Shuvo.
+            </p>
+            <div class="flex items-center flex-wrap justify-center gap-3 text-sm text-gray-400">
+                <a href="#" target="_blank" class="hover:text-white transition-colors">LinkedIn</a>
+                <span class="text-gray-600 hidden sm:inline">|</span>
+                <a href="#" target="_blank" class="hover:text-white transition-colors">GitHub</a>
+                <span class="text-gray-600 hidden sm:inline">|</span>
+                <span>Founder @ <a href="#" target="_blank" class="hover:text-white transition-colors border-b border-border hover:border-accent">Digifix BD</a></span>
+            </div>
         </div>
-      </div>
-    </section>
+    </footer>
 
-  </main>
+    <!-- Scripts -->
+    <script>
+        // Mobile Menu Toggle Logic
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
 
-  <footer class="footer">
-    <div class="container">
-      <p class="small">© 2026 — Tanjim Ahmmed Shuvo</p>
-    </div>
-  </footer>
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            mobileMenu.classList.toggle('flex');
+        });
 
-  <script src="script.js"></script>
+        // Close mobile menu on link click
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                mobileMenu.classList.remove('flex');
+            });
+        });
+
+        // Intersection Observer for subtle scroll fade-ins
+        document.addEventListener("DOMContentLoaded", () => {
+            const observerOptions = {
+                root: null,
+                rootMargin: "0px",
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            const sections = document.querySelectorAll('.fade-in-section');
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+        });
+    </script>
 </body>
 </html>
