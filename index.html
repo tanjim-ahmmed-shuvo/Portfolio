@@ -1,407 +1,255 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="facebook-domain-verification" content="kz00a9a22m4h736jz0zkkpy9zrlzkv" />
-    <meta name="keywords" content="Digifix BD, Tanjim Ahmmed Shuvo, Automation Expert, n8n, Security Researcher, Social Media Security, Web Developer Bangladesh">
-    <meta name="description" content="Founder @Digifix BD | Social Media Security Expert | AI Automation Lead">
-    <title>TANJIM AHMMED SHUVO - Portfolio</title>
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
-    <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="keywords" content="Tanjim Ahmmed Shuvo, workflow automation, n8n, SaaS automation, landing pages, Facebook ads, Digifix BD" />
+  <meta name="description" content="Workflow Automation for Early-Stage SaaS. I help founders automate onboarding, user communication, and internal workflows." />
+  <title>Tanjim Ahmmed Shuvo — Portfolio</title>
+
+  <!-- Keep your styles.css, but use a clean theme -->
+  <link rel="stylesheet" href="styles.css" />
 </head>
+
 <body>
-    <div id="cyber-preloader">
-        <div class="preloader-content">
-            <div class="scanner-line"></div>
-            <div class="terminal-text" id="terminal-text">INITIALIZING SYSTEM...</div>
-            <div class="loading-bar-container">
-                <div class="loading-bar"></div>
-            </div>
-        </div>
+  <!-- NAV -->
+  <nav class="navbar">
+    <div class="container">
+      <a href="#home" class="logo">Tanjim</a>
+      <div class="nav-links">
+        <a href="#home">Home</a>
+        <a href="#services">Services</a>
+        <a href="#projects">Projects</a>
+        <a href="#process">Process</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <button class="menu-toggle" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
     </div>
-    <svg id="dragon-cursor-svg">
-      <defs>
-        <g id="Cabeza" transform="matrix(1, 0, 0, 1, 0, 0)">
-          <path style="fill:#FFFFFF;fill-opacity:1" d="M-28.9,-1.1L-28.55 -1.95Q-28.1 -3.1 -27.25 -2.95L-26.7 -2.95Q-27.7 -1.65 -28.9 -1.1M-18.35,-1.8Q-15.1 -10.3 -9.6 -6.05Q-15.1 -6.2 -18.35 -1.8M-18.35,1.1Q-15.1 5.45 -9.6 5.35Q-15.1 9.55 -18.35 1.1M-26.7,2.2L-27.25 2.25Q-28.1 2.4 -28.55 1.2L-28.9 0.35Q-27.7 0.9 -26.7 2.2" />
-          <path style="fill:#000000;fill-opacity:1" d="M-21.05,-8.25Q-13.6 -15.95 -1.3 -12.1Q-7.85 -8.5 -5.85 -4.35Q-2.3 -4.85 10.5 0.15Q0 4.35 -5.85 3.65Q-7.85 7.75 -1.25 12.45Q-13.6 15.2 -21.05 7.5Q-29.55 4.05 -30.2 -0.35Q-29.55 -4.8 -21.05 -8.25M-26.7,-2.95L-27.25 -2.95Q-28.1 -3.1 -28.55 -1.95L-28.9 -1.1Q-27.7 -1.65 -26.7 -2.95M-9.6,-6.05Q-15.1 -10.3 -18.35 -1.8Q-15.1 -6.2 -9.6 -6.05M-9.6,5.35Q-15.1 5.45 -18.35 1.1Q-15.1 9.55 -9.6 5.35M-28.9,0.35L-28.55 1.2Q-28.1 2.4 -27.25 2.25L-26.7 2.2Q-27.7 0.9 -28.9 0.35" />
-        </g>
-        <g id="Aletas" transform="matrix(1, 0, 0, 1, 0, 0)">
-          <linearGradient id="LinearGradID_1" gradientUnits="userSpaceOnUse" gradientTransform="matrix(0.0935974, 0, 0, 0.188782, -20.55, 0)" spreadMethod="pad" x1="-819.2" y1="0" x2="819.2" y2="0">
-            <stop offset="0" style="stop-color:#CCCCCC;stop-opacity:1" />
-            <stop offset="1" style="stop-color:#000000;stop-opacity:1" />
-          </linearGradient>
-          <path style="fill:url(#LinearGradID_1) " d="M29.75,-36.85Q-17.75 -61.45 -42.05 -40.95L-45.35 -38.35L-53.7 -41.15L-51.15 -44.85Q-34.85 -68.4 21 -57.8Q-32.2 -72.1 -50.25 -50Q-53.85 -45.65 -56.05 -41.95L-64.7 -43.35L-60.6 -50.3Q-45.9 -75.55 5.1 -79.35Q-2.2 -79.8 -9.45 -79.15Q-16.2 -78.55 -22.85 -77.15Q-29.85 -75.65 -36.5 -73Q-43.05 -70.4 -48.8 -66.85Q-54.55 -63.35 -56.8 -60.3L-60.5 -55.4Q-62.95 -52.1 -67 -43.55L-70.55 -43.55L-76.35 -42.95Q-74.6 -49.1 -71.85 -54.85Q-68.9 -61.25 -64.8 -67.1Q-60.8 -73 -55.45 -77.55Q-49.9 -82.35 -43.65 -85.85L-30.6 -92.7Q-24.05 -95.95 -17 -98.25Q-63.75 -86.35 -73.65 -57.1Q-75.75 -50.75 -77.45 -42.75Q-82.9 -41.75 -88 -39.65Q-87.65 -46.65 -86.3 -53.05Q-79.8 -89.8 -36.65 -117.2Q-80.65 -94.5 -87.55 -59.55Q-88.65 -54.15 -88.95 -39.4L-89.8 -38.85L-92.7 -37.6Q-93.75 -44.35 -94.1 -51.15Q-94.4 -58.2 -93.25 -65.1Q-92.15 -72.5 -90.05 -79.65Q-88.05 -86.55 -85 -93Q-82.1 -99.3 -78.45 -105.15Q-74.6 -111.35 -70.25 -117.25Q-65.95 -123.1 -61.1 -128.55Q-70.3 -119.35 -77.9 -108.7Q-86 -97.3 -90.8 -84.05Q-95.8 -70.5 -96 -56.15Q-96.1 -46 -94.05 -36.05L-93.25 -31.55Q-93.5 -35.65 -92.35 -36Q-79.85 -42 -66.6 -40.45Q-52.45 -38.85 -39.2 -33.25Q-28.3 -29.9 -21.25 -24.15Q-17.8 -23.3 -8.6 -15.6Q-12.1 -20.75 -16.75 -24.5Q-24.55 -30.7 -34.25 -34.05L-42.55 -37Q-38.9 -41.25 -31.5 -43.25Q-24.05 -45.3 -16.2 -46.3Q-8.35 -47.35 -1 -46Q5.95 -44.75 12.75 -42.85Q19.85 -40.9 29.75 -36.85M-92.45,-27.35L-94.95 -36.25Q-109.7 -105 -27.95 -154.65Q-98.65 -103.8 -91.75 -39.4L-89.95 -40.2Q-92.2 -105.25 -5.6 -130.9Q-78.8 -99.95 -87.45 -40.9Q-83.15 -42.95 -78.45 -43.95Q-70 -101.3 17.65 -103.8Q-56.9 -93.4 -74.5 -44.55L-67.4 -45.45Q-49.1 -94.95 39.25 -75.65Q-36.75 -84.35 -62.25 -44.25L-57.3 -43.6Q-31.65 -86.5 56.15 -46.05Q-20.3 -73.35 -51.35 -41.7L-45.95 -39.75Q-17.85 -71.35 51.85 -24.8Q-8.7 -56.4 -39.75 -37.05Q-28.15 -34.05 -14.25 -24.45Q-8.6 -19.85 -5.8 -16.95Q5.95 -2.4 20 0Q5.95 2.4 -5.8 16.95Q-8.6 19.85 -14.25 24.45Q-28.15 34.05 -39.75 37.05Q-8.7 56.4 51.85 24.8Q-17.85 71.35 -45.95 39.75L-51.35 41.7Q-20.3 73.35 56.15 46.1Q-31.65 86.5 -57.3 43.65L-62.25 44.3Q-36.75 84.35 39.25 75.7Q-49.1 94.95 -67.4 45.5L-74.5 44.6Q-56.9 93.4 17.65 103.85Q-70 101.3 -78.45 43.95Q-83.15 42.95 -87.45 40.9Q-78.8 99.95 -5.6 130.9Q-92.2 105.25 -89.95 40.25L-91.75 39.4Q-98.65 103.8 -27.95 154.65Q-109.7 105 -94.95 36.3L-92.45 27.35Q-93.05 33.9 -92.05 34.75Q-91.1 35.55 -88.95 36.7L-87.95 37Q-83.7 38.25 -79.05 38.8L-77.25 38.95Q-72.55 39.3 -67.5 38.85L-65.45 38.65Q-44.4 36.05 -17.8 19.6Q-9.9 12.8 -15.15 4.4Q-18.15 3.15 -19 0Q-18.15 -3.15 -15.15 -4.4Q-9.9 -12.8 -17.8 -19.6L-17.8 -19.55Q-44.4 -36.05 -65.45 -38.6L-67.5 -38.8Q-72.55 -39.3 -77.25 -38.95L-79.05 -38.75Q-83.7 -38.25 -87.95 -36.95L-88.95 -36.65Q-91.1 -35.55 -92.05 -34.7Q-93.05 -33.9 -92.45 -27.35M-8.6,15.6Q-17.8 23.3 -21.25 24.2Q-28.3 29.9 -39.2 33.3Q-52.45 38.85 -66.6 40.5Q-79.85 42 -92.35 36Q-93.5 35.65 -93.25 31.55L-94.05 36.1Q-96.1 46.05 -96 56.15Q-95.8 70.5 -90.8 84.1Q-86 97.3 -77.9 108.75Q-70.3 119.35 -61.1 128.6Q-65.95 123.1 -70.25 117.25Q-74.6 111.35 -78.45 105.15Q-82.1 99.3 -85 93Q-88.05 86.55 -90.05 79.7Q-92.15 72.5 -93.25 65.1Q-94.4 58.2 -94.1 51.2Q-93.75 44.35 -92.7 37.6L-89.8 38.9L-88.95 39.45Q-88.65 54.15 -87.55 59.55Q-80.65 94.5 -36.65 117.25Q-79.8 89.8 -86.3 53.1Q-87.65 46.65 -88 39.65Q-82.9 41.75 -77.45 42.75Q-75.75 50.75 -73.65 57.15Q-63.75 86.35 -17 98.3Q-24.05 95.95 -30.6 92.75L-43.65 85.9Q-49.9 82.35 -55.45 77.6Q-60.8 73 -64.8 67.15Q-68.9 61.25 -71.85 54.85Q-74.6 49.1 -76.35 42.95L-70.55 43.6L-67 43.6Q-62.95 52.1 -60.5 55.4L-56.8 60.35Q-54.55 63.35 -48.8 66.9Q-43.05 70.4 -36.5 73Q-29.85 75.65 -22.85 77.15Q-16.2 78.55 -9.45 79.15Q-2.2 79.8 5.1 79.35Q-45.9 75.55 -60.6 50.3L-64.7 43.4L-56.05 41.95Q-53.85 45.65 -50.25 50Q-32.2 72.1 21 57.85Q-34.85 68.4 -51.15 44.85L-53.7 41.2L-45.35 38.35L-42.05 40.95Q-17.75 61.45 29.75 36.85Q19.85 40.9 12.75 42.9Q5.95 44.75 -1 46Q-8.35 47.35 -16.2 46.35Q-24.05 45.3 -31.5 43.3Q-38.9 41.25 -42.55 37.05L-34.25 34.05Q-24.55 30.7 -16.75 24.5Q-12.1 20.75 -8.6 15.6" />
-        </g>
-        <g id="Espina" transform="matrix(1, 0, 0, 1, 0, 0)">
-          <linearGradient id="LinearGradID_2" gradientUnits="userSpaceOnUse" gradientTransform="matrix(0.0229492, 0, 0, -0.0152893, 0, 0.05)" spreadMethod="pad" x1="-819.2" y1="0" x2="819.2" y2="0">
-            <stop offset="0" style="stop-color:#CCCCCC;stop-opacity:1" />
-            <stop offset="1" style="stop-color:#333333;stop-opacity:1" />
-          </linearGradient>
-          <path style="fill:url(#LinearGradID_2) " d="M-18.8,0Q-17.85 -5.7 -12.3 -9.6Q-11.2 -5.35 -6.5 -8.25L-6.45 -8.2L-6.2 -8.3Q1.25 -16.25 6.65 -12.4Q0.05 -12.55 0 -5.95Q2.7 -2.4 7.75 -4.1Q18 -1.45 18.8 0L-18.8 0" />
-          <linearGradient id="LinearGradID_3" gradientUnits="userSpaceOnUse" gradientTransform="matrix(0.0229492, 0, 0, 0.0152893, 0, -0.05)" spreadMethod="pad" x1="-819.2" y1="0" x2="819.2" y2="0">
-            <stop offset="0" style="stop-color:#CCCCCC;stop-opacity:1" />
-            <stop offset="1" style="stop-color:#333333;stop-opacity:1" />
-          </linearGradient>
-          <path style="fill:url(#LinearGradID_3) " d="M18.8,0Q18 1.45 7.75 4.1Q2.7 2.4 0 5.95Q0.05 12.55 6.65 12.4Q1.25 16.25 -6.2 8.35Q-6.35 8.25 -6.45 8.25L-6.5 8.25Q-11.2 5.35 -12.3 9.6Q-17.85 5.7 -18.8 0L18.8 0" />
-        </g>
-      </defs>
-      <g id="screen" />
-    </svg>
-    <div class="cursor"></div>
-    <div id="cursor-trail-container"></div>
+  </nav>
 
-    <nav class="navbar">
-        <div class="container">
-            <a href="https://digifixbd.com" class="logo sound-hover">
-                <span>DIGIFIX BD</span>
-            </a>
-            <div class="nav-links">
-                <a href="#home" class="sound-hover">Home</a>
-                <a href="#about" class="sound-hover">About</a>
-                <a href="#what-i-do" class="sound-hover">Services</a>
-                <a href="#skills" class="sound-hover">Arsenal</a>
-                <a href="#experience" class="sound-hover">Journey</a>
-                <a href="#contact" class="sound-hover">Contact</a>
-            </div>
-            <button class="menu-toggle sound-click">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
+  <main>
+
+    <!-- HERO -->
+    <section id="home" class="hero-section">
+      <div class="container">
+        <div class="hero-content">
+          <p class="eyebrow">Tanjim Ahmmed Shuvo</p>
+          <h1 class="hero-title">Workflow Automation for Early-Stage SaaS</h1>
+          <p class="hero-subtitle">
+            I help SaaS founders automate onboarding, user communication, and internal workflows using practical systems — not over-engineered stacks.
+          </p>
+
+          <div class="hero-proof">
+            <span>1000+ client requests handled (2024–2026)</span>
+            <span class="dot">•</span>
+            <span>Automation • Ads • Digital Systems</span>
+          </div>
+
+          <div class="hero-buttons">
+            <a class="btn primary" href="#contact">Get a Free Workflow Review</a>
+            <a class="btn secondary" href="#projects">See Selected Projects</a>
+          </div>
+
+          <div class="hero-note">
+            <span>Primary focus:</span> SaaS automation & scalable systems. <span>Secondary:</span> social media security (authorized cases only).
+          </div>
         </div>
-    </nav>
+      </div>
+    </section>
 
-    <main>
-        <section id="home" class="hero-section">
-            <div class="map" id="map"></div>
-            
-            <div class="container">
-                <div class="hero-content reveal">
-                    <div class="profile-circle-container animated-profile tilt-card">
-                        <img src="image.png" alt="Tanjim Ahmmed Shuvo - Profile Picture" class="profile-circle-img" />
-                        <canvas id="pixel-effect-canvas"></canvas>
-                    </div>
-                    <h1 class="hero-name">TANJIM AHMMED SHUVO <img class="verified-badge-img" src="blue.png" alt="Verified Badge"></h1>
-                    <div class="cyber-title-box">FOUNDER @DIGIFIX BD | SECURITY RESEARCHER</div>
-                    <p class="centered-description">
-                        Building Systems, Not Just Code. I replace manual 9-5 work with AI Automation and secure digital assets for businesses. Leading Digifix BD to scale businesses through technology.
-                    </p>
-                    <div class="hero-buttons">
-                        <a href="#contact" class="cyber-button cyber-button-primary sound-click">
-                            <span>WORK WITH ME</span>
-                            <i class="fa-solid fa-arrow-right"></i>
-                        </a>
-                        <a href="#experience" class="cyber-button cyber-button-secondary sound-click">
-                            <span>MY ROOTS</span>
-                            <i class="fa-solid fa-code-branch"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="cityscape"></div>
-        </section>
+    <!-- SERVICES -->
+    <section id="services" class="section">
+      <div class="container">
+        <h2 class="section-title">What I Do</h2>
+        <p class="section-subtitle">
+          Clear, practical work. Built for founders who want fewer manual operations and better workflow clarity.
+        </p>
 
-        <section id="about" class="about-section">
-            <div class="container">
-                <h2 class="section-title reveal">
-                    <span class="border-bottom-green">The Story</span>
-                </h2>
-                <div class="section-divider reveal"></div>
-                <div class="about-content">
-                    <div class="about-text" style="width: 100%; grid-column: span 2;">
-                        <div class="glassmorphic-card reveal tilt-card">
-                            <h3 class="about-subtitle">WHO I AM</h3>
-                            <p class="typewriter-text" data-text="I am a Tech Entrepreneur who believes in results over degrees. My journey didn't start in a university lecture hall; it started with curiosity—modding Android kernels, building custom security tools, and exploring the depths of Linux in my school days."></p>
-                            <p class="typewriter-text" data-text="Today, I lead Digifix BD, a digital agency that has served over 1000+ individuals and businesses. I don't follow the crowd. While others compete in the rat race, I focus on 'Smart Work'—leveraging AI and Automation to build ecosystems where businesses run on auto-pilot. My mission is simple: Prove that skills and resilience beat everything else."></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+        <div class="grid-3">
+          <div class="card">
+            <h3>SaaS Workflow Automation</h3>
+            <p>Remove manual operations and build reliable flows for growth.</p>
+            <ul>
+              <li>Signup → activation workflows</li>
+              <li>Trial expiry & follow-up sequences</li>
+              <li>Payment → access automation</li>
+              <li>Internal notifications & routing</li>
+              <li>Lead capture → CRM tracking</li>
+            </ul>
+            <p class="small">Tools: n8n, webhooks, APIs, lightweight integrations</p>
+          </div>
 
-        <section id="what-i-do" class="services-section">
-            <div class="container">
-                <h2 class="section-title reveal">
-                    <span class="border-bottom-pink">What I Do</span>
-                </h2>
-                <div class="section-divider reveal"></div>
-                <div class="about-services">
-                    <div class="service-card glassmorphic-card-cyan reveal tilt-card sound-hover">
-                        <i class="fa-solid fa-user-shield"></i>
-                        <h3>Social Media Security</h3>
-                        <p>Recovering hacked accounts, Meta Verification, and securing digital identities for high-profile clients.</p>
-                    </div>
-                    <div class="service-card glassmorphic-card-pink reveal tilt-card sound-hover">
-                        <i class="fa-solid fa-robot"></i>
-                        <h3>AI & Automation</h3>
-                        <p>Building "Vibe Coding" workflows using n8n & Python to automate lead gen, support, and invoicing.</p>
-                    </div>
-                    <div class="service-card glassmorphic-card-green reveal tilt-card sound-hover">
-                        <i class="fa-brands fa-wordpress"></i>
-                        <h3>Web Solutions</h3>
-                        <p>High-performance WordPress & WooCommerce setups designed for business growth and security.</p>
-                    </div>
-                    <div class="service-card glassmorphic-card-cyan reveal tilt-card sound-hover">
-                        <i class="fa-solid fa-bug"></i>
-                        <h3>Vulnerability Assessment</h3>
-                        <p>Identifying system flaws before attackers do. Practical experience in network & web security.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+          <div class="card">
+            <h3>Conversion & Landing Systems</h3>
+            <p>Simple, focused pages and tracking setups that support conversion.</p>
+            <ul>
+              <li>Landing page build (WordPress/custom)</li>
+              <li>Offer positioning & page structure</li>
+              <li>Basic tracking setup</li>
+              <li>Funnel clarity improvements</li>
+            </ul>
+          </div>
 
-        <section id="skills" class="skills-section">
-            <div class="container">
-                <h2 class="section-title reveal">
-                    <span class="border-bottom-cyan">Technical Arsenal</span>
-                </h2>
-                <div class="section-divider reveal"></div>
-                <div class="skills-grid">
-                    <div class="skill-card glassmorphic-card-cyan reveal tilt-card sound-hover">
-                        <div class="skill-icon">
-                            <i class="fa-solid fa-bolt"></i>
-                        </div>
-                        <div class="skill-content">
-                            <h3>Automation & AI</h3>
-                            <div class="progress-bar">
-                                <div class="progress" style="width: 95%"></div>
-                            </div>
-                            <ul class="skill-details">
-                                <li>n8n Workflow Automation</li>
-                                <li>AI Agents (LLMs)</li>
-                                <li>Python Scripting</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="skill-card glassmorphic-card-pink reveal tilt-card sound-hover">
-                        <div class="skill-icon">
-                            <i class="fa-brands fa-linux"></i>
-                        </div>
-                        <div class="skill-content">
-                            <h3>Security & OS</h3>
-                            <div class="progress-bar">
-                                <div class="progress" style="width: 90%"></div>
-                            </div>
-                            <ul class="skill-details">
-                                <li>Linux (Kali, Parrot, Arch)</li>
-                                <li>Android Rooting & Custom ROMs</li>
-                                <li>OSINT & Social Engineering Prev.</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="skill-card glassmorphic-card-green reveal tilt-card sound-hover">
-                        <div class="skill-icon">
-                            <i class="fa-solid fa-code"></i>
-                        </div>
-                        <div class="skill-content">
-                            <h3>Web & Tools</h3>
-                            <div class="progress-bar">
-                                <div class="progress" style="width: 85%"></div>
-                            </div>
-                            <ul class="skill-details">
-                                <li>WordPress / WooCommerce</li>
-                                <li>Burp Suite & Wireshark</li>
-                                <li>HTML / CSS / VS Code</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="experience" class="certificates-section">
-            <div class="container">
-                <h2 class="section-title reveal">
-                    <span class="border-bottom-pink">The Journey</span>
-                </h2>
-                <div class="section-divider reveal"></div>
-                <div class="certificates-grid"> <div class="certificate-card glassmorphic-card-green reveal tilt-card sound-hover">
-                        <div class="certificate-header">
-                            <h3>The Beginning</h3>
-                            <span class="certificate-badge">School Days</span>
-                        </div>
-                        <p class="certificate-period">Android & Modding</p>
-                        <p class="certificate-description">
-                            Started my journey by developing custom Android tools. Created an app with a cloud-based key authentication system that managed <strong>150+ active users</strong>. This taught me the fundamentals of API security and backend logic.
-                        </p>
-                    </div>
-                    <div class="certificate-card glassmorphic-card-cyan reveal tilt-card sound-hover">
-                        <div class="certificate-header">
-                            <h3>The Security Phase</h3>
-                            <span class="certificate-badge">Research</span>
-                        </div>
-                        <p class="certificate-period">WiFi & Network</p>
-                        <p class="certificate-description">
-                            Dived deep into Network Vulnerability Assessment. Gained practical experience with WiFi penetration testing (aircrack-ng, wifite) and SQL injection, understanding how to break systems to better secure them.
-                        </p>
-                    </div>
-                    <div class="certificate-card glassmorphic-card-pink reveal tilt-card sound-hover">
-                        <div class="certificate-header">
-                            <h3>The Vision</h3>
-                            <span class="certificate-badge">Digifix BD</span>
-                        </div>
-                        <p class="certificate-period">Present Day</p>
-                        <p class="certificate-description">
-                            Founded <strong>Digifix BD</strong>. Served 1000+ clients in recovering assets and verifying digital identities. Now focused on scaling businesses using AI Automation and "Vibe Coding" — proving that smart work beats hard work.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="contact" class="contact-section">
-            <div class="container">
-                <h2 class="section-title reveal">
-                    <span class="border-bottom-green">Connect</span>
-                </h2>
-                <div class="section-divider reveal"></div>
-                <div class="contact-content">
-                    <div class="contact-info glassmorphic-card reveal tilt-card">
-                        <h3 class="contact-subtitle">CONTACT INFO</h3>
-                        <div class="contact-item">
-                            <div class="contact-icon pink-icon">
-                                <i class="fa-solid fa-envelope"></i>
-                            </div>
-                            <div class="contact-details">
-                                <h4>Email</h4>
-                                <a href="mailto:contact@tanjim.tech" class="sound-click">contact@tanjim.tech</a>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <div class="contact-icon cyan-icon">
-                                <i class="fa-solid fa-phone"></i>
-                            </div>
-                            <div class="contact-details">
-                                <h4>WhatsApp</h4>
-                                <a href="https://wa.me/16506687797" class="sound-click">+1 (650) 668-7797</a>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <div class="contact-icon green-icon">
-                                <i class="fa-solid fa-location-dot"></i>
-                            </div>
-                            <div class="contact-details">
-                                <h4>Location</h4>
-                                <p>Faridpur,Dhaka,Bangladesh</p>
-                            </div>
-                        </div>
-                        <div class="social-links">
-                            <h3>CONNECT WITH ME</h3>
-                            <div class="social-icons">
-                                <a href="https://www.linkedin.com/in/tanjim-ahmmed-shuvo/" class="social-icon pink-border sound-click">
-                                    <i class="fab fa-linkedin-in"></i>
-                                </a>
-                                <a href="https://github.com/tanjim-ahmmed-shuvo" class="social-icon cyan-border sound-click">
-                                    <i class="fab fa-github"></i>
-                                </a>
-                                <a href="https://www.facebook.com/tanjim.ahmmed.shuvo" class="social-icon green-border sound-click">
-                                    <i class="fab fa-facebook-f"></i>
-                                </a>
-                                <a href="https://wa.me/16506687797" class="social-icon green-border sound-click" target="_blank">
-                                    <i class="fab fa-whatsapp"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="contact-form glassmorphic-card reveal tilt-card">
-                        <h3 class="form-title">SEND MESSAGE <h6>This is not working now, so please send the mail directly to the email address.</h6></h3>
-                        <form id="contactForm">
-                            <div class="form-group">
-                                <label for="name">Full Name</label>
-                                <div class="input-wrapper">
-                                    <i class="fa-solid fa-user"></i>
-                                    <input type="text" id="name" name="name" required class="sound-click">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="email">Email Address</label>
-                                <div class="input-wrapper">
-                                    <i class="fa-solid fa-envelope"></i>
-                                    <input type="email" id="email" name="email" required class="sound-click">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="subject">Subject</label>
-                                <div class="input-wrapper">
-                                    <i class="fa-solid fa-note-sticky"></i>
-                                    <input type="text" id="subject" name="subject" required class="sound-click">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="message">Your Message</label>
-                                <div class="input-wrapper">
-                                    <i class="fa-solid fa-message"></i>
-                                    <textarea id="message" name="message" required class="sound-click"></textarea>
-                                </div>
-                            </div>
-                            <button type="submit" class="cyber-button cyber-button-primary form-button sound-click">
-                                <span>SEND MESSAGE</span>
-                                <i class="fa-solid fa-paper-plane"></i>
-                            </button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-logo">
-                    <span>DIGIFIX BD</span>
-                    <p>Building Systems, Not Just Code.</p>
-                </div>
-                <div class="footer-links">
-                    <a href="#home" class="sound-hover">Home</a>
-                    <a href="#about" class="sound-hover">About</a>
-                    <a href="#what-i-do" class="sound-hover">Services</a>
-                    <a href="#experience" class="sound-hover">Journey</a>
-                    <a href="#contact" class="sound-hover">Contact</a>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2026 Digifix BD. All rights reserved.</p>
-                <p>Designed by <i class="fa-solid fa-shield-heart"></i> Tanjim Ahmmed Shuvo</p>
-            </div>
+          <div class="card">
+            <h3>Social Media Security (Limited)</h3>
+            <p>Provided only for legitimate, authorized cases.</p>
+            <ul>
+              <li>Account hardening & safety setup</li>
+              <li>Recovery guidance (authorized only)</li>
+              <li>Security best-practice checklist</li>
+            </ul>
+            <p class="small">This is a secondary service — automation is the main focus.</p>
+          </div>
         </div>
-        <div class="cityscape"></div>
-    </footer>
+      </div>
+    </section>
 
-    <div id="toast" class="toast">
-        <div class="toast-content">
-            <i class="fa-solid fa-check-circle"></i>
-            <div class="toast-message">Message sent successfully!</div>
+    <!-- PROJECTS -->
+    <section id="projects" class="section">
+      <div class="container">
+        <h2 class="section-title">Selected Workflow Projects</h2>
+        <p class="section-subtitle">Short, real examples. Clear problem → solution → outcome.</p>
+
+        <div class="grid-3">
+          <div class="card">
+            <h3>Automated Customer Response System</h3>
+            <p class="small"><strong>Problem:</strong> Manual inbox handling slowed response time.</p>
+            <p class="small"><strong>Solution:</strong> Built an automated reply system using n8n + webhook integrations.</p>
+            <p class="small"><strong>Outcome:</strong> Reduced manual replies and improved consistency.</p>
+          </div>
+
+          <div class="card">
+            <h3>Lead Routing Workflow</h3>
+            <p class="small"><strong>Problem:</strong> Leads were untracked and scattered.</p>
+            <p class="small"><strong>Solution:</strong> Automated routing + logging using n8n + Google Sheets + email triggers.</p>
+            <p class="small"><strong>Outcome:</strong> Clear tracking and faster follow-ups.</p>
+          </div>
+
+          <div class="card">
+            <h3>Operational Alerts & Notifications</h3>
+            <p class="small"><strong>Problem:</strong> Repetitive tasks consumed daily time.</p>
+            <p class="small"><strong>Solution:</strong> Designed workflows for alerts, tagging, and notifications.</p>
+            <p class="small"><strong>Outcome:</strong> Improved efficiency and reduced repetitive workload.</p>
+          </div>
         </div>
-        <div class="toast-progress"></div>
+
+        <!-- Optional: your 3D school project as character proof -->
+        <div class="card wide">
+          <h3>Personal Project: 3D School Model (2022)</h3>
+          <p class="small">
+            Built a full 3D model + video of my school using a 4GB RAM mobile device. Consistent daily work for weeks — a proof of discipline and long-form execution.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROCESS -->
+    <section id="process" class="section">
+      <div class="container">
+        <h2 class="section-title">How I Work</h2>
+        <div class="grid-4">
+          <div class="card">
+            <h3>1) Workflow Audit</h3>
+            <p class="small">Understand your flow and where time leaks happen.</p>
+          </div>
+          <div class="card">
+            <h3>2) Bottleneck Mapping</h3>
+            <p class="small">Find manual steps that should be automated.</p>
+          </div>
+          <div class="card">
+            <h3>3) Build & Test</h3>
+            <p class="small">Implement automation, test edge cases, stabilize.</p>
+          </div>
+          <div class="card">
+            <h3>4) Optimize</h3>
+            <p class="small">Improve performance, clarity, and reliability.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="section">
+      <div class="container">
+        <h2 class="section-title">About</h2>
+        <div class="card">
+          <p>
+            I’m Tanjim Ahmmed Shuvo, founder of Digifix BD.
+            Since 2024, I’ve worked with clients across social media systems, Facebook ads, and workflow automation.
+            Over time, I’ve shifted my focus toward building structured automation systems that reduce manual work and improve operational clarity.
+          </p>
+          <p class="small">
+            I value independence, structured thinking, and leverage. My goal is to build systems that scale — not just trade hours for income.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="section">
+      <div class="container">
+        <h2 class="section-title">Contact</h2>
+        <p class="section-subtitle">
+          If you’re running a SaaS and still handling onboarding, follow-ups, or internal coordination manually — I can help.
+        </p>
+
+        <div class="grid-2">
+          <div class="card">
+            <h3>Email</h3>
+            <p><a href="mailto:contact@tanjim.tech">contact@tanjim.tech</a></p>
+            <p class="small">Response time: within 24 hours.</p>
+
+            <div class="mini-cta">
+              <p class="small"><strong>Free workflow review:</strong> Send 5 lines:</p>
+              <ul>
+                <li>What your product does</li>
+                <li>Your onboarding steps</li>
+                <li>Where users drop off</li>
+                <li>Tools you use (Stripe, HubSpot, etc.)</li>
+                <li>What you want automated</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>Send a Message</h3>
+            <p class="small">Use a working form provider (Formspree/Netlify) or n8n webhook.</p>
+
+            <!-- Replace ACTION with your real endpoint -->
+            <form id="contactForm" method="POST" action="https://formspree.io/f/XXXXXXXX">
+              <label>Full Name</label>
+              <input type="text" name="name" required />
+
+              <label>Email</label>
+              <input type="email" name="email" required />
+
+              <label>Subject</label>
+              <input type="text" name="subject" required />
+
+              <label>Message</label>
+              <textarea name="message" rows="5" required></textarea>
+
+              <!-- Honeypot (spam protection) -->
+              <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" />
+
+              <button class="btn primary" type="submit">Send</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p class="small">© 2026 — Tanjim Ahmmed Shuvo</p>
     </div>
+  </footer>
 
-    <div id="mobile-warning-modal" class="custom-modal">
-        <div class="modal-content tilt-card">
-            <div class="modal-icon">
-                <i class="fa-solid fa-triangle-exclamation"></i>
-            </div>
-            <h2 class="modal-title">ACCESS DENIED</h2>
-            <div class="modal-body">
-                <p>Terminal Mode requires high processing power and a larger display matrix.</p>
-                <p style="color: #aaa; font-size: 0.9rem; margin-top: 10px;">
-                    Please switch to a <strong style="color: #0ff;">Desktop PC</strong> to access the Neural Network.
-                </p>
-            </div>
-            <button id="close-modal-btn" class="modal-btn">
-                [ ACKNOWLEDGE ]
-            </button>
-        </div>
-    </div>
-
-    <a href="monitor.html" class="terminal-mode-btn" id="terminalBtn">
-        <i class="fa-solid fa-terminal"></i>
-        <span>ENTER TERMINAL MODE</span>
-    </a>
-
-    <script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
