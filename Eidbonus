@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eid Bonus Spinner</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f0f2f5;
+            font-family: Arial, sans-serif;
+        }
+
+        .header {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .wheel-container {
+            position: relative;
+            width: 350px;
+            height: 350px;
+        }
+
+        /* Pointer upore center e */
+        .pointer {
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 40px;
+            background: red;
+            clip-path: polygon(50% 100%, 0 0, 100% 0);
+            z-index: 10;
+        }
+
+        #wheel {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 5px solid #333;
+            transition: transform 4s cubic-bezier(0.1, 0, 0.2, 1);
+            overflow: hidden;
+            background: conic-gradient(
+                #ff6384 0deg 45deg, 
+                #36a2eb 45deg 90deg, 
+                #ffce56 90deg 135deg, 
+                #4bc0c0 135deg 180deg, 
+                #9966ff 180deg 225deg, 
+                #ff9f40 225deg 270deg, 
+                #c9cbcf 270deg 315deg, 
+                #4dc9f6 315deg 360deg
+            );
+        }
+
+        .spin-btn {
+            margin-top: 30px;
+            padding: 15px 40px;
+            font-size: 20px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .spin-btn:active {
+            transform: scale(0.95);
+        }
+
+        /* Value labels display */
+        .label {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            font-weight: bold;
+            color: white;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>🌙 Eid Bonus Spinner</h1>
+        <p>Spin and Win your Bonus!</p>
+    </div>
+
+    <div class="wheel-container">
+        <div class="pointer"></div>
+        <canvas id="wheelCanvas" width="350" height="350" style="transform: rotate(0deg); border-radius: 50%; border: 5px solid #333; transition: transform 5s cubic-bezier(0.15, 0, 0.15, 1);"></canvas>
+    </div>
+
+    <button class="spin-btn" onclick="spinWheel()">SPIN NOW</button>
+
+    <script>
+        const canvas = document.getElementById('wheelCanvas');
+        const ctx = canvas.getContext('2d');
+        const values = ["Eid Bonus", "1000", "5000", "2000", "600", "800", "3000", "0"];
+        const colors = ["#e74c3c", "#3498db", "#f1c40f", "#2ecc71", "#9b59b6", "#e67e22", "#1abc9c", "#34495e"];
+        
+        const size = values.length;
+        const arc = Math.PI / (size / 2);
+
+        // Drawing the wheel
+        values.forEach((value, i) => {
+            const angle = i * arc;
+            ctx.fillStyle = colors[i];
+            ctx.beginPath();
+            ctx.moveTo(175, 175);
+            ctx.arc(175, 175, 175, angle, angle + arc);
+            ctx.lineTo(175, 175);
+            ctx.fill();
+
+            // Text drawing
+            ctx.save();
+            ctx.translate(175 + Math.cos(angle + arc / 2) * 120, 175 + Math.sin(angle + arc / 2) * 120);
+            ctx.rotate(angle + arc / 2 + Math.PI / 2);
+            ctx.fillStyle = "white";
+            ctx.font = "bold 16px Arial";
+            ctx.fillText(value, -ctx.measureText(value).width / 2, 0);
+            ctx.restore();
+        });
+
+        let currentRotation = 0;
+
+        function spinWheel() {
+            // "0" thake 7 number index-e. 
+            // Calculation: 360 degree / 8 sections = 45 degree per section.
+            // 0 index (Eid Bonus) starts at 0 deg.
+            // "0" index starts at 315 deg.
+            
+            // Script logic to force landing on "0":
+            // Pointer top center-e thake (270 deg of canvas).
+            // Amader target index 7 (0 value).
+            
+            const extraSpins = 5 * 360; // 5 bar purapuri ghurbe
+            const targetIndex = 7; // "0" er index
+            const segmentAngle = 360 / size;
+            
+            // Pointer-er niche "0" ke ante hole calculation:
+            const stopAngle = (360 - (targetIndex * segmentAngle)) - (segmentAngle / 2) - 90;
+            
+            currentRotation += extraSpins + stopAngle + (360 - (currentRotation % 360));
+            
+            canvas.style.transform = `rotate(${currentRotation}deg)`;
+            
+            setTimeout(() => {
+                alert("Alas! You won: 0 BDT. Better luck next time!");
+            }, 5500);
+        }
+    </script>
+</body>
+</html>
